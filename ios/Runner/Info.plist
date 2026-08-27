@@ -66,5 +66,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Agribotics uses your location to center the land selection map near your farm.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Agribotics only uses location to help you select land boundaries when the app is open.</string>
+	<key>GMSApiKey</key>
+	<string>$(GOOGLE_MAPS_API_KEY)</string>
+
 </dict>
 </plist>
