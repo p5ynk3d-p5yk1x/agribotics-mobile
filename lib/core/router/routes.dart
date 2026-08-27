@@ -5,12 +5,13 @@ import 'package:agribotics/features/auth/presentation/login-page.dart';
 import 'package:agribotics/features/disease/presentation/pages/disease_detection_page.dart';
 import 'package:agribotics/features/disease/presentation/pages/disease_history.dart';
 import 'package:agribotics/features/disease/presentation/pages/disease_map.dart';
+import 'package:agribotics/features/land/presentation/pages/land_dashboard_page.dart';
+import 'package:agribotics/features/land/presentation/pages/land_selection_page.dart';
 import 'package:agribotics/features/soil/presentation/pages/nutrient_detection_page.dart';
 import 'package:agribotics/features/weeds/presentation/pages/weed_detection.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../features/estate/presentation/pages/estate_identity_page.dart';
 import '../../features/estate/presentation/pages/sector_detail_page.dart';
 import '../../features/soil/presentation/pages/soil_history.dart';
 import '../../features/soil/presentation/pages/soil_map.dart';
@@ -63,7 +64,12 @@ final routerProvider = Provider<GoRouter>((ref) {
               GoRoute(
                 path: '/dashboard',
                 builder: (context, state) =>
-                const EstateIdentityPage(),
+                const LandDashboardPage(),
+              ),
+              GoRoute(
+                path: '/land/select',
+                builder: (context, state) =>
+                const LandSelectionPage(),
               ),
               GoRoute(
                 path: '/sector-detail',
