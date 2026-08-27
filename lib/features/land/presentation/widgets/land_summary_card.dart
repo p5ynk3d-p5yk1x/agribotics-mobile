@@ -15,7 +15,7 @@ class LandSummaryCard extends StatelessWidget {
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(color: AppTheme.surface, borderRadius: BorderRadius.circular(24), border: Border.all(color: AppTheme.outline.withOpacity(0.12))),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text('LAND MONITORING', style: Theme.of(context).textTheme.labelLarge), Icon(LucideIcons.mapPinned, color: AppTheme.primary)]),
+        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [Text('LAND MONITORING', style: Theme.of(context).textTheme.labelLarge), Icon(LucideIcons.mapPin, color: AppTheme.primary)]),
         const SizedBox(height: 16),
         Text('Land ${land.landId}', style: Theme.of(context).textTheme.headlineMedium),
         const SizedBox(height: 12),
