@@ -240,7 +240,7 @@ class _DetectionTimeline extends StatelessWidget {
           isFirst: true,
           isProcessing: true,
           useCard: true,
-          onTap: () => context.go('/disease/live-scan'),
+          onTap: () => context.go('/disease/map'),
         ),
         SharedTimelineItem(
           label: 'POSITIVE',

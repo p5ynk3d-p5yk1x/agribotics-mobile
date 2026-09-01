@@ -9,7 +9,7 @@ import 'package:permission_handler/permission_handler.dart' as permissions;
 import '../../../../core/theme/app_theme.dart';
 import '../../data/land_models.dart';
 import '../../data/land_state.dart';
-import '../../land_provider.dart';
+import '../../data/land_provider.dart';
 import '../widgets/land_map.dart';
 
 class LandSelectionPage extends ConsumerStatefulWidget {
@@ -21,10 +21,10 @@ class LandSelectionPage extends ConsumerStatefulWidget {
 
 class _LandSelectionPageState extends ConsumerState<LandSelectionPage> {
   final List<LatLng> _vertices = [];
-
   LatLng? _center;
   GoogleMapController? _controller;
   String? _locationMessage;
+  bool _isLocating = true;
 
   @override
   void initState() {
@@ -36,6 +36,7 @@ class _LandSelectionPageState extends ConsumerState<LandSelectionPage> {
     if (!mounted) return;
 
     setState(() {
+      _isLocating = true;
       _locationMessage = 'Checking location permission…';
     });
 
@@ -43,96 +44,67 @@ class _LandSelectionPageState extends ConsumerState<LandSelectionPage> {
 
     if (!serviceEnabled) {
       if (!mounted) return;
-
       setState(() {
-        _locationMessage =
-        'Location services are disabled. Enable GPS to center the map.';
+        _isLocating = false;
+        _locationMessage = 'Location services are disabled. Enable GPS to center the map.';
       });
-
       return;
     }
 
     var permission = await Geolocator.checkPermission();
 
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-    }
+    if (permission == LocationPermission.denied) permission = await Geolocator.requestPermission();
 
     if (permission == LocationPermission.denied) {
       if (!mounted) return;
-
       setState(() {
-        _locationMessage =
-        'Location permission denied. You can still mark land manually.';
+        _isLocating = false;
+        _locationMessage = 'Location permission denied. Enable location permission to mark your land.';
       });
-
       return;
     }
 
     if (permission == LocationPermission.deniedForever) {
       if (!mounted) return;
-
       setState(() {
-        _locationMessage =
-        'Location permission is permanently denied. Open settings to recover.';
+        _isLocating = false;
+        _locationMessage = 'Location permission is permanently denied. Open settings to recover.';
       });
-
       return;
     }
 
     try {
-      final position = await Geolocator.getCurrentPosition(
-        locationSettings: const LocationSettings(
-          accuracy: LocationAccuracy.high,
-          timeLimit: Duration(seconds: 12),
-        ),
-      );
-
-      final current = LatLng(
-        position.latitude,
-        position.longitude,
-      );
+      final position = await Geolocator.getCurrentPosition(locationSettings: const LocationSettings(accuracy: LocationAccuracy.high, timeLimit: Duration(seconds: 12)));
+      final current = LatLng(position.latitude, position.longitude);
 
       if (!mounted) return;
 
       setState(() {
         _center = current;
+        _isLocating = false;
         _locationMessage = null;
       });
 
-      await _controller?.animateCamera(
-        CameraUpdate.newLatLngZoom(
-          current,
-          16,
-        ),
-      );
+      await _controller?.animateCamera(CameraUpdate.newLatLngZoom(current, 17));
     } catch (_) {
       final last = await Geolocator.getLastKnownPosition();
 
       if (!mounted) return;
 
       if (last != null) {
-        final lastKnown = LatLng(
-          last.latitude,
-          last.longitude,
-        );
+        final lastKnown = LatLng(last.latitude, last.longitude);
 
         setState(() {
           _center = lastKnown;
-          _locationMessage =
-          'Unable to refresh GPS. Showing your last known location.';
+          _isLocating = false;
+          _locationMessage = 'Unable to refresh GPS. Showing your last known location.';
         });
 
-        await _controller?.animateCamera(
-          CameraUpdate.newLatLngZoom(
-            lastKnown,
-            16,
-          ),
-        );
+        await _controller?.animateCamera(CameraUpdate.newLatLngZoom(lastKnown, 17));
       } else {
         setState(() {
-          _locationMessage =
-          'Unable to get your location. You can still mark the land manually.';
+          _isLocating = false;
+          _locationMessage = 'Unable to determine your location. Check GPS and try again.';
         });
       }
     }
@@ -146,7 +118,6 @@ class _LandSelectionPageState extends ConsumerState<LandSelectionPage> {
 
   void _undoVertex() {
     if (_vertices.isEmpty) return;
-
     setState(() {
       _vertices.removeLast();
     });
@@ -154,33 +125,26 @@ class _LandSelectionPageState extends ConsumerState<LandSelectionPage> {
 
   void _clearVertices() {
     if (_vertices.isEmpty) return;
-
     setState(() {
       _vertices.clear();
     });
   }
 
+  void _saveLand() {
+    final validation = GeoJsonPolygon(_vertices).validate();
+    if (!validation.isValid) return;
+    ref.read(landProvider.notifier).saveLand(_vertices);
+  }
+
   @override
   Widget build(BuildContext context) {
     ref.listen(landProvider, (previous, next) {
-      if (next.status == LandStatus.loaded &&
-          previous?.status == LandStatus.saving) {
-        context.go('/dashboard');
-      }
+      if (next.status == LandStatus.loaded && previous?.status == LandStatus.saving) context.go('/dashboard');
     });
 
     final state = ref.watch(landProvider);
-
     final validation = GeoJsonPolygon(_vertices).validate();
-
-    final center = _center ??
-        const LatLng(
-          21.1458,
-          79.0882,
-        );
-
     final isSaving = state.status == LandStatus.saving;
-
     final displayMessage = state.message ?? _locationMessage;
 
     return Scaffold(
@@ -189,156 +153,97 @@ class _LandSelectionPageState extends ConsumerState<LandSelectionPage> {
         backgroundColor: AppTheme.background,
         elevation: 0,
         centerTitle: false,
-        title: Text(
-          'Mark Your Land',
-          style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-            fontWeight: FontWeight.w700,
-          ),
-        ),
+        title: Text('Mark Your Land', style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w700)),
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(
-            16,
-            0,
-            16,
-            16,
-          ),
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
           child: Column(
             children: [
-              _InstructionCard(
-                message: displayMessage,
-                count: _vertices.length,
-                validation: validation,
-              ),
-
+              _InstructionCard(message: displayMessage, count: _vertices.length, validation: validation),
               const SizedBox(height: 16),
-
               Expanded(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(24),
-                  child: Stack(
-                    children: [
-                      Positioned.fill(
-                        child: LandMap(
-                          initialPosition: center,
-                          vertices: _vertices,
-                          onMapCreated: (controller) {
-                            _controller = controller;
-
-                            if (_center != null) {
-                              controller.animateCamera(
-                                CameraUpdate.newLatLngZoom(
-                                  _center!,
-                                  16,
-                                ),
-                              );
-                            }
-                          },
-                          onTap: _addVertex,
-                        ),
-                      ),
-
-                      Positioned(
-                        top: 14,
-                        right: 14,
-                        child: _MapHint(),
-                      ),
-                    ],
-                  ),
+                  child: _buildMap(),
                 ),
               ),
-
               const SizedBox(height: 16),
-
               Row(
                 children: [
-                  _ActionButton(
-                    label: 'UNDO',
-                    icon: LucideIcons.undo2,
-                    onTap: _vertices.isEmpty ? null : _undoVertex,
-                  ),
+                  _ActionButton(label: 'UNDO', icon: LucideIcons.undo2, onTap: _vertices.isEmpty ? null : _undoVertex),
                   const SizedBox(width: 10),
-                  _ActionButton(
-                    label: 'CLEAR',
-                    icon: LucideIcons.trash2,
-                    onTap: _vertices.isEmpty ? null : _clearVertices,
-                  ),
+                  _ActionButton(label: 'CLEAR', icon: LucideIcons.trash2, onTap: _vertices.isEmpty ? null : _clearVertices),
                   const SizedBox(width: 10),
-                  _ActionButton(
-                    label: 'GPS',
-                    icon: LucideIcons.locateFixed,
-                    onTap: _locateUser,
-                  ),
+                  _ActionButton(label: 'GPS', icon: LucideIcons.locateFixed, onTap: _isLocating ? null : _locateUser),
                 ],
               ),
-
               const SizedBox(height: 12),
-
               ElevatedButton.icon(
-                onPressed: isSaving
-                    ? null
-                    : () {
-                  ref
-                      .read(landProvider.notifier)
-                      .saveLand(_vertices);
-                },
-                icon: isSaving
-                    ? const SizedBox(
-                  width: 18,
-                  height: 18,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                  ),
-                )
-                    : const Icon(
-                  LucideIcons.check,
-                  size: 20,
-                ),
-                label: Text(
-                  isSaving ? 'SAVING LAND...' : 'SAVE LAND',
-                ),
+                onPressed: isSaving || !validation.isValid ? null : _saveLand,
+                icon: isSaving ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2)) : const Icon(LucideIcons.check, size: 20),
+                label: Text(isSaving ? 'SAVING LAND...' : 'SAVE LAND'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppTheme.primary,
                   foregroundColor: Colors.white,
-                  disabledBackgroundColor:
-                  AppTheme.primary.withOpacity(0.55),
+                  disabledBackgroundColor: AppTheme.primary.withOpacity(0.55),
                   disabledForegroundColor: Colors.white,
-                  minimumSize: const Size(
-                    double.infinity,
-                    58,
-                  ),
+                  minimumSize: const Size(double.infinity, 58),
                   elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18),
-                  ),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
                 ),
               ),
-
-              if (_locationMessage?.contains('permanently') == true)
-                Padding(
-                  padding: const EdgeInsets.only(top: 4),
-                  child: TextButton(
-                    onPressed: permissions.openAppSettings,
-                    child: const Text(
-                      'Open device settings',
-                    ),
-                  ),
-                ),
+              if (_locationMessage?.contains('permanently') == true) Padding(
+                padding: const EdgeInsets.only(top: 4),
+                child: TextButton(onPressed: permissions.openAppSettings, child: const Text('Open device settings')),
+              ),
             ],
           ),
         ),
       ),
     );
   }
+
+  Widget _buildMap() {
+    if (_center == null) {
+      return Container(
+        color: AppTheme.surface,
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (_isLocating) const CircularProgressIndicator(),
+              if (_isLocating) const SizedBox(height: 16),
+              Text(_isLocating ? 'Locating your land…' : 'Location unavailable', style: Theme.of(context).textTheme.bodyMedium),
+              if (!_isLocating) const SizedBox(height: 12),
+              if (!_isLocating) TextButton.icon(onPressed: _locateUser, icon: const Icon(LucideIcons.locateFixed), label: const Text('TRY AGAIN')),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: LandMap(
+            initialPosition: _center!,
+            vertices: _vertices,
+            onMapCreated: (controller) {
+              _controller = controller;
+              controller.animateCamera(CameraUpdate.newLatLngZoom(_center!, 17));
+            },
+            onTap: _addVertex,
+          ),
+        ),
+        const Positioned(top: 14, right: 14, child: _MapHint()),
+      ],
+    );
+  }
 }
 
 class _InstructionCard extends StatelessWidget {
-  const _InstructionCard({
-    required this.count,
-    required this.validation,
-    this.message,
-  });
+  const _InstructionCard({required this.count, required this.validation, this.message});
 
   final int count;
   final PolygonValidationResult validation;
@@ -354,16 +259,8 @@ class _InstructionCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppTheme.surface,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(
-          color: AppTheme.outline.withOpacity(0.10),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.04),
-            blurRadius: 24,
-            offset: const Offset(0, 8),
-          ),
-        ],
+        border: Border.all(color: AppTheme.outline.withOpacity(0.10)),
+        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 24, offset: const Offset(0, 8))],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -373,65 +270,25 @@ class _InstructionCard extends StatelessWidget {
               Container(
                 width: 42,
                 height: 42,
-                decoration: BoxDecoration(
-                  color: AppTheme.primary.withOpacity(0.10),
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: Icon(
-                  LucideIcons.map,
-                  size: 20,
-                  color: AppTheme.primary,
-                ),
+                decoration: BoxDecoration(color: AppTheme.primary.withOpacity(0.10), borderRadius: BorderRadius.circular(14)),
+                child: const Icon(LucideIcons.map, size: 20, color: AppTheme.primary),
               ),
               const SizedBox(width: 12),
-              Expanded(
-                child: Text(
-                  'MARK LAND BOUNDARY',
-                  style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                    fontWeight: FontWeight.w700,
-                    letterSpacing: 0.5,
-                  ),
-                ),
-              ),
-              Text(
-                '$count pts',
-                style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                  color: AppTheme.primary,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
+              Expanded(child: Text('MARK LAND BOUNDARY', style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700, letterSpacing: 0.5))),
+              Text('$count pts', style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppTheme.primary, fontWeight: FontWeight.w700)),
             ],
           ),
-
           const SizedBox(height: 12),
-
-          Text(
-            'Tap the map to place vertices around your land. '
-                'The polygon will close automatically.',
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              height: 1.4,
+          Text('Tap the map to place vertices around your land. The polygon will close automatically.', style: Theme.of(context).textTheme.bodyMedium?.copyWith(height: 1.4)),
+          if (hasError) Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(color: AppTheme.error.withOpacity(0.07), borderRadius: BorderRadius.circular(12)),
+              child: Text(message ?? validation.message!, style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.error, height: 1.35)),
             ),
           ),
-
-          if (hasError)
-            Padding(
-              padding: const EdgeInsets.only(top: 10),
-              child: Container(
-                width: double.infinity,
-                padding: const EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: AppTheme.error.withOpacity(0.07),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Text(
-                  message ?? validation.message!,
-                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: AppTheme.error,
-                    height: 1.35,
-                  ),
-                ),
-              ),
-            ),
         ],
       ),
     );
@@ -444,35 +301,18 @@ class _MapHint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 8,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
         color: AppTheme.surface.withOpacity(0.92),
         borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.12),
-            blurRadius: 12,
-          ),
-        ],
+        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.12), blurRadius: 12)],
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            LucideIcons.mousePointer2,
-            size: 15,
-            color: AppTheme.primary,
-          ),
+          const Icon(LucideIcons.mousePointer2, size: 15, color: AppTheme.primary),
           const SizedBox(width: 6),
-          Text(
-            'Tap to mark',
-            style: Theme.of(context).textTheme.labelMedium?.copyWith(
-              fontWeight: FontWeight.w600,
-            ),
-          ),
+          Text('Tap to mark', style: Theme.of(context).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w600)),
         ],
       ),
     );
@@ -480,11 +320,7 @@ class _MapHint extends StatelessWidget {
 }
 
 class _ActionButton extends StatelessWidget {
-  const _ActionButton({
-    required this.label,
-    required this.icon,
-    this.onTap,
-  });
+  const _ActionButton({required this.label, required this.icon, this.onTap});
 
   final String label;
   final IconData icon;
@@ -495,27 +331,15 @@ class _ActionButton extends StatelessWidget {
     return Expanded(
       child: OutlinedButton.icon(
         onPressed: onTap,
-        icon: Icon(
-          icon,
-          size: 16,
-        ),
-        label: Text(
-          label,
-        ),
+        icon: Icon(icon, size: 16),
+        label: Text(label),
         style: OutlinedButton.styleFrom(
           backgroundColor: AppTheme.surface,
           foregroundColor: AppTheme.primary,
-          disabledForegroundColor:
-          AppTheme.outline.withOpacity(0.4),
-          side: BorderSide(
-            color: AppTheme.outline.withOpacity(0.15),
-          ),
-          padding: const EdgeInsets.symmetric(
-            vertical: 14,
-          ),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(14),
-          ),
+          disabledForegroundColor: AppTheme.outline.withOpacity(0.4),
+          side: BorderSide(color: AppTheme.outline.withOpacity(0.15)),
+          padding: const EdgeInsets.symmetric(vertical: 14),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
         ),
       ),
     );

@@ -222,7 +222,7 @@ class _HistoryTimeline extends StatelessWidget {
           isFirst: true,
           isProcessing: true,
           useCard: true, // Highlights active/processing task
-          onTap: () => context.go('/soil/pathogen-map'),
+          onTap: () => context.go('/soil/nutrient-map'),
         ),
         const SharedTimelineItem(
           label: 'COMPLETED',
