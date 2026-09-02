@@ -1,3 +1,4 @@
+import 'package:agribotics/core/localization/localized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
@@ -52,9 +53,9 @@ class _SoilDetectionPageState extends State<SoilDetectionPage> {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
         ..showSnackBar(
-          const SnackBar(
+          SnackBar(
             content: Text(
-              'Please enter all three nutrient values.',
+              trText('Please enter all three nutrient values.'),
             ),
             backgroundColor: AppTheme.primary,
           ),
@@ -81,9 +82,9 @@ class _SoilDetectionPageState extends State<SoilDetectionPage> {
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
         ..showSnackBar(
-          const SnackBar(
+          SnackBar(
             content: Text(
-              'Please enter valid numeric values.',
+              trText('Please enter valid numeric values.'),
             ),
             backgroundColor: AppTheme.primary,
           ),
@@ -102,9 +103,9 @@ class _SoilDetectionPageState extends State<SoilDetectionPage> {
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(
-        const SnackBar(
+        SnackBar(
           content: Text(
-            'Nutrient data ready for analysis.',
+            trText('Nutrient data ready for analysis.'),
           ),
           backgroundColor: AppTheme.primary,
         ),
@@ -119,20 +120,20 @@ class _SoilDetectionPageState extends State<SoilDetectionPage> {
       backgroundColor: AppTheme.background,
       body: SafeArea(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(
+          padding: EdgeInsets.symmetric(
             horizontal: AppTheme.horizontalSpacing,
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
 
-              const SizedBox(height: 32),
+              SizedBox(height: 32),
 
               _HeroSection(
                 textTheme: textTheme,
               ),
 
-              const SizedBox(height: 36),
+              SizedBox(height: 36),
 
               _NutrientInputCard(
                 nitrogenController: nitrogenController,
@@ -155,9 +156,9 @@ class _SoilDetectionPageState extends State<SoilDetectionPage> {
                 end: 0,
               ),
 
-              const SizedBox(height: 24),
+              SizedBox(height: 24),
 
-              const _AnalysisInfoCard()
+              _AnalysisInfoCard()
                   .animate()
                   .fadeIn(
                 delay: 400.ms,
@@ -168,7 +169,7 @@ class _SoilDetectionPageState extends State<SoilDetectionPage> {
                 end: 0,
               ),
 
-              const SizedBox(height: 32),
+              SizedBox(height: 32),
 
               SizedBox(
                 width: double.infinity,
@@ -196,10 +197,10 @@ class _SoilDetectionPageState extends State<SoilDetectionPage> {
                             : AppTheme.primary.withValues(alpha: .35),
                       ),
 
-                      const SizedBox(width: 12),
+                      SizedBox(width: 12),
 
                       Text(
-                        'Analyze Soil',
+                        trText('Analyze Soil'),
                         style: TextStyle(
                           fontFamily: 'Inter',
                           fontSize: 17,
@@ -224,11 +225,11 @@ class _SoilDetectionPageState extends State<SoilDetectionPage> {
                 end: 0,
               ),
 
-              const SizedBox(height: 42),
+              SizedBox(height: 42),
 
               /// DIAGNOSTIC DATABASE
               Text(
-                'DIAGNOSTIC DATABASE',
+                trText('DIAGNOSTIC DATABASE'),
                 style: textTheme.labelLarge?.copyWith(
                   color: AppTheme.secondary,
                   letterSpacing: 2,
@@ -239,7 +240,7 @@ class _SoilDetectionPageState extends State<SoilDetectionPage> {
                 delay: 600.ms,
               ),
 
-              const SizedBox(height: 20),
+              SizedBox(height: 20),
 
               _DiagnosticRegistryCard(
                 onTap: () => context.go('/soil/history'),
@@ -254,7 +255,7 @@ class _SoilDetectionPageState extends State<SoilDetectionPage> {
                 end: 0,
               ),
 
-              const SizedBox(height: 80),
+              SizedBox(height: 80),
             ],
           ),
         ),
@@ -277,7 +278,7 @@ class _HeroSection extends StatelessWidget {
       children: [
 
         Text(
-          'PRECISION SOIL ANALYTICS',
+          trText('PRECISION SOIL ANALYTICS'),
           style: textTheme.labelLarge?.copyWith(
             color: AppTheme.secondary,
             letterSpacing: 2.8,
@@ -289,10 +290,10 @@ class _HeroSection extends StatelessWidget {
           duration: 400.ms,
         ),
 
-        const SizedBox(height: 14),
+        SizedBox(height: 14),
 
         Text(
-          'Soil',
+          trText('Soil'),
           style: textTheme.displayLarge,
         )
             .animate()
@@ -306,7 +307,7 @@ class _HeroSection extends StatelessWidget {
         ),
 
         Text(
-          'Nutrients',
+          trText('Nutrients'),
           style: textTheme.displayLarge,
         )
             .animate()
@@ -319,7 +320,7 @@ class _HeroSection extends StatelessWidget {
           end: 0,
         ),
 
-        const SizedBox(height: 24),
+        SizedBox(height: 24),
 
         Container(
           width: 70,
@@ -334,10 +335,10 @@ class _HeroSection extends StatelessWidget {
           delay: 280.ms,
         ),
 
-        const SizedBox(height: 22),
+        SizedBox(height: 22),
 
         Text(
-          'Enter your soil nutrient readings to evaluate nitrogen, phosphorus and potassium levels and understand the nutritional condition of your soil.',
+          trText('Enter your soil nutrient readings to evaluate nitrogen, phosphorus and potassium levels and understand the nutritional condition of your soil.'),
           style: textTheme.bodyLarge?.copyWith(
             color: AppTheme.onSurfaceVariant,
           ),
@@ -378,7 +379,7 @@ class _NutrientInputCard extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(24),
+      padding: EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(32),
@@ -389,7 +390,7 @@ class _NutrientInputCard extends StatelessWidget {
           BoxShadow(
             color: Colors.black.withValues(alpha: .03),
             blurRadius: 20,
-            offset: const Offset(0, 10),
+            offset: Offset(0, 10),
           ),
         ],
       ),
@@ -407,14 +408,14 @@ class _NutrientInputCard extends StatelessWidget {
                   color: AppTheme.primary.withValues(alpha: .08),
                   borderRadius: BorderRadius.circular(17),
                 ),
-                child: const Icon(
+                child: Icon(
                   LucideIcons.layers,
                   color: AppTheme.primary,
                   size: 25,
                 ),
               ),
 
-              const SizedBox(width: 16),
+              SizedBox(width: 16),
 
               Expanded(
                 child: Column(
@@ -422,17 +423,17 @@ class _NutrientInputCard extends StatelessWidget {
                   children: [
 
                     Text(
-                      'NPK PROFILE',
+                      trText('NPK PROFILE'),
                       style: textTheme.labelLarge?.copyWith(
                         color: AppTheme.secondary,
                         letterSpacing: 1.8,
                       ),
                     ),
 
-                    const SizedBox(height: 4),
+                    SizedBox(height: 4),
 
                     Text(
-                      'Nutrient readings',
+                      trText('Nutrient readings'),
                       style: textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w800,
                       ),
@@ -445,17 +446,17 @@ class _NutrientInputCard extends StatelessWidget {
             ],
           ),
 
-          const SizedBox(height: 28),
+          SizedBox(height: 28),
 
           Text(
-            'ENTER SOIL VALUES',
+            trText('ENTER SOIL VALUES'),
             style: textTheme.labelLarge?.copyWith(
               color: AppTheme.secondary,
               letterSpacing: 2,
             ),
           ),
 
-          const SizedBox(height: 18),
+          SizedBox(height: 18),
 
           _NutrientField(
             controller: nitrogenController,
@@ -467,7 +468,7 @@ class _NutrientInputCard extends StatelessWidget {
             onChanged: onChanged,
           ),
 
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
 
           _NutrientField(
             controller: phosphorusController,
@@ -479,7 +480,7 @@ class _NutrientInputCard extends StatelessWidget {
             onChanged: onChanged,
           ),
 
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
 
           _NutrientField(
             controller: potassiumController,
@@ -523,7 +524,7 @@ class _NutrientField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(
+      padding: EdgeInsets.fromLTRB(
         16,
         14,
         16,
@@ -545,8 +546,8 @@ class _NutrientField extends StatelessWidget {
             ),
             alignment: Alignment.center,
             child: Text(
-              symbol,
-              style: const TextStyle(
+              trText(symbol),
+              style: TextStyle(
                 fontFamily: 'Manrope',
                 fontSize: 19,
                 fontWeight: FontWeight.w800,
@@ -555,7 +556,7 @@ class _NutrientField extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(width: 14),
+          SizedBox(width: 14),
 
           Expanded(
             child: Column(
@@ -563,8 +564,8 @@ class _NutrientField extends StatelessWidget {
               children: [
 
                 Text(
-                  label,
-                  style: const TextStyle(
+                  trText(label),
+                  style: TextStyle(
                     fontFamily: 'Inter',
                     fontSize: 10,
                     fontWeight: FontWeight.w700,
@@ -573,14 +574,14 @@ class _NutrientField extends StatelessWidget {
                   ),
                 ),
 
-                const SizedBox(height: 3),
+                SizedBox(height: 3),
 
                 TextField(
                   controller: controller,
                   focusNode: focusNode,
                   onChanged: (_) => onChanged(),
                   keyboardType:
-                  const TextInputType.numberWithOptions(
+                  TextInputType.numberWithOptions(
                     decimal: true,
                   ),
                   textInputAction: isLast
@@ -595,7 +596,7 @@ class _NutrientField extends StatelessWidget {
                       FocusScope.of(context).unfocus();
                     }
                   },
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontFamily: 'Inter',
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -603,7 +604,7 @@ class _NutrientField extends StatelessWidget {
                   ),
                   decoration: InputDecoration(
                     hintText: hint,
-                    hintStyle: const TextStyle(
+                    hintStyle: TextStyle(
                       fontFamily: 'Inter',
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
@@ -619,10 +620,10 @@ class _NutrientField extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(width: 10),
+          SizedBox(width: 10),
 
           Container(
-            padding: const EdgeInsets.symmetric(
+            padding: EdgeInsets.symmetric(
               horizontal: 10,
               vertical: 7,
             ),
@@ -630,8 +631,8 @@ class _NutrientField extends StatelessWidget {
               color: AppTheme.primary.withValues(alpha: .07),
               borderRadius: BorderRadius.circular(10),
             ),
-            child: const Text(
-              'VALUE',
+            child: Text(
+              trText('VALUE'),
               style: TextStyle(
                 fontFamily: 'Inter',
                 fontSize: 9,
@@ -657,7 +658,7 @@ class _AnalysisInfoCard extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(24),
+      padding: EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: AppTheme.surfaceContainerLow,
         borderRadius: BorderRadius.circular(28),
@@ -673,14 +674,14 @@ class _AnalysisInfoCard extends StatelessWidget {
               color: AppTheme.emerald.withValues(alpha: .12),
               borderRadius: BorderRadius.circular(15),
             ),
-            child: const Icon(
+            child: Icon(
               LucideIcons.info,
               color: AppTheme.primary,
               size: 22,
             ),
           ),
 
-          const SizedBox(width: 16),
+          SizedBox(width: 16),
 
           Expanded(
             child: Column(
@@ -688,17 +689,17 @@ class _AnalysisInfoCard extends StatelessWidget {
               children: [
 
                 Text(
-                  'PRECISION INPUT',
+                  trText('PRECISION INPUT'),
                   style: textTheme.labelLarge?.copyWith(
                     color: AppTheme.secondary,
                     letterSpacing: 1.6,
                   ),
                 ),
 
-                const SizedBox(height: 8),
+                SizedBox(height: 8),
 
                 Text(
-                  'Use the values from your latest soil test for the most reliable nutrient analysis.',
+                  trText('Use the values from your latest soil test for the most reliable nutrient analysis.'),
                   style: textTheme.bodyMedium?.copyWith(
                     height: 1.5,
                   ),
@@ -732,7 +733,7 @@ class _DiagnosticRegistryCard extends StatelessWidget {
         onTap: onTap,
         child: Ink(
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
+            gradient: LinearGradient(
               colors: [
                 AppTheme.primary,
                 AppTheme.primaryContainer,
@@ -771,23 +772,23 @@ class _DiagnosticRegistryCard extends StatelessWidget {
               ),
 
               Padding(
-                padding: const EdgeInsets.all(30),
+                padding: EdgeInsets.all(30),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
 
                     Text(
-                      'NUTRIENT DATABASE',
+                      trText('NUTRIENT DATABASE'),
                       style: textTheme.labelLarge?.copyWith(
                         color: Colors.white70,
                         letterSpacing: 2,
                       ),
                     ),
 
-                    const SizedBox(height: 22),
+                    SizedBox(height: 22),
 
                     Text(
-                      'Analysis',
+                      trText('Analysis'),
                       style: textTheme.displaySmall?.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.w800,
@@ -795,19 +796,19 @@ class _DiagnosticRegistryCard extends StatelessWidget {
                     ),
 
                     Text(
-                      'History',
+                      trText('History'),
                       style: textTheme.displaySmall?.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.w800,
                       ),
                     ),
 
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20),
 
                     SizedBox(
                       width: 270,
                       child: Text(
-                        'Browse previous soil analyses, nutrient readings, fertility assessments and recommendations.',
+                        trText('Browse previous soil analyses, nutrient readings, fertility assessments and recommendations.'),
                         style: textTheme.bodyMedium?.copyWith(
                           color: Colors.white70,
                           height: 1.6,
@@ -815,7 +816,7 @@ class _DiagnosticRegistryCard extends StatelessWidget {
                       ),
                     ),
 
-                    const SizedBox(height: 34),
+                    SizedBox(height: 34),
 
                     Row(
                       mainAxisAlignment:
@@ -833,16 +834,16 @@ class _DiagnosticRegistryCard extends StatelessWidget {
                                 borderRadius:
                                 BorderRadius.circular(14),
                               ),
-                              child: const Icon(
+                              child: Icon(
                                 LucideIcons.archive,
                                 color: Colors.white,
                               ),
                             ),
 
-                            const SizedBox(width: 16),
+                            SizedBox(width: 16),
 
-                            const Text(
-                              'View History',
+                            Text(
+                              trText('View History'),
                               style: TextStyle(
                                 fontFamily: 'Inter',
                                 color: Colors.white,
@@ -862,7 +863,7 @@ class _DiagnosticRegistryCard extends StatelessWidget {
                             borderRadius:
                             BorderRadius.circular(18),
                           ),
-                          child: const Icon(
+                          child: Icon(
                             LucideIcons.arrowRight,
                             color: AppTheme.primary,
                           ),

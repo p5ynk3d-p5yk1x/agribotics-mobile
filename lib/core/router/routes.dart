@@ -23,11 +23,13 @@ import '../../features/weeds/presentation/pages/weed_map.dart';
 import '../../features/weeds/presentation/pages/weed_detail.dart';
 import '../../features/market/presentation/pages/market_page.dart';
 import '../../features/settings/presentation/pages/settings_page.dart';
+import '../../features/language/presentation/language_selection_page.dart';
+import '../localization/language_controller.dart';
 import '../../shared/widgets/main_scaffold.dart';
 import '../../features/market/presentation/pages/product_detail_page.dart';
 
 const publicRoutes = {
-  '/login'
+  '/login', '/language'
 };
 
 final routerProvider = Provider<GoRouter>((ref) {
@@ -38,6 +40,15 @@ final routerProvider = Provider<GoRouter>((ref) {
     refreshListenable: routerNotifier,
     redirect: (context, state) {
       final authState = ref.read(authProvider);
+      final languageState = ref.read(languageProvider);
+      if (languageState.isLoading) return null;
+      if (!languageState.hasPreference && state.matchedLocation != '/language') {
+        return '/language';
+      }
+      final isChangingLanguage = state.uri.queryParameters['change'] == 'true';
+      if (languageState.hasPreference && state.matchedLocation == '/language' && !isChangingLanguage) {
+        return authState is AuthAuthenticated ? '/dashboard' : '/login';
+      }
       final isLoading = authState is AuthLoading;
       final isAuthenticated = authState is AuthAuthenticated;
       final isPublic = publicRoutes.contains(state.matchedLocation);
@@ -54,6 +65,10 @@ final routerProvider = Provider<GoRouter>((ref) {
       return null;
     },
     routes: [
+      GoRoute(
+        path: '/language',
+        builder: (context, state) => const LanguageSelectionPage(),
+      ),
       GoRoute(
         path: '/login',
         builder: (context, state) => const LoginScreen(),

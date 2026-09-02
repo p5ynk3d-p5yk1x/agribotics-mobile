@@ -1,3 +1,4 @@
+import 'package:agribotics/core/localization/localized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
@@ -13,25 +14,25 @@ class LandWeatherCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (state.status == WeatherStatus.initial || state.status == WeatherStatus.loading) return const _WeatherLoadingCard();
+    if (state.status == WeatherStatus.initial || state.status == WeatherStatus.loading) return _WeatherLoadingCard();
 
     if (state.status == WeatherStatus.error && state.weather == null) {
       return _WeatherErrorCard(message: state.message ?? 'Weather data unavailable.', onRetry: onRefresh);
     }
 
     final weather = state.weather;
-    if (weather == null) return const _WeatherLoadingCard();
+    if (weather == null) return _WeatherLoadingCard();
 
     final isRefreshing = state.status == WeatherStatus.refreshing;
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: AppTheme.surface,
         borderRadius: BorderRadius.circular(24),
         border: Border.all(color: AppTheme.outline.withOpacity(0.10)),
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.035), blurRadius: 20, offset: const Offset(0, 7))],
+        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.035), blurRadius: 20, offset: Offset(0, 7))],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,47 +43,47 @@ class LandWeatherCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('WEATHER AT YOUR LAND', style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppTheme.primary, fontWeight: FontWeight.w700)),
-                    const SizedBox(height: 4),
-                    Text(weather.areaName, style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.secondary)),
+                    Text(trText('WEATHER AT YOUR LAND'), style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppTheme.primary, fontWeight: FontWeight.w700)),
+                    SizedBox(height: 4),
+                    Text(trText(weather.areaName), style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.secondary)),
                   ],
                 ),
               ),
               IconButton(
                 onPressed: isRefreshing ? null : onRefresh,
-                icon: isRefreshing ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2)) : const Icon(LucideIcons.refreshCw, size: 18),
+                icon: isRefreshing ? SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2)) : Icon(LucideIcons.refreshCw, size: 18),
               ),
             ],
           ),
-          const SizedBox(height: 18),
+          SizedBox(height: 18),
           Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               _WeatherIcon(conditionCode: weather.conditionCode),
-              const SizedBox(width: 16),
+              SizedBox(width: 16),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('${weather.temperature?.round() ?? '—'}°', style: Theme.of(context).textTheme.displayMedium?.copyWith(color: AppTheme.primary, fontWeight: FontWeight.w700)),
-                    const SizedBox(height: 2),
-                    Text(_capitalize(weather.description), style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600)),
+                    Text(trText('${weather.temperature?.round() ?? '—'}°'), style: Theme.of(context).textTheme.displayMedium?.copyWith(color: AppTheme.primary, fontWeight: FontWeight.w700)),
+                    SizedBox(height: 2),
+                    Text(trText(_capitalize(weather.description)), style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600)),
                   ],
                 ),
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text('H ${_temperature(weather.maxTemperature)}', style: Theme.of(context).textTheme.bodySmall),
-                  const SizedBox(height: 4),
-                  Text('L ${_temperature(weather.minTemperature)}', style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.secondary)),
+                  Text(trText('H ${_temperature(weather.maxTemperature)}'), style: Theme.of(context).textTheme.bodySmall),
+                  SizedBox(height: 4),
+                  Text(trText('L ${_temperature(weather.minTemperature)}'), style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.secondary)),
                 ],
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: 20),
           Divider(height: 1, color: AppTheme.outline.withOpacity(0.10)),
-          const SizedBox(height: 18),
+          SizedBox(height: 18),
           Row(
             children: [
               Expanded(child: _WeatherMetric(icon: LucideIcons.thermometer, label: 'FEELS LIKE', value: _temperature(weather.feelsLike))),
@@ -90,11 +91,11 @@ class LandWeatherCard extends StatelessWidget {
               Expanded(child: _WeatherMetric(icon: LucideIcons.wind, label: 'WIND', value: weather.windSpeed == null ? '—' : '${(weather.windSpeed! * 3.6).toStringAsFixed(1)} km/h')),
             ],
           ),
-          const SizedBox(height: 18),
+          SizedBox(height: 18),
           _ForecastStrip(forecast: state.forecast),
           if (state.message != null) Padding(
-            padding: const EdgeInsets.only(top: 14),
-            child: Text(state.message!, style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.secondary)),
+            padding: EdgeInsets.only(top: 14),
+            child: Text(trText(state.message!), style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.secondary)),
           ),
         ],
       ),
@@ -110,17 +111,17 @@ class _ForecastStrip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final visibleForecast = forecast.take(4).toList();
-    if (visibleForecast.isEmpty) return const SizedBox.shrink();
+    if (visibleForecast.isEmpty) return SizedBox.shrink();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('UPCOMING', style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppTheme.secondary, fontWeight: FontWeight.w700)),
-        const SizedBox(height: 12),
+        Text(trText('UPCOMING'), style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppTheme.secondary, fontWeight: FontWeight.w700)),
+        SizedBox(height: 12),
         Row(
           children: [
             for (var i = 0; i < visibleForecast.length; i++) ...[
-              if (i > 0) const SizedBox(width: 8),
+              if (i > 0) SizedBox(width: 8),
               Expanded(child: _ForecastItem(forecast: visibleForecast[i])),
             ],
           ],
@@ -138,15 +139,15 @@ class _ForecastItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(vertical: 12),
+      padding: EdgeInsets.symmetric(vertical: 12),
       decoration: BoxDecoration(color: AppTheme.background, borderRadius: BorderRadius.circular(14)),
       child: Column(
         children: [
-          Text(_formatTime(forecast.date), style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppTheme.secondary)),
-          const SizedBox(height: 8),
+          Text(trText(_formatTime(forecast.date)), style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppTheme.secondary)),
+          SizedBox(height: 8),
           Icon(_weatherIcon(forecast.conditionCode), size: 18, color: AppTheme.primary),
-          const SizedBox(height: 8),
-          Text(_temperature(forecast.temperature), style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700)),
+          SizedBox(height: 8),
+          Text(trText(_temperature(forecast.temperature)), style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w700)),
         ],
       ),
     );
@@ -165,10 +166,10 @@ class _WeatherMetric extends StatelessWidget {
     return Column(
       children: [
         Icon(icon, size: 17, color: AppTheme.primary),
-        const SizedBox(height: 7),
-        Text(label, style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppTheme.secondary)),
-        const SizedBox(height: 4),
-        Text(value, textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w700)),
+        SizedBox(height: 7),
+        Text(trText(label), style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppTheme.secondary)),
+        SizedBox(height: 4),
+        Text(trText(value), textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w700)),
       ],
     );
   }
@@ -203,7 +204,7 @@ class _WeatherLoadingCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(24),
         border: Border.all(color: AppTheme.outline.withOpacity(0.10)),
       ),
-      child: const Center(child: CircularProgressIndicator()),
+      child: Center(child: CircularProgressIndicator()),
     );
   }
 }
@@ -218,7 +219,7 @@ class _WeatherErrorCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: AppTheme.surface,
         borderRadius: BorderRadius.circular(24),
@@ -227,10 +228,10 @@ class _WeatherErrorCard extends StatelessWidget {
       child: Row(
         children: [
           Icon(LucideIcons.cloudOff, color: AppTheme.outline),
-          const SizedBox(width: 12),
-          Expanded(child: Text(message, style: Theme.of(context).textTheme.bodyMedium)),
-          const SizedBox(width: 12),
-          IconButton(onPressed: onRetry, icon: const Icon(LucideIcons.refreshCw, size: 18)),
+          SizedBox(width: 12),
+          Expanded(child: Text(trText(message), style: Theme.of(context).textTheme.bodyMedium)),
+          SizedBox(width: 12),
+          IconButton(onPressed: onRetry, icon: Icon(LucideIcons.refreshCw, size: 18)),
         ],
       ),
     );

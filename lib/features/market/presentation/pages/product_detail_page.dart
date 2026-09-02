@@ -1,3 +1,4 @@
+import 'package:agribotics/core/localization/localized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -21,7 +22,7 @@ class ProductDetailPage extends ConsumerWidget {
     return Scaffold(
       backgroundColor: AppTheme.background,
       body: product.when(
-        loading: () => const Center(child: CircularProgressIndicator()),
+        loading: () => Center(child: CircularProgressIndicator()),
         error: (error, _) => _ProductError(
           onRetry: () => ref.invalidate(marketplaceProductProvider(productId)),
         ),
@@ -39,14 +40,14 @@ class _ProductContent extends StatelessWidget {
     final uri = Uri.tryParse(product.affiliateUrl);
     if (uri == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Invalid product link.')),
+        SnackBar(content: Text(trText('Invalid product link.'))),
       );
       return;
     }
     final opened = await launchUrl(uri, mode: LaunchMode.externalApplication);
     if (!opened && context.mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Unable to open product link.')),
+        SnackBar(content: Text(trText('Unable to open product link.'))),
       );
     }
   }
@@ -54,40 +55,40 @@ class _ProductContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
+      padding: EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 64),
+          SizedBox(height: 64),
           IconButton(
             onPressed: () => context.pop(),
-            icon: const Icon(LucideIcons.arrowLeft),
+            icon: Icon(LucideIcons.arrowLeft),
           ),
-          const SizedBox(height: 20),
-          _ProductHeroImage(imageUrl: product.imageUrl).animate().fadeIn().scale(begin: const Offset(0.98, 0.98)),
-          const SizedBox(height: 32),
+          SizedBox(height: 20),
+          _ProductHeroImage(imageUrl: product.imageUrl).animate().fadeIn().scale(begin: Offset(0.98, 0.98)),
+          SizedBox(height: 32),
           if (product.category != null)
             Text(
-              product.category!.label.toUpperCase(),
+              trText(product.category!.label.toUpperCase()),
               style: Theme.of(context).textTheme.labelLarge,
             ).animate().fadeIn(),
-          const SizedBox(height: 10),
+          SizedBox(height: 10),
           Text(
-            product.name,
+            trText(product.name),
             style: Theme.of(context).textTheme.displayLarge,
           ).animate().fadeIn(delay: 100.ms),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           Text(
-            product.formattedPrice,
-            style: const TextStyle(
+            trText(product.formattedPrice),
+            style: TextStyle(
               fontSize: 26,
               fontWeight: FontWeight.w900,
               color: AppTheme.secondary,
             ),
           ).animate().fadeIn(delay: 150.ms),
-          const SizedBox(height: 32),
-          const Text(
-            'PRODUCT DETAILS',
+          SizedBox(height: 32),
+          Text(
+            trText('PRODUCT DETAILS'),
             style: TextStyle(
               fontWeight: FontWeight.w900,
               fontSize: 12,
@@ -95,19 +96,19 @@ class _ProductContent extends StatelessWidget {
               color: AppTheme.onSurfaceVariant,
             ),
           ),
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
           Text(
-            product.description,
-            style: const TextStyle(
+            trText(product.description),
+            style: TextStyle(
               fontSize: 16,
               height: 1.6,
               color: AppTheme.onSurfaceVariant,
             ),
           ),
           if (product.problemKeywords.isNotEmpty) ...[
-            const SizedBox(height: 36),
-            const Text(
-              'RECOMMENDED FOR',
+            SizedBox(height: 36),
+            Text(
+              trText('RECOMMENDED FOR'),
               style: TextStyle(
                 fontWeight: FontWeight.w900,
                 fontSize: 12,
@@ -115,20 +116,20 @@ class _ProductContent extends StatelessWidget {
                 color: AppTheme.onSurfaceVariant,
               ),
             ),
-            const SizedBox(height: 14),
+            SizedBox(height: 14),
             Wrap(
               spacing: 10,
               runSpacing: 10,
               children: product.problemKeywords.map((keyword) {
                 return Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+                  padding: EdgeInsets.symmetric(horizontal: 14, vertical: 9),
                   decoration: BoxDecoration(
                     color: AppTheme.surface,
                     borderRadius: BorderRadius.circular(100),
                   ),
                   child: Text(
-                    keyword,
-                    style: const TextStyle(
+                    trText(keyword),
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 12,
                     ),
@@ -137,24 +138,24 @@ class _ProductContent extends StatelessWidget {
               }).toList(),
             ),
           ],
-          const SizedBox(height: 44),
+          SizedBox(height: 44),
           SizedBox(
             width: double.infinity,
             child: ElevatedButton.icon(
               onPressed: () => _openAffiliateUrl(context),
-              icon: const Icon(LucideIcons.externalLink),
-              label: const Text('View Product'),
+              icon: Icon(LucideIcons.externalLink),
+              label: Text(trText('View Product')),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppTheme.primary,
                 foregroundColor: Colors.white,
-                minimumSize: const Size.fromHeight(58),
+                minimumSize: Size.fromHeight(58),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(18),
                 ),
               ),
             ),
           ),
-          const SizedBox(height: 120),
+          SizedBox(height: 120),
         ],
       ),
     );
@@ -183,7 +184,7 @@ class _ProductHeroImage extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(32),
         child: formattedUrl == null
-            ? const ColoredBox(
+            ? ColoredBox(
           color: AppTheme.surface,
           child: Center(
             child: Icon(
@@ -197,7 +198,7 @@ class _ProductHeroImage extends StatelessWidget {
           formattedUrl,
           fit: BoxFit.cover,
           errorBuilder: (_, __, ___) {
-            return const ColoredBox(
+            return ColoredBox(
               color: AppTheme.surface,
               child: Center(
                 child: Icon(
@@ -222,20 +223,20 @@ class _ProductError extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(32),
+        padding: EdgeInsets.all(32),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(LucideIcons.alertCircle, size: 44, color: AppTheme.onSurfaceVariant),
-            const SizedBox(height: 16),
-            const Text(
-              'Unable to load this product.',
+            Icon(LucideIcons.alertCircle, size: 44, color: AppTheme.onSurfaceVariant),
+            SizedBox(height: 16),
+            Text(
+              trText('Unable to load this product.'),
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
             OutlinedButton(
               onPressed: onRetry,
-              child: const Text('Try Again'),
+              child: Text(trText('Try Again')),
             ),
           ],
         ),

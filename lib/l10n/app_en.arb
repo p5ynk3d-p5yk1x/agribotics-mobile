@@ -1,0 +1,1378 @@
+{
+  "@@locale": "en",
+  "languageWelcome": "Welcome to Agribotics",
+  "languageSelectPrompt": "Choose your preferred language",
+  "languageEnglish": "English",
+  "languageHindi": "Hindi",
+  "languageTamil": "Tamil",
+  "languageTelugu": "Telugu",
+  "languageKannada": "Kannada",
+  "languageMarathi": "Marathi",
+  "languageChangeLater": "You can change this later in Settings.",
+  "sharedEstate": "ESTATE",
+  "sharedSoil": "SOIL",
+  "sharedIdentify": "IDENTIFY",
+  "sharedMarket": "MARKET",
+  "settingsTitle": "Account Settings",
+  "settingsPreferences": "PREFERENCES",
+  "settingsLanguage": "Language",
+  "settingsProfile": "Profile Management",
+  "settingsNotifications": "Notification Protocols",
+  "settingsSecurity": "Security & Access",
+  "settingsDataExport": "DATA & EXPORT",
+  "settingsExport": "Export Estate Data (JSON/CSV)",
+  "settingsCloud": "Cloud Synchronisation",
+  "settingsSupport": "SUPPORT",
+  "settingsDocumentation": "Technical Documentation",
+  "settingsSignOut": "Sign Out",
+  "landSatelliteMonitoring": "SATELLITE MONITORING",
+  "landYourLand": "Your Land",
+  "landUnableToLoad": "Unable to load your land.",
+  "loginContinueGoogle": "Continue with Google",
+  "loginWelcome": "Welcome back",
+  "loginSubtitle": "Sign in to continue to Agribotics",
+  "auth_login_page_ai_powered_crop_intelligence_for_the_n": "AI-powered crop intelligence for the next generation of farming.",
+  "auth_login_page_secure_authentication_powered_by_googl": "Secure authentication powered by Google OAuth",
+  "disease_disease_detection_page_ai_ndiagnostics": "AI\\nDIAGNOSTICS",
+  "disease_disease_detection_page_ai_pathology_engine": "AI PATHOLOGY ENGINE",
+  "disease_disease_detection_page_autonomous_plant_pathology": "AUTONOMOUS PLANT PATHOLOGY",
+  "disease_disease_detection_page_browse_previous_ai_diagnoses_confidenc": "Browse previous AI diagnoses, confidence scores, disease progression and treatment recommendations.",
+  "disease_disease_detection_page_choose_image": "Choose Image",
+  "disease_disease_detection_page_cnn_powered_disease_classification_wit": "CNN-powered disease classification with confidence scoring.",
+  "disease_disease_detection_page_detect_lesions_discoloration_fungal_sp": "Detect lesions, discoloration, fungal spots and abnormal foliage.",
+  "disease_disease_detection_page_detection": "Detection",
+  "disease_disease_detection_page_diagnostic": "Diagnostic",
+  "disease_disease_detection_page_diagnostic_database": "DIAGNOSTIC DATABASE",
+  "disease_disease_detection_page_disease": "Disease",
+  "disease_disease_detection_page_disease_registry": "DISEASE REGISTRY",
+  "disease_disease_detection_page_history": "History",
+  "disease_disease_detection_page_image_loaded_ready_to_begin_disease_di": "Image loaded. Ready to begin disease diagnosis.",
+  "disease_disease_detection_page_plant_health_indicators": "PLANT HEALTH INDICATORS",
+  "disease_disease_detection_page_plant_scan": "Plant Scan",
+  "disease_disease_detection_page_ready_for_diagnostic_scan": "Ready for diagnostic scan",
+  "disease_disease_detection_page_run_diagnosis": "Run Diagnosis",
+  "disease_disease_detection_page_scan_infected_foliage_to_identify_plan": "Scan infected foliage to identify plant diseases, estimate severity, and receive AI-powered diagnostic insights before outbreaks spread.",
+  "disease_disease_detection_page_upload_a_close_photograph_of_infected_": "Upload a close photograph of infected foliage for AI pathology analysis.",
+  "disease_disease_detection_page_view_registry": "View Registry",
+  "disease_disease_detection_page_visual_nsymptoms": "VISUAL\\nSYMPTOMS",
+  "disease_disease_history_2_hours_ago_south_vineyard": "2 hours ago • South Vineyard",
+  "disease_disease_history_an_archival_record_of_identified_plant": "An archival record of identified plant pathologies, fungal outbreaks, and bio-security interventions across your zones.",
+  "disease_disease_history_detected_in_sector_4_b_spore_density_i": "Detected in Sector 4-B. Spore density is rising. Containment protocols recommended.",
+  "disease_disease_history_detection_log_timeline": "DETECTION LOG & TIMELINE",
+  "disease_disease_history_diagnostic": "Diagnostic",
+  "disease_disease_history_fungal_spot_remediation": "Fungal Spot Remediation",
+  "disease_disease_history_high_risk_detected": "HIGH RISK DETECTED",
+  "disease_disease_history_late_blight_outbreak": "Late Blight Outbreak",
+  "disease_disease_history_may_12_2024_north_orchard": "May 12, 2024 • North Orchard",
+  "disease_disease_history_now_greenhouse_delta": "Now • Greenhouse Delta",
+  "disease_disease_history_pathogen_surveillance": "PATHOGEN SURVEILLANCE",
+  "disease_disease_history_powdery_mildew_found": "Powdery Mildew Found",
+  "disease_disease_history_registry": "Registry",
+  "disease_disease_history_root_rot_diagnostic": "Root Rot Diagnostic",
+  "disease_disease_history_spectral_foliage_scan": "Spectral Foliage Scan",
+  "disease_disease_history_spread_probability": "SPREAD PROBABILITY",
+  "disease_disease_history_view_action_plan": "View Action Plan",
+  "disease_disease_history_yesterday_hydroponics_lab": "Yesterday • Hydroponics Lab",
+  "disease_disease_map_4_critical_alerts": "4 CRITICAL ALERTS",
+  "disease_disease_map_check": "Check",
+  "disease_disease_map_disease_pathogen": "Disease Pathogen ",
+  "disease_disease_map_foliage_analysis_shows_15_degradation_": "Foliage analysis shows 15% degradation. Immediate copper-based application recommended.",
+  "disease_disease_map_fusarium_wilt_detected_in_southwest_qu": "Fusarium Wilt detected in Southwest quadrant",
+  "disease_disease_map_health_analysis": "HEALTH ANALYSIS",
+  "disease_disease_map_high_humidity_levels_82_coupled_with_s": "High humidity levels (82%) coupled with soil moisture triggers rapid pathogen germination.",
+  "disease_disease_map_high_priority": "High Priority",
+  "disease_disease_map_live_field_logs": "Live Field Logs",
+  "disease_disease_map_map": "Map",
+  "disease_disease_map_moderate_risk": "Moderate Risk",
+  "disease_disease_map_pathogen_count_dropped_below_threshold": "Pathogen count dropped below threshold following targeted ozone treatment cycle.",
+  "disease_disease_map_pathogen_index": "PATHOGEN INDEX",
+  "disease_disease_map_pathogen_pressure_estimator": "PATHOGEN PRESSURE ESTIMATOR",
+  "disease_disease_map_secondary_infection_vector_late_blight": "Secondary Infection Vector: Late Blight",
+  "disease_disease_map_successful_eradication_in_sector_7": "Successful Eradication in Sector 7",
+  "disease_disease_map_warning": "Warning",
+  "estate_estate_identity_page_45_5231_n_122_6765_w": "45.5231° N, 122.6765° W",
+  "estate_estate_identity_page_arable": "Arable",
+  "estate_estate_identity_page_auto_detecting_gps": "Auto-detecting GPS",
+  "estate_estate_identity_page_begin_your_soil_s_digital_transformati": "Begin your soil's digital transformation. Define the boundaries of your heritage and select the precise coordinate for extraction.",
+  "estate_estate_identity_page_confirm_location": "Confirm Location",
+  "estate_estate_identity_page_data_accuracy_is_optimized_through_hig": "Data accuracy is optimized through high-resolution satellite layering and multi-spectral analysis of your specific topography.",
+  "estate_estate_identity_page_define_the_parcel": "Define the Parcel",
+  "estate_estate_identity_page_e_g_blackwood_highlands": "e.g. Blackwood Highlands",
+  "estate_estate_identity_page_estate_identity": "Estate Identity",
+  "estate_estate_identity_page_location": "Location &",
+  "estate_estate_identity_page_new_analysis_phase": "NEW ANALYSIS PHASE",
+  "estate_estate_identity_page_orchard": "Orchard",
+  "estate_estate_identity_page_pasture": "Pasture",
+  "estate_estate_identity_page_precision_lock_active": "PRECISION LOCK ACTIVE",
+  "estate_estate_identity_page_primary_cultivar": "PRIMARY CULTIVAR",
+  "estate_estate_identity_page_vineyard": "Vineyard",
+  "estate_sector_detail_page_coord_45_521_122_678": "COORD: 45.521, -122.678",
+  "estate_sector_detail_page_execute_task": "Execute Task",
+  "estate_sector_detail_page_herbix_safe_organic_focus": "Herbix-Safe™ (Organic Focus)",
+  "estate_sector_detail_page_recommended_protocol": "RECOMMENDED PROTOCOL",
+  "estate_sector_detail_page_sector_7_b_detail": "Sector 7-B Detail",
+  "estate_sector_detail_page_species_in_grid": "SPECIES IN GRID",
+  "estate_sector_detail_page_targeted_sub_meter_spraying_of_palmer_": "Targeted sub-meter spraying of Palmer Amaranth clusters. 2% concentration.",
+  "identify_identify_page_8_active_tasks": "8 Active Tasks",
+  "identify_identify_page_access_analysis": "Access Analysis",
+  "identify_identify_page_advanced_analytics_that_turn_raw_farm_": "Advanced analytics that turn raw farm auth into actionable crop yield insights for smarter planning and higher output.",
+  "identify_identify_page_automated_soil_analysis_that_turns_soi": "Automated soil analysis that turns soil auth into actionable insights for smarter farming and fertilizer usage.",
+  "identify_identify_page_automated_spectral_analysis_across_nor": "Automated spectral analysis across North Quadrant to identify invasive species and nitrogen competitors before they spread.",
+  "identify_identify_page_curating_the": "Curating the",
+  "identify_identify_page_diagnostic_pipeline": "DIAGNOSTIC PIPELINE",
+  "identify_identify_page_disease_detection": "Disease Detection",
+  "identify_identify_page_health_of_your": "health of your",
+  "identify_identify_page_soil_analysis": "Soil Analysis",
+  "identify_identify_page_soil_crops": "soil & crops.",
+  "identify_identify_page_weed_detection": "Weed Detection",
+  "land_land_dashboard_page_choose_how_earth_engine_visualizes_you": "Choose how Earth Engine visualizes your registered land.",
+  "land_land_dashboard_page_enhanced_vegetation": "Enhanced vegetation",
+  "land_land_dashboard_page_land_boundary_unavailable": "Land boundary unavailable",
+  "land_land_dashboard_page_land_center": "Land Center",
+  "land_land_dashboard_page_last_attempted": "Last attempted",
+  "land_land_dashboard_page_last_successful": "Last successful",
+  "land_land_dashboard_page_moisture": "Moisture",
+  "land_land_dashboard_page_next_refresh": "Next refresh",
+  "land_land_dashboard_page_recent_observations": "RECENT OBSERVATIONS",
+  "land_land_dashboard_page_satellite_map": "SATELLITE MAP",
+  "land_land_dashboard_page_satellite_status": "SATELLITE STATUS",
+  "land_land_dashboard_page_soil_adjusted": "Soil adjusted",
+  "land_land_dashboard_page_unable_to_load_land": "Unable to load land",
+  "land_land_dashboard_page_vegetation": "Vegetation",
+  "land_land_dashboard_page_vegetation_indices": "VEGETATION INDICES",
+  "land_land_dashboard_page_vegetation_indices_will_appear_when_a_": "Vegetation indices will appear when a usable satellite observation becomes available.",
+  "land_land_dashboard_page_water": "Water",
+  "land_land_selection_page_count_pts": "$count pts",
+  "land_land_selection_page_mark_land_boundary": "MARK LAND BOUNDARY",
+  "land_land_selection_page_mark_your_land": "Mark Your Land",
+  "land_land_selection_page_open_device_settings": "Open device settings",
+  "land_land_selection_page_tap_the_map_to_place_vertices_around_y": "Tap the map to place vertices around your land. The polygon will close automatically.",
+  "land_land_selection_page_tap_to_mark": "Tap to mark",
+  "land_land_summary_card_cached_data_reconnect_to_verify_the_la": "Cached data. Reconnect to verify the latest server state.",
+  "land_land_summary_card_land_monitoring": "LAND MONITORING",
+  "land_land_weather_card_weather_at_your_land": "WEATHER AT YOUR LAND",
+  "market_market_page_agricultural_inputs_machinery_and_crop": "Agricultural inputs, machinery and crop protection products selected for modern estate management.",
+  "market_market_page_all_inputs": "All Inputs",
+  "market_market_page_curated_inputs": "CURATED INPUTS",
+  "market_market_page_marketplace": "Marketplace",
+  "market_market_page_no_products_found": "No products found.",
+  "market_market_page_search_by_crop_problem": "Search by crop problem...",
+  "market_market_page_try_again": "Try Again",
+  "market_market_page_unable_to_load_marketplace": "Unable to load marketplace.",
+  "market_product_detail_page_invalid_product_link": "Invalid product link.",
+  "market_product_detail_page_product_details": "PRODUCT DETAILS",
+  "market_product_detail_page_recommended_for": "RECOMMENDED FOR",
+  "market_product_detail_page_try_again": "Try Again",
+  "market_product_detail_page_unable_to_load_this_product": "Unable to load this product.",
+  "market_product_detail_page_unable_to_open_product_link": "Unable to open product link.",
+  "market_product_detail_page_view_product": "View Product",
+  "shared_main_scaffold_agribotics": "Agribotics",
+  "soil_nutrient_detection_page_analysis": "Analysis",
+  "soil_nutrient_detection_page_analyze_soil": "Analyze Soil",
+  "soil_nutrient_detection_page_browse_previous_soil_analyses_nutrient": "Browse previous soil analyses, nutrient readings, fertility assessments and recommendations.",
+  "soil_nutrient_detection_page_diagnostic_database": "DIAGNOSTIC DATABASE",
+  "soil_nutrient_detection_page_enter_soil_values": "ENTER SOIL VALUES",
+  "soil_nutrient_detection_page_enter_your_soil_nutrient_readings_to_e": "Enter your soil nutrient readings to evaluate nitrogen, phosphorus and potassium levels and understand the nutritional condition of your soil.",
+  "soil_nutrient_detection_page_history": "History",
+  "soil_nutrient_detection_page_nutrient_data_ready_for_analysis": "Nutrient data ready for analysis.",
+  "soil_nutrient_detection_page_nutrient_database": "NUTRIENT DATABASE",
+  "soil_nutrient_detection_page_nutrient_readings": "Nutrient readings",
+  "soil_nutrient_detection_page_nutrients": "Nutrients",
+  "soil_nutrient_detection_page_please_enter_all_three_nutrient_values": "Please enter all three nutrient values.",
+  "soil_nutrient_detection_page_please_enter_valid_numeric_values": "Please enter valid numeric values.",
+  "soil_nutrient_detection_page_precision_input": "PRECISION INPUT",
+  "soil_nutrient_detection_page_precision_soil_analytics": "PRECISION SOIL ANALYTICS",
+  "soil_nutrient_detection_page_soil": "Soil",
+  "soil_nutrient_detection_page_use_the_values_from_your_latest_soil_t": "Use the values from your latest soil test for the most reliable nutrient analysis.",
+  "soil_nutrient_detection_page_view_history": "View History",
+  "soil_soil_history_a_definitive_ledger_of_your_land_s_nut": "A definitive ledger of your land's nutritional evolution and strata health metrics across the seasons.",
+  "soil_soil_history_active_insight": "ACTIVE INSIGHT",
+  "soil_soil_history_aggregate_health_score": "AGGREGATE HEALTH SCORE",
+  "soil_soil_history_april_28_2024_valley_terrace": "April 28, 2024 • Valley Terrace",
+  "soil_soil_history_chronological_records": "CHRONOLOGICAL RECORDS",
+  "soil_soil_history_deep_core_analysis_for_the_north_orcha": "Deep-core analysis for the North Orchard segment.",
+  "soil_soil_history_february_19_2024_all_sectors": "February 19, 2024 • All Sectors",
+  "soil_soil_history_history": "History",
+  "soil_soil_history_increased_by_12_from_previous_fiscal_q": "Increased by 12% from previous fiscal quarter.",
+  "soil_soil_history_march_12_2024_vineyard_east": "March 12, 2024 • Vineyard East",
+  "soil_soil_history_may_14_2024_sector_7_g": "May 14, 2024 • Sector 7-G",
+  "soil_soil_history_micronutrient_audit": "Micronutrient Audit",
+  "soil_soil_history_nitrogen_saturation_phase": "Nitrogen Saturation Phase",
+  "soil_soil_history_organic_carbon_mapping": "Organic Carbon Mapping",
+  "soil_soil_history_phosphorus_baseline_scan": "Phosphorus Baseline Scan",
+  "soil_soil_history_pre_planting_ph_check": "Pre-Planting PH Check",
+  "soil_soil_history_recent_activity_log": "RECENT ACTIVITY LOG",
+  "soil_soil_history_soil_analysis": "Soil Analysis",
+  "soil_soil_history_view_full_report": "View Full Report",
+  "soil_soil_map_active": "Active",
+  "soil_soil_map_avg_concentration": "Avg. Concentration",
+  "soil_soil_map_concentration_index": "CONCENTRATION INDEX",
+  "soil_soil_map_field_uniformity": "Field Uniformity",
+  "soil_soil_map_low_concentration_detected_in_sector_4": "Low concentration detected in Sector 4B. Recommended application: 24kg/ha.",
+  "soil_soil_map_nitrogen_n": "Nitrogen (N)",
+  "soil_soil_map_nitrogen_stress_alert": "Nitrogen Stress Alert",
+  "soil_soil_map_phosphorus_p": "Phosphorus (P)",
+  "soil_soil_map_potassium_k": "Potassium (K)",
+  "soil_soil_map_real_time_analysis": "REAL-TIME ANALYSIS",
+  "soil_soil_map_soil_nutrient_map": "Soil Nutrient Map",
+  "soil_soil_report_a_comprehensive_investigation_into_the": "A comprehensive investigation into the chemical and biological strata of the Northern Parcels.",
+  "soil_soil_report_an_increase_of_0_8_yoy_surpassing_esta": "An increase of 0.8% YoY, surpassing estate benchmarks.",
+  "soil_soil_report_annual_terroir_analysis": "ANNUAL TERROIR ANALYSIS",
+  "soil_soil_report_balanced": "Balanced",
+  "soil_soil_report_chief_agronomist": "Chief Agronomist",
+  "soil_soil_report_curator_s_note": "CURATOR\\'S NOTE",
+  "soil_soil_report_exceptional_microbial_diversity_noted_": "Exceptional microbial diversity noted in the top 15cm of the rhizosphere.",
+  "soil_soil_report_healthy_water_holding_capacity_despite": "Healthy water-holding capacity despite the summer dry spell.",
+  "soil_soil_report_julian_thorne": "Julian Thorne, ",
+  "soil_soil_report_micro_imaging_reveals_high_levels_of_m": "Micro-imaging reveals high levels of mycorrhizal fungi activity near root zones.",
+  "soil_soil_report_moisture_ret": "MOISTURE RET.",
+  "soil_soil_report_nitrogen_n": "NITROGEN (N)",
+  "soil_soil_report_october_update": "OCTOBER UPDATE",
+  "soil_soil_report_optimal": "Optimal",
+  "soil_soil_report_organic_matter": "ORGANIC MATTER",
+  "soil_soil_report_perfectly_neutral_for_the_intended_coo": "Perfectly neutral for the intended cool-season cultivars.",
+  "soil_soil_report_phosphorus_p": "PHOSPHORUS (P)",
+  "soil_soil_report_potassium_k": "POTASSIUM (K)",
+  "soil_soil_report_report_2024": "Report 2024",
+  "soil_soil_report_rhizosphere_detail": "RHIZOSPHERE DETAIL",
+  "soil_soil_report_rich": "Rich",
+  "soil_soil_report_soil": "Soil ",
+  "soil_soil_report_strata_diagnostics": "STRATA DIAGNOSTICS",
+  "soil_soil_report_the_quiet_complexity_of_the_soil_dicta": "\"The quiet complexity of the soil dictates the volume of the harvest.\"",
+  "soil_soil_report_upon_reviewing_the_latest_core_samples": "Upon reviewing the latest core samples from the North-East slope, we\\'ve observed a significant increase in organic matter retention. The transition to no-till practices over the last eighteen months is manifesting as a dense, nutrient-rich topsoil layer.",
+  "soil_soil_report_vitality": "Vitality",
+  "soil_soil_report_vitality_score": "VITALITY SCORE",
+  "soil_soil_report_we_recommend_continuing_the_current_co": "We recommend continuing the current cover-cropping cycle using the crimson clover blend...",
+  "weeds_weed_detail_98_confidence": "98% CONFIDENCE",
+  "weeds_weed_detail_acts_as_a_natural_surfactant_and_antif": "Acts as a natural surfactant and antifungal. Apply during low sun exposure to prevent leaf scorch.",
+  "weeds_weed_detail_add_to_care_plan": "Add to Care Plan",
+  "weeds_weed_detail_apply_a_liquid_copper_fungicide_to_the": "Apply a liquid copper fungicide to the foliage. Ensure thorough coverage of both upper and lower leaf surfaces.",
+  "weeds_weed_detail_canopy_thinning": "Canopy Thinning",
+  "weeds_weed_detail_characterized_by_yellow_to_pale_green_": "Characterized by yellow-to-pale-green patches on the upper leaf surface, with visible white-to-grayish \"downy\" fungal growth underneath.",
+  "weeds_weed_detail_chemical_shield": "CHEMICAL SHIELD",
+  "weeds_weed_detail_copper_based_fungicide": "Copper-Based Fungicide",
+  "weeds_weed_detail_downy_mildew": "Downy Mildew.",
+  "weeds_weed_detail_fungal_identification": "FUNGAL IDENTIFICATION",
+  "weeds_weed_detail_improve_air_circulation_by_pruning_den": "Improve air circulation by pruning dense foliage. Avoid overhead watering to keep leaf surfaces dry.",
+  "weeds_weed_detail_neem_oil_emulsion": "Neem Oil Emulsion",
+  "weeds_weed_detail_organic_remedy": "ORGANIC REMEDY",
+  "weeds_weed_detail_prevention_strategy": "PREVENTION STRATEGY",
+  "weeds_weed_detection_ai_detection": "AI Detection",
+  "weeds_weed_detection_ai_model_based_identification": "AI MODEL BASED IDENTIFICATION",
+  "weeds_weed_detection_autonomous_diagnostics": "AUTONOMOUS DIAGNOSTICS",
+  "weeds_weed_detection_detection": "Detection",
+  "weeds_weed_detection_history": "History",
+  "weeds_weed_detection_identify_weeds": "Identify weeds",
+  "weeds_weed_detection_real_time_weed_classification": "Real-time weed classification",
+  "weeds_weed_detection_tap_to_choose_image_from_gallery": "Tap to choose image from gallery",
+  "weeds_weed_detection_upload_crop_image": "Upload Crop Image",
+  "weeds_weed_detection_weed": "Weed",
+  "weeds_weed_diagnosis_botanical_analysis_active": "BOTANICAL ANALYSIS ACTIVE",
+  "weeds_weed_diagnosis_cercospora_nleaf_spot": "Cercospora\\nLeaf Spot.",
+  "weeds_weed_diagnosis_copper_based_fungicide_application_for": "Copper-based fungicide application for rapid suppression of fungal sporulation.",
+  "weeds_weed_diagnosis_critical_priority": "Critical Priority",
+  "weeds_weed_diagnosis_fungal_pathogen": "Fungal Pathogen",
+  "weeds_weed_diagnosis_identification": "IDENTIFICATION",
+  "weeds_weed_diagnosis_last_incident": "Last Incident",
+  "weeds_weed_diagnosis_march_2023_in_sector_02": "March 2023 in Sector 02.",
+  "weeds_weed_diagnosis_mineral_focus": "Mineral Focus",
+  "weeds_weed_diagnosis_neem_oil_extract_with_a_bio_balanced_c": "Neem oil extract with a bio-balanced compost tea to boost leaf immunity naturally.",
+  "weeds_weed_diagnosis_observation_reveals_small_circular_spo": "Observation reveals small, circular spots with light gray centers and dark reddish-purple borders. Early intervention is required to prevent widespread defoliation.",
+  "weeds_weed_diagnosis_organic_remedy": "Organic Remedy",
+  "weeds_weed_diagnosis_precise_leaf_tissue_identification_con": "Precise leaf-tissue identification confirms pathogen activity in Sector 04.",
+  "weeds_weed_diagnosis_success_probability": "SUCCESS PROBABILITY",
+  "weeds_weed_diagnosis_tailored_for_your_soil": "TAILORED FOR YOUR SOIL",
+  "weeds_weed_diagnosis_the_curator_s_ndiagnosis": "The Curator's\\nDiagnosis",
+  "weeds_weed_diagnosis_the_prescriptions": "The Prescriptions",
+  "weeds_weed_diagnosis_treatment_applied_within_the_first_48_": "Treatment applied within the first 48 hours yields high recovery rates.",
+  "weeds_weed_diagnosis_view_archive": "VIEW ARCHIVE →",
+  "weeds_weed_history_across_all_active_sectors": "Across all active sectors.",
+  "weeds_weed_history_detection": "Detection",
+  "weeds_weed_history_diagnostic_archive": "DIAGNOSTIC ARCHIVE",
+  "weeds_weed_history_history": "History",
+  "weeds_weed_history_location_date": "$location • $date",
+  "weeds_weed_history_pending_action": "PENDING ACTION",
+  "weeds_weed_history_pending_analysis": "PENDING ANALYSIS",
+  "weeds_weed_history_recent_activity_log": "RECENT ACTIVITY LOG",
+  "weeds_weed_history_threats_neutralized": "THREATS NEUTRALIZED",
+  "weeds_weed_history_weed_detection": "Weed Detection",
+  "weeds_weed_map_attention_required": "ATTENTION REQUIRED",
+  "weeds_weed_map_count_detection_points": "$count Detection Points",
+  "weeds_weed_map_density_index": "DENSITY INDEX",
+  "weeds_weed_map_initialize_protocol": "Initialize Protocol",
+  "weeds_weed_map_intelligence": "Intelligence",
+  "weeds_weed_map_invasive_species_nneutralization": "Invasive Species\\nNeutralization.",
+  "weeds_weed_map_precision_intervention": "PRECISION INTERVENTION",
+  "weeds_weed_map_section_7b_active": "SECTION 7B ACTIVE",
+  "weeds_weed_map_species_identification": "SPECIES IDENTIFICATION",
+  "weeds_weed_map_targeted_application_of_organic_herbic": "Targeted application of organic herbicide required in high-density pockets.",
+  "@auth_login_page_ai_powered_crop_intelligence_for_the_n": {
+    "description": "User-visible text on login-page page."
+  },
+  "@auth_login_page_secure_authentication_powered_by_googl": {
+    "description": "User-visible text on login-page page."
+  },
+  "@disease_disease_detection_page_ai_ndiagnostics": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_detection_page_ai_pathology_engine": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_detection_page_autonomous_plant_pathology": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_detection_page_browse_previous_ai_diagnoses_confidenc": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_detection_page_choose_image": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_detection_page_cnn_powered_disease_classification_wit": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_detection_page_detect_lesions_discoloration_fungal_sp": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_detection_page_detection": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_detection_page_diagnostic": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_detection_page_diagnostic_database": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_detection_page_disease": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_detection_page_disease_registry": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_detection_page_history": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_detection_page_image_loaded_ready_to_begin_disease_di": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_detection_page_plant_health_indicators": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_detection_page_plant_scan": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_detection_page_ready_for_diagnostic_scan": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_detection_page_run_diagnosis": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_detection_page_scan_infected_foliage_to_identify_plan": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_detection_page_upload_a_close_photograph_of_infected_": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_detection_page_view_registry": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_detection_page_visual_nsymptoms": {
+    "description": "User-visible text on disease detection page page."
+  },
+  "@disease_disease_history_2_hours_ago_south_vineyard": {
+    "description": "User-visible text on disease history page."
+  },
+  "@disease_disease_history_an_archival_record_of_identified_plant": {
+    "description": "User-visible text on disease history page."
+  },
+  "@disease_disease_history_detected_in_sector_4_b_spore_density_i": {
+    "description": "User-visible text on disease history page."
+  },
+  "@disease_disease_history_detection_log_timeline": {
+    "description": "User-visible text on disease history page."
+  },
+  "@disease_disease_history_diagnostic": {
+    "description": "User-visible text on disease history page."
+  },
+  "@disease_disease_history_fungal_spot_remediation": {
+    "description": "User-visible text on disease history page."
+  },
+  "@disease_disease_history_high_risk_detected": {
+    "description": "User-visible text on disease history page."
+  },
+  "@disease_disease_history_late_blight_outbreak": {
+    "description": "User-visible text on disease history page."
+  },
+  "@disease_disease_history_may_12_2024_north_orchard": {
+    "description": "User-visible text on disease history page."
+  },
+  "@disease_disease_history_now_greenhouse_delta": {
+    "description": "User-visible text on disease history page."
+  },
+  "@disease_disease_history_pathogen_surveillance": {
+    "description": "User-visible text on disease history page."
+  },
+  "@disease_disease_history_powdery_mildew_found": {
+    "description": "User-visible text on disease history page."
+  },
+  "@disease_disease_history_registry": {
+    "description": "User-visible text on disease history page."
+  },
+  "@disease_disease_history_root_rot_diagnostic": {
+    "description": "User-visible text on disease history page."
+  },
+  "@disease_disease_history_spectral_foliage_scan": {
+    "description": "User-visible text on disease history page."
+  },
+  "@disease_disease_history_spread_probability": {
+    "description": "User-visible text on disease history page."
+  },
+  "@disease_disease_history_view_action_plan": {
+    "description": "User-visible text on disease history page."
+  },
+  "@disease_disease_history_yesterday_hydroponics_lab": {
+    "description": "User-visible text on disease history page."
+  },
+  "@disease_disease_map_4_critical_alerts": {
+    "description": "User-visible text on disease map page."
+  },
+  "@disease_disease_map_check": {
+    "description": "User-visible text on disease map page."
+  },
+  "@disease_disease_map_disease_pathogen": {
+    "description": "User-visible text on disease map page."
+  },
+  "@disease_disease_map_foliage_analysis_shows_15_degradation_": {
+    "description": "User-visible text on disease map page."
+  },
+  "@disease_disease_map_fusarium_wilt_detected_in_southwest_qu": {
+    "description": "User-visible text on disease map page."
+  },
+  "@disease_disease_map_health_analysis": {
+    "description": "User-visible text on disease map page."
+  },
+  "@disease_disease_map_high_humidity_levels_82_coupled_with_s": {
+    "description": "User-visible text on disease map page."
+  },
+  "@disease_disease_map_high_priority": {
+    "description": "User-visible text on disease map page."
+  },
+  "@disease_disease_map_live_field_logs": {
+    "description": "User-visible text on disease map page."
+  },
+  "@disease_disease_map_map": {
+    "description": "User-visible text on disease map page."
+  },
+  "@disease_disease_map_moderate_risk": {
+    "description": "User-visible text on disease map page."
+  },
+  "@disease_disease_map_pathogen_count_dropped_below_threshold": {
+    "description": "User-visible text on disease map page."
+  },
+  "@disease_disease_map_pathogen_index": {
+    "description": "User-visible text on disease map page."
+  },
+  "@disease_disease_map_pathogen_pressure_estimator": {
+    "description": "User-visible text on disease map page."
+  },
+  "@disease_disease_map_secondary_infection_vector_late_blight": {
+    "description": "User-visible text on disease map page."
+  },
+  "@disease_disease_map_successful_eradication_in_sector_7": {
+    "description": "User-visible text on disease map page."
+  },
+  "@disease_disease_map_warning": {
+    "description": "User-visible text on disease map page."
+  },
+  "@estate_estate_identity_page_45_5231_n_122_6765_w": {
+    "description": "User-visible text on estate identity page page."
+  },
+  "@estate_estate_identity_page_arable": {
+    "description": "User-visible text on estate identity page page."
+  },
+  "@estate_estate_identity_page_auto_detecting_gps": {
+    "description": "User-visible text on estate identity page page."
+  },
+  "@estate_estate_identity_page_begin_your_soil_s_digital_transformati": {
+    "description": "User-visible text on estate identity page page."
+  },
+  "@estate_estate_identity_page_confirm_location": {
+    "description": "User-visible text on estate identity page page."
+  },
+  "@estate_estate_identity_page_data_accuracy_is_optimized_through_hig": {
+    "description": "User-visible text on estate identity page page."
+  },
+  "@estate_estate_identity_page_define_the_parcel": {
+    "description": "User-visible text on estate identity page page."
+  },
+  "@estate_estate_identity_page_e_g_blackwood_highlands": {
+    "description": "User-visible text on estate identity page page."
+  },
+  "@estate_estate_identity_page_estate_identity": {
+    "description": "User-visible text on estate identity page page."
+  },
+  "@estate_estate_identity_page_location": {
+    "description": "User-visible text on estate identity page page."
+  },
+  "@estate_estate_identity_page_new_analysis_phase": {
+    "description": "User-visible text on estate identity page page."
+  },
+  "@estate_estate_identity_page_orchard": {
+    "description": "User-visible text on estate identity page page."
+  },
+  "@estate_estate_identity_page_pasture": {
+    "description": "User-visible text on estate identity page page."
+  },
+  "@estate_estate_identity_page_precision_lock_active": {
+    "description": "User-visible text on estate identity page page."
+  },
+  "@estate_estate_identity_page_primary_cultivar": {
+    "description": "User-visible text on estate identity page page."
+  },
+  "@estate_estate_identity_page_vineyard": {
+    "description": "User-visible text on estate identity page page."
+  },
+  "@estate_sector_detail_page_coord_45_521_122_678": {
+    "description": "User-visible text on sector detail page page."
+  },
+  "@estate_sector_detail_page_execute_task": {
+    "description": "User-visible text on sector detail page page."
+  },
+  "@estate_sector_detail_page_herbix_safe_organic_focus": {
+    "description": "User-visible text on sector detail page page."
+  },
+  "@estate_sector_detail_page_recommended_protocol": {
+    "description": "User-visible text on sector detail page page."
+  },
+  "@estate_sector_detail_page_sector_7_b_detail": {
+    "description": "User-visible text on sector detail page page."
+  },
+  "@estate_sector_detail_page_species_in_grid": {
+    "description": "User-visible text on sector detail page page."
+  },
+  "@estate_sector_detail_page_targeted_sub_meter_spraying_of_palmer_": {
+    "description": "User-visible text on sector detail page page."
+  },
+  "@identify_identify_page_8_active_tasks": {
+    "description": "User-visible text on identify page page."
+  },
+  "@identify_identify_page_access_analysis": {
+    "description": "User-visible text on identify page page."
+  },
+  "@identify_identify_page_advanced_analytics_that_turn_raw_farm_": {
+    "description": "User-visible text on identify page page."
+  },
+  "@identify_identify_page_automated_soil_analysis_that_turns_soi": {
+    "description": "User-visible text on identify page page."
+  },
+  "@identify_identify_page_automated_spectral_analysis_across_nor": {
+    "description": "User-visible text on identify page page."
+  },
+  "@identify_identify_page_curating_the": {
+    "description": "User-visible text on identify page page."
+  },
+  "@identify_identify_page_diagnostic_pipeline": {
+    "description": "User-visible text on identify page page."
+  },
+  "@identify_identify_page_disease_detection": {
+    "description": "User-visible text on identify page page."
+  },
+  "@identify_identify_page_health_of_your": {
+    "description": "User-visible text on identify page page."
+  },
+  "@identify_identify_page_soil_analysis": {
+    "description": "User-visible text on identify page page."
+  },
+  "@identify_identify_page_soil_crops": {
+    "description": "User-visible text on identify page page."
+  },
+  "@identify_identify_page_weed_detection": {
+    "description": "User-visible text on identify page page."
+  },
+  "@land_land_dashboard_page_choose_how_earth_engine_visualizes_you": {
+    "description": "User-visible text on land dashboard page page."
+  },
+  "@land_land_dashboard_page_enhanced_vegetation": {
+    "description": "User-visible text on land dashboard page page."
+  },
+  "@land_land_dashboard_page_land_boundary_unavailable": {
+    "description": "User-visible text on land dashboard page page."
+  },
+  "@land_land_dashboard_page_land_center": {
+    "description": "User-visible text on land dashboard page page."
+  },
+  "@land_land_dashboard_page_last_attempted": {
+    "description": "User-visible text on land dashboard page page."
+  },
+  "@land_land_dashboard_page_last_successful": {
+    "description": "User-visible text on land dashboard page page."
+  },
+  "@land_land_dashboard_page_moisture": {
+    "description": "User-visible text on land dashboard page page."
+  },
+  "@land_land_dashboard_page_next_refresh": {
+    "description": "User-visible text on land dashboard page page."
+  },
+  "@land_land_dashboard_page_recent_observations": {
+    "description": "User-visible text on land dashboard page page."
+  },
+  "@land_land_dashboard_page_satellite_map": {
+    "description": "User-visible text on land dashboard page page."
+  },
+  "@land_land_dashboard_page_satellite_status": {
+    "description": "User-visible text on land dashboard page page."
+  },
+  "@land_land_dashboard_page_soil_adjusted": {
+    "description": "User-visible text on land dashboard page page."
+  },
+  "@land_land_dashboard_page_unable_to_load_land": {
+    "description": "User-visible text on land dashboard page page."
+  },
+  "@land_land_dashboard_page_vegetation": {
+    "description": "User-visible text on land dashboard page page."
+  },
+  "@land_land_dashboard_page_vegetation_indices": {
+    "description": "User-visible text on land dashboard page page."
+  },
+  "@land_land_dashboard_page_vegetation_indices_will_appear_when_a_": {
+    "description": "User-visible text on land dashboard page page."
+  },
+  "@land_land_dashboard_page_water": {
+    "description": "User-visible text on land dashboard page page."
+  },
+  "@land_land_selection_page_count_pts": {
+    "description": "User-visible text on land selection page page."
+  },
+  "@land_land_selection_page_mark_land_boundary": {
+    "description": "User-visible text on land selection page page."
+  },
+  "@land_land_selection_page_mark_your_land": {
+    "description": "User-visible text on land selection page page."
+  },
+  "@land_land_selection_page_open_device_settings": {
+    "description": "User-visible text on land selection page page."
+  },
+  "@land_land_selection_page_tap_the_map_to_place_vertices_around_y": {
+    "description": "User-visible text on land selection page page."
+  },
+  "@land_land_selection_page_tap_to_mark": {
+    "description": "User-visible text on land selection page page."
+  },
+  "@land_land_summary_card_cached_data_reconnect_to_verify_the_la": {
+    "description": "User-visible text on land summary card page."
+  },
+  "@land_land_summary_card_land_monitoring": {
+    "description": "User-visible text on land summary card page."
+  },
+  "@land_land_weather_card_weather_at_your_land": {
+    "description": "User-visible text on land weather card page."
+  },
+  "@market_market_page_agricultural_inputs_machinery_and_crop": {
+    "description": "User-visible text on market page page."
+  },
+  "@market_market_page_all_inputs": {
+    "description": "User-visible text on market page page."
+  },
+  "@market_market_page_curated_inputs": {
+    "description": "User-visible text on market page page."
+  },
+  "@market_market_page_marketplace": {
+    "description": "User-visible text on market page page."
+  },
+  "@market_market_page_no_products_found": {
+    "description": "User-visible text on market page page."
+  },
+  "@market_market_page_search_by_crop_problem": {
+    "description": "User-visible text on market page page."
+  },
+  "@market_market_page_try_again": {
+    "description": "User-visible text on market page page."
+  },
+  "@market_market_page_unable_to_load_marketplace": {
+    "description": "User-visible text on market page page."
+  },
+  "@market_product_detail_page_invalid_product_link": {
+    "description": "User-visible text on product detail page page."
+  },
+  "@market_product_detail_page_product_details": {
+    "description": "User-visible text on product detail page page."
+  },
+  "@market_product_detail_page_recommended_for": {
+    "description": "User-visible text on product detail page page."
+  },
+  "@market_product_detail_page_try_again": {
+    "description": "User-visible text on product detail page page."
+  },
+  "@market_product_detail_page_unable_to_load_this_product": {
+    "description": "User-visible text on product detail page page."
+  },
+  "@market_product_detail_page_unable_to_open_product_link": {
+    "description": "User-visible text on product detail page page."
+  },
+  "@market_product_detail_page_view_product": {
+    "description": "User-visible text on product detail page page."
+  },
+  "@shared_main_scaffold_agribotics": {
+    "description": "User-visible text on main scaffold page."
+  },
+  "@soil_nutrient_detection_page_analysis": {
+    "description": "User-visible text on nutrient detection page page."
+  },
+  "@soil_nutrient_detection_page_analyze_soil": {
+    "description": "User-visible text on nutrient detection page page."
+  },
+  "@soil_nutrient_detection_page_browse_previous_soil_analyses_nutrient": {
+    "description": "User-visible text on nutrient detection page page."
+  },
+  "@soil_nutrient_detection_page_diagnostic_database": {
+    "description": "User-visible text on nutrient detection page page."
+  },
+  "@soil_nutrient_detection_page_enter_soil_values": {
+    "description": "User-visible text on nutrient detection page page."
+  },
+  "@soil_nutrient_detection_page_enter_your_soil_nutrient_readings_to_e": {
+    "description": "User-visible text on nutrient detection page page."
+  },
+  "@soil_nutrient_detection_page_history": {
+    "description": "User-visible text on nutrient detection page page."
+  },
+  "@soil_nutrient_detection_page_nutrient_data_ready_for_analysis": {
+    "description": "User-visible text on nutrient detection page page."
+  },
+  "@soil_nutrient_detection_page_nutrient_database": {
+    "description": "User-visible text on nutrient detection page page."
+  },
+  "@soil_nutrient_detection_page_nutrient_readings": {
+    "description": "User-visible text on nutrient detection page page."
+  },
+  "@soil_nutrient_detection_page_nutrients": {
+    "description": "User-visible text on nutrient detection page page."
+  },
+  "@soil_nutrient_detection_page_please_enter_all_three_nutrient_values": {
+    "description": "User-visible text on nutrient detection page page."
+  },
+  "@soil_nutrient_detection_page_please_enter_valid_numeric_values": {
+    "description": "User-visible text on nutrient detection page page."
+  },
+  "@soil_nutrient_detection_page_precision_input": {
+    "description": "User-visible text on nutrient detection page page."
+  },
+  "@soil_nutrient_detection_page_precision_soil_analytics": {
+    "description": "User-visible text on nutrient detection page page."
+  },
+  "@soil_nutrient_detection_page_soil": {
+    "description": "User-visible text on nutrient detection page page."
+  },
+  "@soil_nutrient_detection_page_use_the_values_from_your_latest_soil_t": {
+    "description": "User-visible text on nutrient detection page page."
+  },
+  "@soil_nutrient_detection_page_view_history": {
+    "description": "User-visible text on nutrient detection page page."
+  },
+  "@soil_soil_history_a_definitive_ledger_of_your_land_s_nut": {
+    "description": "User-visible text on soil history page."
+  },
+  "@soil_soil_history_active_insight": {
+    "description": "User-visible text on soil history page."
+  },
+  "@soil_soil_history_aggregate_health_score": {
+    "description": "User-visible text on soil history page."
+  },
+  "@soil_soil_history_april_28_2024_valley_terrace": {
+    "description": "User-visible text on soil history page."
+  },
+  "@soil_soil_history_chronological_records": {
+    "description": "User-visible text on soil history page."
+  },
+  "@soil_soil_history_deep_core_analysis_for_the_north_orcha": {
+    "description": "User-visible text on soil history page."
+  },
+  "@soil_soil_history_february_19_2024_all_sectors": {
+    "description": "User-visible text on soil history page."
+  },
+  "@soil_soil_history_history": {
+    "description": "User-visible text on soil history page."
+  },
+  "@soil_soil_history_increased_by_12_from_previous_fiscal_q": {
+    "description": "User-visible text on soil history page."
+  },
+  "@soil_soil_history_march_12_2024_vineyard_east": {
+    "description": "User-visible text on soil history page."
+  },
+  "@soil_soil_history_may_14_2024_sector_7_g": {
+    "description": "User-visible text on soil history page."
+  },
+  "@soil_soil_history_micronutrient_audit": {
+    "description": "User-visible text on soil history page."
+  },
+  "@soil_soil_history_nitrogen_saturation_phase": {
+    "description": "User-visible text on soil history page."
+  },
+  "@soil_soil_history_organic_carbon_mapping": {
+    "description": "User-visible text on soil history page."
+  },
+  "@soil_soil_history_phosphorus_baseline_scan": {
+    "description": "User-visible text on soil history page."
+  },
+  "@soil_soil_history_pre_planting_ph_check": {
+    "description": "User-visible text on soil history page."
+  },
+  "@soil_soil_history_recent_activity_log": {
+    "description": "User-visible text on soil history page."
+  },
+  "@soil_soil_history_soil_analysis": {
+    "description": "User-visible text on soil history page."
+  },
+  "@soil_soil_history_view_full_report": {
+    "description": "User-visible text on soil history page."
+  },
+  "@soil_soil_map_active": {
+    "description": "User-visible text on soil map page."
+  },
+  "@soil_soil_map_avg_concentration": {
+    "description": "User-visible text on soil map page."
+  },
+  "@soil_soil_map_concentration_index": {
+    "description": "User-visible text on soil map page."
+  },
+  "@soil_soil_map_field_uniformity": {
+    "description": "User-visible text on soil map page."
+  },
+  "@soil_soil_map_low_concentration_detected_in_sector_4": {
+    "description": "User-visible text on soil map page."
+  },
+  "@soil_soil_map_nitrogen_n": {
+    "description": "User-visible text on soil map page."
+  },
+  "@soil_soil_map_nitrogen_stress_alert": {
+    "description": "User-visible text on soil map page."
+  },
+  "@soil_soil_map_phosphorus_p": {
+    "description": "User-visible text on soil map page."
+  },
+  "@soil_soil_map_potassium_k": {
+    "description": "User-visible text on soil map page."
+  },
+  "@soil_soil_map_real_time_analysis": {
+    "description": "User-visible text on soil map page."
+  },
+  "@soil_soil_map_soil_nutrient_map": {
+    "description": "User-visible text on soil map page."
+  },
+  "@soil_soil_report_a_comprehensive_investigation_into_the": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_an_increase_of_0_8_yoy_surpassing_esta": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_annual_terroir_analysis": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_balanced": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_chief_agronomist": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_curator_s_note": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_exceptional_microbial_diversity_noted_": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_healthy_water_holding_capacity_despite": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_julian_thorne": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_micro_imaging_reveals_high_levels_of_m": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_moisture_ret": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_nitrogen_n": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_october_update": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_optimal": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_organic_matter": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_perfectly_neutral_for_the_intended_coo": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_phosphorus_p": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_potassium_k": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_report_2024": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_rhizosphere_detail": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_rich": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_soil": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_strata_diagnostics": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_the_quiet_complexity_of_the_soil_dicta": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_upon_reviewing_the_latest_core_samples": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_vitality": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_vitality_score": {
+    "description": "User-visible text on soil report page."
+  },
+  "@soil_soil_report_we_recommend_continuing_the_current_co": {
+    "description": "User-visible text on soil report page."
+  },
+  "@weeds_weed_detail_98_confidence": {
+    "description": "User-visible text on weed detail page."
+  },
+  "@weeds_weed_detail_acts_as_a_natural_surfactant_and_antif": {
+    "description": "User-visible text on weed detail page."
+  },
+  "@weeds_weed_detail_add_to_care_plan": {
+    "description": "User-visible text on weed detail page."
+  },
+  "@weeds_weed_detail_apply_a_liquid_copper_fungicide_to_the": {
+    "description": "User-visible text on weed detail page."
+  },
+  "@weeds_weed_detail_canopy_thinning": {
+    "description": "User-visible text on weed detail page."
+  },
+  "@weeds_weed_detail_characterized_by_yellow_to_pale_green_": {
+    "description": "User-visible text on weed detail page."
+  },
+  "@weeds_weed_detail_chemical_shield": {
+    "description": "User-visible text on weed detail page."
+  },
+  "@weeds_weed_detail_copper_based_fungicide": {
+    "description": "User-visible text on weed detail page."
+  },
+  "@weeds_weed_detail_downy_mildew": {
+    "description": "User-visible text on weed detail page."
+  },
+  "@weeds_weed_detail_fungal_identification": {
+    "description": "User-visible text on weed detail page."
+  },
+  "@weeds_weed_detail_improve_air_circulation_by_pruning_den": {
+    "description": "User-visible text on weed detail page."
+  },
+  "@weeds_weed_detail_neem_oil_emulsion": {
+    "description": "User-visible text on weed detail page."
+  },
+  "@weeds_weed_detail_organic_remedy": {
+    "description": "User-visible text on weed detail page."
+  },
+  "@weeds_weed_detail_prevention_strategy": {
+    "description": "User-visible text on weed detail page."
+  },
+  "@weeds_weed_detection_ai_detection": {
+    "description": "User-visible text on weed detection page."
+  },
+  "@weeds_weed_detection_ai_model_based_identification": {
+    "description": "User-visible text on weed detection page."
+  },
+  "@weeds_weed_detection_autonomous_diagnostics": {
+    "description": "User-visible text on weed detection page."
+  },
+  "@weeds_weed_detection_detection": {
+    "description": "User-visible text on weed detection page."
+  },
+  "@weeds_weed_detection_history": {
+    "description": "User-visible text on weed detection page."
+  },
+  "@weeds_weed_detection_identify_weeds": {
+    "description": "User-visible text on weed detection page."
+  },
+  "@weeds_weed_detection_real_time_weed_classification": {
+    "description": "User-visible text on weed detection page."
+  },
+  "@weeds_weed_detection_tap_to_choose_image_from_gallery": {
+    "description": "User-visible text on weed detection page."
+  },
+  "@weeds_weed_detection_upload_crop_image": {
+    "description": "User-visible text on weed detection page."
+  },
+  "@weeds_weed_detection_weed": {
+    "description": "User-visible text on weed detection page."
+  },
+  "@weeds_weed_diagnosis_botanical_analysis_active": {
+    "description": "User-visible text on weed diagnosis page."
+  },
+  "@weeds_weed_diagnosis_cercospora_nleaf_spot": {
+    "description": "User-visible text on weed diagnosis page."
+  },
+  "@weeds_weed_diagnosis_copper_based_fungicide_application_for": {
+    "description": "User-visible text on weed diagnosis page."
+  },
+  "@weeds_weed_diagnosis_critical_priority": {
+    "description": "User-visible text on weed diagnosis page."
+  },
+  "@weeds_weed_diagnosis_fungal_pathogen": {
+    "description": "User-visible text on weed diagnosis page."
+  },
+  "@weeds_weed_diagnosis_identification": {
+    "description": "User-visible text on weed diagnosis page."
+  },
+  "@weeds_weed_diagnosis_last_incident": {
+    "description": "User-visible text on weed diagnosis page."
+  },
+  "@weeds_weed_diagnosis_march_2023_in_sector_02": {
+    "description": "User-visible text on weed diagnosis page."
+  },
+  "@weeds_weed_diagnosis_mineral_focus": {
+    "description": "User-visible text on weed diagnosis page."
+  },
+  "@weeds_weed_diagnosis_neem_oil_extract_with_a_bio_balanced_c": {
+    "description": "User-visible text on weed diagnosis page."
+  },
+  "@weeds_weed_diagnosis_observation_reveals_small_circular_spo": {
+    "description": "User-visible text on weed diagnosis page."
+  },
+  "@weeds_weed_diagnosis_organic_remedy": {
+    "description": "User-visible text on weed diagnosis page."
+  },
+  "@weeds_weed_diagnosis_precise_leaf_tissue_identification_con": {
+    "description": "User-visible text on weed diagnosis page."
+  },
+  "@weeds_weed_diagnosis_success_probability": {
+    "description": "User-visible text on weed diagnosis page."
+  },
+  "@weeds_weed_diagnosis_tailored_for_your_soil": {
+    "description": "User-visible text on weed diagnosis page."
+  },
+  "@weeds_weed_diagnosis_the_curator_s_ndiagnosis": {
+    "description": "User-visible text on weed diagnosis page."
+  },
+  "@weeds_weed_diagnosis_the_prescriptions": {
+    "description": "User-visible text on weed diagnosis page."
+  },
+  "@weeds_weed_diagnosis_treatment_applied_within_the_first_48_": {
+    "description": "User-visible text on weed diagnosis page."
+  },
+  "@weeds_weed_diagnosis_view_archive": {
+    "description": "User-visible text on weed diagnosis page."
+  },
+  "@weeds_weed_history_across_all_active_sectors": {
+    "description": "User-visible text on weed history page."
+  },
+  "@weeds_weed_history_detection": {
+    "description": "User-visible text on weed history page."
+  },
+  "@weeds_weed_history_diagnostic_archive": {
+    "description": "User-visible text on weed history page."
+  },
+  "@weeds_weed_history_history": {
+    "description": "User-visible text on weed history page."
+  },
+  "@weeds_weed_history_location_date": {
+    "description": "User-visible text on weed history page."
+  },
+  "@weeds_weed_history_pending_action": {
+    "description": "User-visible text on weed history page."
+  },
+  "@weeds_weed_history_pending_analysis": {
+    "description": "User-visible text on weed history page."
+  },
+  "@weeds_weed_history_recent_activity_log": {
+    "description": "User-visible text on weed history page."
+  },
+  "@weeds_weed_history_threats_neutralized": {
+    "description": "User-visible text on weed history page."
+  },
+  "@weeds_weed_history_weed_detection": {
+    "description": "User-visible text on weed history page."
+  },
+  "@weeds_weed_map_attention_required": {
+    "description": "User-visible text on weed map page."
+  },
+  "@weeds_weed_map_count_detection_points": {
+    "description": "User-visible text on weed map page."
+  },
+  "@weeds_weed_map_density_index": {
+    "description": "User-visible text on weed map page."
+  },
+  "@weeds_weed_map_initialize_protocol": {
+    "description": "User-visible text on weed map page."
+  },
+  "@weeds_weed_map_intelligence": {
+    "description": "User-visible text on weed map page."
+  },
+  "@weeds_weed_map_invasive_species_nneutralization": {
+    "description": "User-visible text on weed map page."
+  },
+  "@weeds_weed_map_precision_intervention": {
+    "description": "User-visible text on weed map page."
+  },
+  "@weeds_weed_map_section_7b_active": {
+    "description": "User-visible text on weed map page."
+  },
+  "@weeds_weed_map_species_identification": {
+    "description": "User-visible text on weed map page."
+  },
+  "@weeds_weed_map_targeted_application_of_organic_herbic": {
+    "description": "User-visible text on weed map page."
+  },
+  "land_land_dashboard_page_retry": "RETRY",
+  "@land_land_dashboard_page_retry": {
+    "description": "User-visible text on land_dashboard_page page."
+  },
+  "land_land_selection_page_try_again": "TRY AGAIN",
+  "@land_land_selection_page_try_again": {
+    "description": "User-visible text on land_selection_page page."
+  },
+  "disease_disease_detection_page_scan_ready": "SCAN READY",
+  "@disease_disease_detection_page_scan_ready": {
+    "description": "User-visible text on disease_detection_page page."
+  },
+  "estate_sector_detail_page_grid_focus": "GRID FOCUS",
+  "@estate_sector_detail_page_grid_focus": {
+    "description": "User-visible text on sector_detail_page page."
+  },
+  "estate_sector_detail_page_density_data": "DENSITY DATA",
+  "@estate_sector_detail_page_density_data": {
+    "description": "User-visible text on sector_detail_page page."
+  },
+  "estate_sector_detail_page_est_success": "EST. SUCCESS",
+  "@estate_sector_detail_page_est_success": {
+    "description": "User-visible text on sector_detail_page page."
+  },
+  "weeds_weed_history_total_scans": "TOTAL SCANS",
+  "@weeds_weed_history_total_scans": {
+    "description": "User-visible text on weed_history page."
+  },
+  "weeds_weed_diagnosis_cercospora_leaf_spot": "Cercospora\nLeaf Spot.",
+  "@weeds_weed_diagnosis_cercospora_leaf_spot": {
+    "description": "User-visible text on weed_diagnosis page."
+  },
+  "weeds_weed_diagnosis_the_curator_s_diagnosis": "The Curator's\nDiagnosis",
+  "@weeds_weed_diagnosis_the_curator_s_diagnosis": {
+    "description": "User-visible text on weed_diagnosis page."
+  },
+  "weeds_weed_map_soil_flora": "SOIL & FLORA",
+  "@weeds_weed_map_soil_flora": {
+    "description": "User-visible text on weed_map page."
+  },
+  "weeds_weed_map_yield_risk": "YIELD RISK",
+  "@weeds_weed_map_yield_risk": {
+    "description": "User-visible text on weed_map page."
+  },
+  "weeds_weed_map_invasive_species_neutralization": "Invasive Species\nNeutralization.",
+  "@weeds_weed_map_invasive_species_neutralization": {
+    "description": "User-visible text on weed_map page."
+  },
+  "weeds_weed_map_drive_risk": "DRIVE RISK",
+  "@weeds_weed_map_drive_risk": {
+    "description": "User-visible text on weed_map page."
+  },
+  "soil_soil_report_curator_s_note_c13ea": "CURATOR'S NOTE",
+  "@soil_soil_report_curator_s_note_c13ea": {
+    "description": "User-visible text on soil_report page."
+  },
+  "soil_soil_report_upon_reviewing_the_latest_core_sampl": "Upon reviewing the latest core samples from the North-East slope, we've observed a significant increase in organic matter retention. The transition to no-till practices over the last eighteen months is manifesting as a dense, nutrient-rich topsoil layer.",
+  "@soil_soil_report_upon_reviewing_the_latest_core_sampl": {
+    "description": "User-visible text on soil_report page."
+  },
+  "soil_nutrient_detection_page_npk_profile": "NPK PROFILE",
+  "@soil_nutrient_detection_page_npk_profile": {
+    "description": "User-visible text on nutrient_detection_page page."
+  },
+  "soil_nutrient_detection_page_value": "VALUE",
+  "@soil_nutrient_detection_page_value": {
+    "description": "User-visible text on nutrient_detection_page page."
+  },
+  "soil_soil_map_deficient": "DEFICIENT",
+  "@soil_soil_map_deficient": {
+    "description": "User-visible text on soil_map page."
+  },
+  "soil_soil_map_optimal": "OPTIMAL",
+  "@soil_soil_map_optimal": {
+    "description": "User-visible text on soil_map page."
+  },
+  "soil_soil_map_saturated": "SATURATED",
+  "@soil_soil_map_saturated": {
+    "description": "User-visible text on soil_map page."
+  },
+  "soil_soil_history_total_tasks": "TOTAL TASKS",
+  "@soil_soil_history_total_tasks": {
+    "description": "User-visible text on soil_history page."
+  },
+  "auth_login_page_agribotics": "AGRIBOTICS",
+  "@auth_login_page_agribotics": {
+    "description": "User-visible text on login-page page."
+  },
+  "auth_login_page_g": "G",
+  "@auth_login_page_g": {
+    "description": "User-visible text on login-page page."
+  },
+  "land_land_weather_card_upcoming": "UPCOMING",
+  "@land_land_weather_card_upcoming": {
+    "description": "User-visible text on land_weather_card page."
+  },
+  "land_messages_your_session_has_expired_please_log_in_aga": "Your session has expired. Please log in again.",
+  "@land_messages_your_session_has_expired_please_log_in_aga": {
+    "description": "User-visible status or error originating in land_provider."
+  },
+  "land_messages_you_are_not_authorized_to_access_this_land": "You are not authorized to access this land.",
+  "@land_messages_you_are_not_authorized_to_access_this_land": {
+    "description": "User-visible status or error originating in land_provider."
+  },
+  "land_messages_land_was_not_found": "Land was not found.",
+  "@land_messages_land_was_not_found": {
+    "description": "User-visible status or error originating in land_provider."
+  },
+  "land_messages_a_land_record_already_exists_for_this_acco": "A land record already exists for this account.",
+  "@land_messages_a_land_record_already_exists_for_this_acco": {
+    "description": "User-visible status or error originating in land_provider."
+  },
+  "land_messages_the_land_boundary_was_rejected_by_the_serv": "The land boundary was rejected by the server.",
+  "@land_messages_the_land_boundary_was_rejected_by_the_serv": {
+    "description": "User-visible status or error originating in land_provider."
+  },
+  "land_messages_unable_to_retrieve_land_data_please_check_": "Unable to retrieve land data. Please check your connection and try again.",
+  "@land_messages_unable_to_retrieve_land_data_please_check_": {
+    "description": "User-visible status or error originating in land_provider."
+  },
+  "land_messages_land_response_does_not_contain_a_valid_lan": "Land response does not contain a valid land object.",
+  "@land_messages_land_response_does_not_contain_a_valid_lan": {
+    "description": "User-visible status or error originating in land_models."
+  },
+  "land_messages_land_id_is_missing": "Land ID is missing.",
+  "@land_messages_land_id_is_missing": {
+    "description": "User-visible status or error originating in land_models."
+  },
+  "land_messages_land_area_is_missing": "Land area is missing.",
+  "@land_messages_land_area_is_missing": {
+    "description": "User-visible status or error originating in land_models."
+  },
+  "land_messages_land_centroid_is_missing": "Land centroid is missing.",
+  "@land_messages_land_centroid_is_missing": {
+    "description": "User-visible status or error originating in land_models."
+  },
+  "land_messages_land_polygon_is_invalid": "Land polygon is invalid.",
+  "@land_messages_land_polygon_is_invalid": {
+    "description": "User-visible status or error originating in land_models."
+  },
+  "land_messages_weather_api_configuration_is_missing": "Weather API configuration is missing.",
+  "@land_messages_weather_api_configuration_is_missing": {
+    "description": "User-visible status or error originating in weather_provider."
+  },
+  "land_messages_weather_service_authentication_failed": "Weather service authentication failed.",
+  "@land_messages_weather_service_authentication_failed": {
+    "description": "User-visible status or error originating in weather_provider."
+  },
+  "land_messages_weather_service_request_limit_has_been_rea": "Weather service request limit has been reached.",
+  "@land_messages_weather_service_request_limit_has_been_rea": {
+    "description": "User-visible status or error originating in weather_provider."
+  },
+  "land_messages_unable_to_retrieve_weather_for_your_land": "Unable to retrieve weather for your land.",
+  "@land_messages_unable_to_retrieve_weather_for_your_land": {
+    "description": "User-visible status or error originating in weather_provider."
+  },
+  "land_messages_satellite_observation_time_is_missing": "Satellite observation time is missing.",
+  "@land_messages_satellite_observation_time_is_missing": {
+    "description": "User-visible status or error originating in satellite_models."
+  },
+  "land_messages_satellite_retrieval_time_is_missing": "Satellite retrieval time is missing.",
+  "@land_messages_satellite_retrieval_time_is_missing": {
+    "description": "User-visible status or error originating in satellite_models."
+  },
+  "land_messages_satellite_dataset_is_missing": "Satellite dataset is missing.",
+  "@land_messages_satellite_dataset_is_missing": {
+    "description": "User-visible status or error originating in satellite_models."
+  },
+  "land_messages_satellite_refresh_time_is_missing": "Satellite refresh time is missing.",
+  "@land_messages_satellite_refresh_time_is_missing": {
+    "description": "User-visible status or error originating in satellite_models."
+  },
+  "land_messages_satellite_map_observation_time_is_missing": "Satellite map observation time is missing.",
+  "@land_messages_satellite_map_observation_time_is_missing": {
+    "description": "User-visible status or error originating in satellite_models."
+  },
+  "land_messages_satellite_map_layer_is_malformed": "Satellite map layer is malformed.",
+  "@land_messages_satellite_map_layer_is_malformed": {
+    "description": "User-visible status or error originating in satellite_models."
+  },
+  "land_messages_you_are_not_authorized_to_access_satellite": "You are not authorized to access satellite data for this land.",
+  "@land_messages_you_are_not_authorized_to_access_satellite": {
+    "description": "User-visible status or error originating in satellite_provider."
+  },
+  "land_messages_no_satellite_observation_is_available_yet": "No satellite observation is available yet.",
+  "@land_messages_no_satellite_observation_is_available_yet": {
+    "description": "User-visible status or error originating in satellite_provider."
+  },
+  "land_messages_the_satellite_image_for_this_observation_i": "The satellite image for this observation is unavailable.",
+  "@land_messages_the_satellite_image_for_this_observation_i": {
+    "description": "User-visible status or error originating in satellite_provider."
+  },
+  "land_messages_refresh_is_not_available_yet": "Refresh is not available yet.",
+  "@land_messages_refresh_is_not_available_yet": {
+    "description": "User-visible status or error originating in satellite_provider."
+  },
+  "land_messages_a_satellite_refresh_is_already_in_progress": "A satellite refresh is already in progress.",
+  "@land_messages_a_satellite_refresh_is_already_in_progress": {
+    "description": "User-visible status or error originating in satellite_provider."
+  },
+  "land_messages_satellite_services_are_temporarily_unavail": "Satellite services are temporarily unavailable. Previous data is preserved.",
+  "@land_messages_satellite_services_are_temporarily_unavail": {
+    "description": "User-visible status or error originating in satellite_provider."
+  },
+  "land_messages_unable_to_retrieve_satellite_data_please_c": "Unable to retrieve satellite data. Please check your connection and try again.",
+  "@land_messages_unable_to_retrieve_satellite_data_please_c": {
+    "description": "User-visible status or error originating in satellite_provider."
+  },
+  "land_messages_satellite_history_response_is_invalid": "Satellite history response is invalid.",
+  "@land_messages_satellite_history_response_is_invalid": {
+    "description": "User-visible status or error originating in satellite_api."
+  },
+  "land_messages_loading_satellite_information": "Loading satellite information",
+  "@land_messages_loading_satellite_information": {
+    "description": "User-visible status or error originating in land_dashboard_page."
+  },
+  "land_messages_refreshing_satellite_observation": "Refreshing satellite observation",
+  "@land_messages_refreshing_satellite_observation": {
+    "description": "User-visible status or error originating in land_dashboard_page."
+  },
+  "land_messages_latest_observation_available": "Latest observation available",
+  "@land_messages_latest_observation_available": {
+    "description": "User-visible status or error originating in land_dashboard_page."
+  },
+  "land_messages_no_usable_satellite_data_available": "No usable satellite data available",
+  "@land_messages_no_usable_satellite_data_available": {
+    "description": "User-visible status or error originating in land_dashboard_page."
+  },
+  "land_messages_satellite_service_temporarily_unavailable": "Satellite service temporarily unavailable",
+  "@land_messages_satellite_service_temporarily_unavailable": {
+    "description": "User-visible status or error originating in land_dashboard_page."
+  },
+  "land_messages_waiting_for_first_satellite_observation": "Waiting for first satellite observation",
+  "@land_messages_waiting_for_first_satellite_observation": {
+    "description": "User-visible status or error originating in land_dashboard_page."
+  },
+  "land_messages_hour_period": "$hour $period",
+  "@land_messages_hour_period": {
+    "description": "User-visible status or error originating in land_weather_card."
+  },
+  "auth_messages_google_did_not_return_an_id_token": "Google did not return an ID token",
+  "@auth_messages_google_did_not_return_an_id_token": {
+    "description": "User-visible status or error originating in auth-repository."
+  }
+}

@@ -1,3 +1,4 @@
+import 'package:agribotics/core/localization/localized_text.dart';
 import 'dart:io';
 
 import 'package:agribotics/core/theme/app_theme.dart';
@@ -54,7 +55,7 @@ class _WeedDetectionPageState extends ConsumerState<WeedDetectionPage> {
             ..hideCurrentSnackBar()
             ..showSnackBar(
               SnackBar(
-                content: Text(next.message),
+                content: Text(trText(next.message)),
                 backgroundColor: Colors.black,
               ),
             );
@@ -64,14 +65,14 @@ class _WeedDetectionPageState extends ConsumerState<WeedDetectionPage> {
     return Scaffold(
       backgroundColor: AppTheme.background,
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
+        padding: EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 40),
+            SizedBox(height: 40),
 
-            const Text(
-              'AUTONOMOUS DIAGNOSTICS',
+            Text(
+              trText('AUTONOMOUS DIAGNOSTICS'),
               style: TextStyle(
                 fontSize: 10,
                 fontWeight: FontWeight.bold,
@@ -80,12 +81,12 @@ class _WeedDetectionPageState extends ConsumerState<WeedDetectionPage> {
               ),
             ),
 
-            const SizedBox(height: 12),
+            SizedBox(height: 12),
 
-            Text('Weed', style: textTheme.displayLarge),
-            Text('Detection', style: textTheme.displayLarge),
+            Text(trText('Weed'), style: textTheme.displayLarge),
+            Text(trText('Detection'), style: textTheme.displayLarge),
 
-            const SizedBox(height: 48),
+            SizedBox(height: 48),
 
             GestureDetector(
               onTap: pickImage,
@@ -106,32 +107,32 @@ class _WeedDetectionPageState extends ConsumerState<WeedDetectionPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      padding: const EdgeInsets.all(22),
+                      padding: EdgeInsets.all(22),
                       decoration: BoxDecoration(
                         color: AppTheme.primary.withOpacity(0.08),
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(
+                      child: Icon(
                         LucideIcons.imagePlus,
                         size: 42,
                         color: AppTheme.primary,
                       ),
                     ),
 
-                    const SizedBox(height: 28),
+                    SizedBox(height: 28),
 
-                    const Text(
-                      'Upload Crop Image',
+                    Text(
+                      trText('Upload Crop Image'),
                       style: TextStyle(
                         fontSize: 22,
                         fontWeight: FontWeight.w700,
                       ),
                     ),
 
-                    const SizedBox(height: 10),
+                    SizedBox(height: 10),
 
                     Text(
-                      'Tap to choose image from gallery',
+                      trText('Tap to choose image from gallery'),
                       style: textTheme.bodyMedium,
                     ),
                   ],
@@ -152,12 +153,12 @@ class _WeedDetectionPageState extends ConsumerState<WeedDetectionPage> {
                         child: GestureDetector(
                           onTap: pickImage,
                           child: Container(
-                            padding: const EdgeInsets.all(10),
+                            padding: EdgeInsets.all(10),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(16),
                             ),
-                            child: const Icon(
+                            child: Icon(
                               LucideIcons.refreshCcw,
                               size: 18,
                               color: AppTheme.primary,
@@ -171,10 +172,10 @@ class _WeedDetectionPageState extends ConsumerState<WeedDetectionPage> {
               ),
             ),
 
-            const SizedBox(height: 40),
+            SizedBox(height: 40),
 
             Row(
-              children: const [
+              children: [
                 Expanded(
                   child: _FeatureCard(
                     icon: LucideIcons.leaf,
@@ -195,11 +196,11 @@ class _WeedDetectionPageState extends ConsumerState<WeedDetectionPage> {
               ],
             ),
 
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
 
             _AiCard(onTap: () => context.go('/weed/history')),
 
-            const SizedBox(height: 48),
+            SizedBox(height: 48),
 
             SizedBox(
               width: double.infinity,
@@ -214,8 +215,8 @@ class _WeedDetectionPageState extends ConsumerState<WeedDetectionPage> {
                   ),
                 ),
                 child: Text(
-                  image == null ? 'Upload Image' : 'Analyze Weed',
-                  style: const TextStyle(
+                  trText(image == null ? 'Upload Image' : 'Analyze Weed'),
+                  style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
                     color: Colors.white,
@@ -224,7 +225,7 @@ class _WeedDetectionPageState extends ConsumerState<WeedDetectionPage> {
               ),
             ),
 
-            const SizedBox(height: 120),
+            SizedBox(height: 120),
           ],
         ),
       ),
@@ -246,7 +247,7 @@ class _FeatureCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(24),
+      padding: EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(28),
@@ -256,21 +257,21 @@ class _FeatureCard extends StatelessWidget {
         children: [
           Icon(icon, color: AppTheme.primary, size: 28),
 
-          const SizedBox(height: 24),
+          SizedBox(height: 24),
 
           Text(
-            title,
-            style: const TextStyle(
+            trText(title),
+            style: TextStyle(
               fontSize: 11,
               fontWeight: FontWeight.bold,
               letterSpacing: 2,
             ),
           ),
 
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
 
           Text(
-            subtitle,
+            trText(subtitle),
             style: Theme.of(context).textTheme.titleLarge,
           ),
         ],
@@ -294,9 +295,9 @@ class _AiCard extends StatelessWidget {
         onTap: onTap,
         borderRadius: BorderRadius.circular(32),
         child: Container(
-          padding: const EdgeInsets.all(28),
+          padding: EdgeInsets.all(28),
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
+            gradient: LinearGradient(
               colors: [AppTheme.primary, AppTheme.primaryContainer],
               begin: Alignment.bottomLeft,
               end: Alignment.topRight,
@@ -306,11 +307,11 @@ class _AiCard extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Column(
+              Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'AI MODEL BASED IDENTIFICATION',
+                    trText('AI MODEL BASED IDENTIFICATION'),
                     style: TextStyle(
                       color: Colors.white54,
                       fontSize: 11,
@@ -322,7 +323,7 @@ class _AiCard extends StatelessWidget {
                   SizedBox(height: 18),
 
                   Text(
-                    'History',
+                    trText('History'),
                     style: TextStyle(
                       fontSize: 38,
                       fontWeight: FontWeight.w900,
@@ -333,7 +334,7 @@ class _AiCard extends StatelessWidget {
                   SizedBox(height: 6),
 
                   Text(
-                    'Real-time weed classification',
+                    trText('Real-time weed classification'),
                     style: TextStyle(
                       color: Colors.white70,
                     ),
@@ -341,7 +342,7 @@ class _AiCard extends StatelessWidget {
                 ],
               ),
 
-              const Icon(
+              Icon(
                 LucideIcons.archive,
                 color: Colors.white24,
                 size: 72,

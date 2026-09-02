@@ -1,3 +1,4 @@
+import 'package:agribotics/core/localization/localized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons/lucide_icons.dart';
@@ -14,37 +15,37 @@ class DiseasePathogenMapScreen extends StatelessWidget {
         slivers: [
           SliverToBoxAdapter(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              padding: EdgeInsets.symmetric(horizontal: 24.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 24,),
+                  SizedBox(height: 24,),
                   Text(
-                    'HEALTH ANALYSIS',
+                    trText('HEALTH ANALYSIS'),
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
                       color: AppTheme.secondary.withOpacity(0.8),
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8),
                   RichText(
                     text: TextSpan(
                       style: Theme.of(context).textTheme.displayMedium,
-                      children: const [
-                        TextSpan(text: 'Disease Pathogen '),
+                      children: [
+                        TextSpan(text: trText('Disease Pathogen ')),
                         TextSpan(
-                          text: 'Map',
+                          text: trText('Map'),
                           style: TextStyle(color: Color(0xFF1B4332)),
                         ),
                       ],
                     ),
                   ),
-                  const SizedBox(height: 24),
+                  SizedBox(height: 24),
                   _buildTopMetrics(),
-                  const SizedBox(height: 32),
+                  SizedBox(height: 32),
                   _buildDiseaseMap(),
-                  const SizedBox(height: 48),
+                  SizedBox(height: 48),
                   _buildLiveFieldLogsHeader(),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
                   _buildLogCard(
                     context,
                     icon: LucideIcons.alertTriangle,
@@ -53,7 +54,7 @@ class DiseasePathogenMapScreen extends StatelessWidget {
                     label: 'Warning',
                     meta: 'BLOCK 4A • 14:22',
                     actionLabel: 'View Remediation',
-                    accentColor: const Color(0xFF77574D),
+                    accentColor: Color(0xFF77574D),
                   ),
                   _buildLogCard(
                     context,
@@ -63,7 +64,7 @@ class DiseasePathogenMapScreen extends StatelessWidget {
                     label: 'High Priority',
                     meta: 'BLOCK 2C • 12:05',
                     actionLabel: 'Issue Directive',
-                    accentColor: const Color(0xFF77574D),
+                    accentColor: Color(0xFF77574D),
                   ),
                   _buildLogCard(
                     context,
@@ -75,7 +76,7 @@ class DiseasePathogenMapScreen extends StatelessWidget {
                     actionLabel: 'Review Full History',
                     accentColor: AppTheme.primary,
                   ),
-                  const SizedBox(height: 100),
+                  SizedBox(height: 100),
                 ],
               ),
             ),
@@ -90,7 +91,7 @@ class DiseasePathogenMapScreen extends StatelessWidget {
         Expanded(
           flex: 3,
           child: Container(
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
               color: AppTheme.surfaceContainerLow,
               borderRadius: BorderRadius.circular(24),
@@ -98,23 +99,23 @@ class DiseasePathogenMapScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('PATHOGEN PRESSURE ESTIMATOR',
+                Text(trText('PATHOGEN PRESSURE ESTIMATOR'),
                     style: GoogleFonts.inter(
                         fontSize: 10,
                         fontWeight: FontWeight.w700,
                         letterSpacing: 0.5,
                         color: AppTheme.onSurfaceVariant)),
-                const SizedBox(height: 8),
+                SizedBox(height: 8),
                 Row(
                   children: [
                     Container(
                       width: 8,
                       height: 8,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                           color: Color(0xFF77574D), shape: BoxShape.circle),
                     ),
-                    const SizedBox(width: 8),
-                    Text('Moderate Risk',
+                    SizedBox(width: 8),
+                    Text(trText('Moderate Risk'),
                         style: GoogleFonts.manrope(
                             fontSize: 20, fontWeight: FontWeight.w700)),
                   ],
@@ -123,11 +124,11 @@ class DiseasePathogenMapScreen extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(width: 12),
+        SizedBox(width: 12),
         Expanded(
           flex: 2,
           child: Container(
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
               color: AppTheme.primary,
               borderRadius: BorderRadius.circular(24),
@@ -135,23 +136,23 @@ class DiseasePathogenMapScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('PATHOGEN INDEX',
+                Text(trText('PATHOGEN INDEX'),
                     style: GoogleFonts.inter(
                         fontSize: 10,
                         fontWeight: FontWeight.w700,
                         color: Colors.white60)),
-                const SizedBox(height: 4),
+                SizedBox(height: 4),
                 RichText(
                   text: TextSpan(
                     children: [
                       TextSpan(
-                          text: '42',
+                          text: trText('42'),
                           style: GoogleFonts.manrope(
                               fontSize: 32,
                               fontWeight: FontWeight.w800,
                               color: Colors.white)),
                       TextSpan(
-                          text: '/100',
+                          text: trText('/100'),
                           style: GoogleFonts.manrope(
                               fontSize: 14, color: Colors.white70)),
                     ],
@@ -171,14 +172,14 @@ class DiseasePathogenMapScreen extends StatelessWidget {
       child: AspectRatio(
         aspectRatio: 1,
         child: GridView.builder(
-          physics: const NeverScrollableScrollPhysics(),
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 15),
+          physics: NeverScrollableScrollPhysics(),
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 15),
           itemCount: 225,
           itemBuilder: (context, index) {
             final opacity = (index % 11) / 12 + 0.1;
             return Container(
               color: AppTheme.primary.withOpacity(opacity),
-              margin: const EdgeInsets.all(0.2),
+              margin: EdgeInsets.all(0.2),
             );
           },
         ),
@@ -190,20 +191,20 @@ class DiseasePathogenMapScreen extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text('Live Field Logs',
+        Text(trText('Live Field Logs'),
             style: GoogleFonts.manrope(
                 fontSize: 28, fontWeight: FontWeight.w800)),
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
-            color: const Color(0xFFF4F4F2),
+            color: Color(0xFFF4F4F2),
             borderRadius: BorderRadius.circular(20),
           ),
-          child: Text('4 CRITICAL ALERTS',
+          child: Text(trText('4 CRITICAL ALERTS'),
               style: GoogleFonts.inter(
                   fontSize: 10,
                   fontWeight: FontWeight.w800,
-                  color: const Color(0xFF77574D))),
+                  color: Color(0xFF77574D))),
         )
       ],
     );
@@ -219,8 +220,8 @@ class DiseasePathogenMapScreen extends StatelessWidget {
         required Color accentColor,
       }) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 16),
-      padding: const EdgeInsets.all(24),
+      margin: EdgeInsets.only(bottom: 16),
+      padding: EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: AppTheme.surfaceContainerLowest,
         borderRadius: BorderRadius.circular(24),
@@ -231,34 +232,34 @@ class DiseasePathogenMapScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(label,
+              Text(trText(label),
                   style: GoogleFonts.inter(
                       fontSize: 24,
                       color: accentColor.withOpacity(0.7),
                       fontWeight: FontWeight.w300)),
-              Text(meta,
+              Text(trText(meta),
                   style: GoogleFonts.inter(
                       fontSize: 10, color: AppTheme.onSurfaceVariant)),
             ],
           ),
-          const SizedBox(height: 16),
-          Text(title,
+          SizedBox(height: 16),
+          Text(trText(title),
               style: GoogleFonts.manrope(
                   fontSize: 18, fontWeight: FontWeight.w700, height: 1.2)),
-          const SizedBox(height: 12),
-          Text(subtitle,
+          SizedBox(height: 12),
+          Text(trText(subtitle),
               style: GoogleFonts.inter(
                   fontSize: 14,
                   color: AppTheme.onSurfaceVariant,
                   height: 1.5)),
-          const SizedBox(height: 20),
+          SizedBox(height: 20),
           Row(
             children: [
-              Text(actionLabel,
+              Text(trText(actionLabel),
                   style: GoogleFonts.inter(
                       fontWeight: FontWeight.w600, fontSize: 13)),
-              const SizedBox(width: 4),
-              const Icon(LucideIcons.arrowRight, size: 16),
+              SizedBox(width: 4),
+              Icon(LucideIcons.arrowRight, size: 16),
             ],
           ),
         ],
@@ -268,7 +269,7 @@ class DiseasePathogenMapScreen extends StatelessWidget {
 
   Widget _legendItem(Color color, String text) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      padding: EdgeInsets.symmetric(vertical: 4.0),
       child: Row(
         children: [
           Container(
@@ -277,8 +278,8 @@ class DiseasePathogenMapScreen extends StatelessWidget {
             decoration: BoxDecoration(
                 color: color, borderRadius: BorderRadius.circular(2)),
           ),
-          const SizedBox(width: 8),
-          Text(text, style: GoogleFonts.inter(fontSize: 10)),
+          SizedBox(width: 8),
+          Text(trText(text), style: GoogleFonts.inter(fontSize: 10)),
         ],
       ),
     );

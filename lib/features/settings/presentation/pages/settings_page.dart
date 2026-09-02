@@ -1,9 +1,12 @@
+import 'package:agribotics/core/localization/localized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import '../../../../core/theme/app_theme.dart';
 import 'package:agribotics/core/providers/app_providers.dart';
+import 'package:agribotics/l10n/app_localizations.dart';
+import 'package:go_router/go_router.dart';
 
 class SettingsPage extends ConsumerWidget {
   const SettingsPage({super.key});
@@ -14,53 +17,55 @@ class SettingsPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final l10n = AppLocalizations.of(context);
     return Scaffold(
       backgroundColor: AppTheme.background,
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
+        padding: EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 80),
+            SizedBox(height: 80),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Account Settings',
+                  trText(l10n.settingsTitle),
                   style: Theme.of(context).textTheme.headlineLarge,
                 ).animate().fadeIn(),
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 30,
                   backgroundImage: NetworkImage('https://lh3.googleusercontent.com/a/default-user=s120-c'),
                 ).animate().scale(),
               ],
             ),
-            const SizedBox(height: 48),
+            SizedBox(height: 48),
             _SettingsGroup(
-              title: 'PREFERENCES',
+              title: l10n.settingsPreferences,
               items: [
-                _SettingsItem(icon: LucideIcons.user, label: 'Profile Management'),
-                _SettingsItem(icon: LucideIcons.bell, label: 'Notification Protocols'),
-                _SettingsItem(icon: LucideIcons.shield, label: 'Security & Access'),
+                _SettingsItem(icon: LucideIcons.languages, label: l10n.settingsLanguage, onTap: () => context.go('/language?change=true')),
+                _SettingsItem(icon: LucideIcons.user, label: l10n.settingsProfile),
+                _SettingsItem(icon: LucideIcons.bell, label: l10n.settingsNotifications),
+                _SettingsItem(icon: LucideIcons.shield, label: l10n.settingsSecurity),
               ],
             ),
-            const SizedBox(height: 32),
+            SizedBox(height: 32),
             _SettingsGroup(
-              title: 'DATA & EXPORT',
+              title: l10n.settingsDataExport,
               items: [
-                _SettingsItem(icon: LucideIcons.download, label: 'Export Estate Data (JSON/CSV)'),
-                _SettingsItem(icon: LucideIcons.cloud, label: 'Cloud Synchronisation'),
+                _SettingsItem(icon: LucideIcons.download, label: l10n.settingsExport),
+                _SettingsItem(icon: LucideIcons.cloud, label: l10n.settingsCloud),
               ],
             ),
-            const SizedBox(height: 32),
+            SizedBox(height: 32),
             _SettingsGroup(
-              title: 'SUPPORT',
+              title: l10n.settingsSupport,
               items: [
-                _SettingsItem(icon: LucideIcons.helpCircle, label: 'Technical Documentation'),
-                _SettingsItem(icon: LucideIcons.logOut, label: 'Sign Out', isDestructive: true,  onTap: () => _logout(ref),),
+                _SettingsItem(icon: LucideIcons.helpCircle, label: l10n.settingsDocumentation),
+                _SettingsItem(icon: LucideIcons.logOut, label: l10n.settingsSignOut, isDestructive: true,  onTap: () => _logout(ref),),
               ],
             ),
-            const SizedBox(height: 120),
+            SizedBox(height: 120),
           ],
         ),
       ),
@@ -80,10 +85,10 @@ class _SettingsGroup extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          title,
-          style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 2.0, color: AppTheme.secondary),
+          trText(title),
+          style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 2.0, color: AppTheme.secondary),
         ),
-        const SizedBox(height: 20),
+        SizedBox(height: 20),
         Container(
           decoration: BoxDecoration(
             color: AppTheme.surface,
@@ -109,16 +114,16 @@ class _SettingsItem extends StatelessWidget {
     return ListTile(
       leading: Icon(icon, color: isDestructive ? Colors.red : AppTheme.primary, size: 20),
       title: Text(
-        label,
+        trText(label),
         style: TextStyle(
           fontSize: 15,
           fontWeight: FontWeight.w600,
           color: isDestructive ? Colors.red : AppTheme.onSurface,
         ),
       ),
-      trailing: const Icon(LucideIcons.chevronRight, size: 16),
+      trailing: Icon(LucideIcons.chevronRight, size: 16),
       onTap: onTap,
-      contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+      contentPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:agribotics/core/localization/localized_text.dart';
 import 'package:agribotics/shared/widgets/shared_timeline_item.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
@@ -13,43 +14,43 @@ class SoilNutrientHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
+      padding: EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 40),
+          SizedBox(height: 40),
           Text(
-            'CHRONOLOGICAL RECORDS',
+            trText('CHRONOLOGICAL RECORDS'),
             style: Theme.of(context).textTheme.labelLarge,
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           Text(
-            'Soil Analysis',
+            trText('Soil Analysis'),
             style: Theme.of(context).textTheme.displayLarge,
           ),
           Text(
-            'History',
+            trText('History'),
             style: Theme.of(context).textTheme.displayLarge,
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: 24),
           Text(
-            "A definitive ledger of your land's nutritional evolution and strata health metrics across the seasons.",
+            trText("A definitive ledger of your land's nutritional evolution and strata health metrics across the seasons."),
             style: Theme.of(context).textTheme.bodyLarge,
           ),
-          const SizedBox(height: 48),
-          const _ActiveInsightCard().animate().fadeIn(delay: 200.ms).moveY(begin: 10, end: 0),
-          const SizedBox(height: 24),
-          const _StatsGrid().animate().fadeIn(delay: 400.ms),
-          const SizedBox(height: 30),
+          SizedBox(height: 48),
+          _ActiveInsightCard().animate().fadeIn(delay: 200.ms).moveY(begin: 10, end: 0),
+          SizedBox(height: 24),
+          _StatsGrid().animate().fadeIn(delay: 400.ms),
+          SizedBox(height: 30),
           Center(
-            child: const Text(
-              'RECENT ACTIVITY LOG',
+            child: Text(
+              trText('RECENT ACTIVITY LOG'),
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, letterSpacing: 3.0, color: AppTheme.secondary,),
             ),
           ),
-          const SizedBox(height: 10),
-          const _HistoryTimeline(),
-          const SizedBox(height: 120),
+          SizedBox(height: 10),
+          _HistoryTimeline(),
+          SizedBox(height: 120),
         ],
       ),
     );
@@ -85,18 +86,18 @@ class _ActiveInsightCard extends StatelessWidget {
           ),
           // Added Padding here to wrap the Column content
           Padding(
-            padding: const EdgeInsets.all(32),
+            padding: EdgeInsets.all(32),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     color: AppTheme.primary,
                     borderRadius: BorderRadius.circular(100),
                   ),
-                  child: const Text(
-                    'ACTIVE INSIGHT',
+                  child: Text(
+                    trText('ACTIVE INSIGHT'),
                     style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
@@ -105,22 +106,22 @@ class _ActiveInsightCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 24),
-                const Text(
-                  'Nitrogen Saturation Phase',
+                SizedBox(height: 24),
+                Text(
+                  trText('Nitrogen Saturation Phase'),
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 12),
-                const Text('Deep-core analysis for the North Orchard segment.'),
-                const SizedBox(height: 48),
+                SizedBox(height: 12),
+                Text(trText('Deep-core analysis for the North Orchard segment.')),
+                SizedBox(height: 48),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Column(
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '88',
+                          trText('88'),
                           style: TextStyle(
                               fontSize: 48,
                               fontWeight: FontWeight.w900,
@@ -128,7 +129,7 @@ class _ActiveInsightCard extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'AGGREGATE HEALTH SCORE',
+                          trText('AGGREGATE HEALTH SCORE'),
                           style: TextStyle(
                               fontSize: 10,
                               fontWeight: FontWeight.bold,
@@ -142,10 +143,10 @@ class _ActiveInsightCard extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppTheme.primary,
                         foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                       ),
-                      child: const Text('View Full Report'),
+                      child: Text(trText('View Full Report')),
                     ),
                   ],
                 ),
@@ -164,7 +165,7 @@ class _StatsGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(24),
+      padding: EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: AppTheme.onSurfaceVariant.withOpacity(0.05),
         borderRadius: BorderRadius.circular(24),
@@ -172,28 +173,28 @@ class _StatsGrid extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            padding: const EdgeInsets.all(12),
+            padding: EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: AppTheme.primary,
               borderRadius: BorderRadius.circular(16),
             ),
-            child: const Icon(LucideIcons.activity, color: Colors.white, size: 24),
+            child: Icon(LucideIcons.activity, color: Colors.white, size: 24),
           ),
-          const SizedBox(width: 20),
-          const Expanded(
+          SizedBox(width: 20),
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'TOTAL TASKS',
+                  trText('TOTAL TASKS'),
                   style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1.5),
                 ),
                 Text(
-                  '142',
+                  trText('142'),
                   style: TextStyle(fontSize: 32, fontWeight: FontWeight.w900),
                 ),
                 Text(
-                  'Increased by 12% from previous fiscal quarter.',
+                  trText('Increased by 12% from previous fiscal quarter.'),
                   style: TextStyle(fontSize: 11, color: AppTheme.secondary),
                 ),
               ],
@@ -224,7 +225,7 @@ class _HistoryTimeline extends StatelessWidget {
           useCard: true, // Highlights active/processing task
           onTap: () => context.go('/soil/nutrient-map'),
         ),
-        const SharedTimelineItem(
+        SharedTimelineItem(
           label: 'COMPLETED',
           title: 'Phosphorus Baseline Scan',
           subtitle: 'April 28, 2024 • Valley Terrace',
@@ -232,7 +233,7 @@ class _HistoryTimeline extends StatelessWidget {
           metricValue: '92',
           dotColor: Colors.grey,
         ),
-        const SharedTimelineItem(
+        SharedTimelineItem(
           label: 'COMPLETED',
           title: 'Micronutrient Audit',
           subtitle: 'March 12, 2024 • Vineyard East',
@@ -241,7 +242,7 @@ class _HistoryTimeline extends StatelessWidget {
           dotColor: Colors.grey,
           useCard: false,
         ),
-        const SharedTimelineItem(
+        SharedTimelineItem(
           label: 'COMPLETED',
           title: 'Pre-Planting PH Check',
           subtitle: 'February 19, 2024 • All Sectors',

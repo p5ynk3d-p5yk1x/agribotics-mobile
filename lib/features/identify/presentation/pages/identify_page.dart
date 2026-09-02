@@ -1,3 +1,4 @@
+import 'package:agribotics/core/localization/localized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import '../../../../core/theme/app_theme.dart';
@@ -9,45 +10,45 @@ class IdentifyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
+      padding: EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 40),
-          const Text(
-            'DIAGNOSTIC PIPELINE',
+          SizedBox(height: 40),
+          Text(
+            trText('DIAGNOSTIC PIPELINE'),
             style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1.5, color: AppTheme.secondary),
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           Text(
-            'Curating the',
+            trText('Curating the'),
             style: Theme.of(context).textTheme.displayLarge,
           ),
           Text(
-            'health of your',
+            trText('health of your'),
             style: Theme.of(context).textTheme.displayLarge,
           ),
           Text(
-            'soil & crops.',
+            trText('soil & crops.'),
             style: Theme.of(context).textTheme.displayLarge,
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: 24),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             decoration: BoxDecoration(
               color: AppTheme.onSurfaceVariant.withOpacity(0.05),
               borderRadius: BorderRadius.circular(100),
             ),
-            child: const Row(
+            child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 CircleAvatar(backgroundColor: AppTheme.primary, radius: 4),
                 SizedBox(width: 8),
-                Text('8 Active Tasks', style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+                Text(trText('8 Active Tasks'), style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
               ],
             ),
           ),
-          const SizedBox(height: 48),
+          SizedBox(height: 48),
           DetectionCard(
             title: 'Weed Detection',
             description:
@@ -56,7 +57,7 @@ class IdentifyPage extends StatelessWidget {
             route: '/weed/detection',
             imageUrl: 'https://picsum.photos/seed/weed/800/400',
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: 24),
           DetectionCard(
             title: 'Soil Analysis',
             description: 'Automated soil analysis that turns soil auth into actionable insights for smarter farming and fertilizer usage.',
@@ -64,7 +65,7 @@ class IdentifyPage extends StatelessWidget {
             route: '/soil/detection',
             imageUrl: 'https://picsum.photos/seed/soil/800/400',
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: 24),
 
           DetectionCard(
             title: 'Disease Detection',
@@ -73,7 +74,7 @@ class IdentifyPage extends StatelessWidget {
             route: '/disease/detection',
             imageUrl: 'https://picsum.photos/seed/disease/800/400',
           ),
-          const SizedBox(height: 120),
+          SizedBox(height: 120),
         ],
       ),
     );
@@ -107,7 +108,7 @@ class DetectionCard extends StatelessWidget {
           BoxShadow(
             color: Colors.black.withOpacity(0.03),
             blurRadius: 40,
-            offset: const Offset(0, 20),
+            offset: Offset(0, 20),
           ),
         ],
       ),
@@ -116,7 +117,7 @@ class DetectionCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius:
-            const BorderRadius.vertical(top: Radius.circular(24)),
+            BorderRadius.vertical(top: Radius.circular(24)),
             child: Image.network(
               imageUrl,
               height: 200,
@@ -124,7 +125,7 @@ class DetectionCard extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(32),
+            padding: EdgeInsets.all(32),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -133,38 +134,38 @@ class DetectionCard extends StatelessWidget {
                   color: AppTheme.onSurfaceVariant,
                   size: 24,
                 ),
-                const SizedBox(height: 24),
+                SizedBox(height: 24),
                 Text(
-                  title,
-                  style: const TextStyle(
+                  trText(title),
+                  style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 12),
+                SizedBox(height: 12),
                 Text(
-                  description,
-                  style: const TextStyle(
+                  trText(description),
+                  style: TextStyle(
                     color: AppTheme.onSurfaceVariant,
                     height: 1.6,
                   ),
                 ),
-                const SizedBox(height: 32),
+                SizedBox(height: 32),
                 ElevatedButton(
                   onPressed: () => context.go(route),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: AppTheme.primary,
                     foregroundColor: Colors.white,
-                    minimumSize: const Size(double.infinity, 60),
+                    minimumSize: Size(double.infinity, 60),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(100),
                     ),
                   ),
-                  child: const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Access Analysis',
+                        trText('Access Analysis'),
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       SizedBox(width: 8),
