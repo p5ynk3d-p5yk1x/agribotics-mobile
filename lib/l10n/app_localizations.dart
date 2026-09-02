@@ -151,7 +151,7 @@ class AppLocalizations {
       'land_land_dashboard_page_vegetation_indices': 'VEGETATION INDICES',
       'land_land_dashboard_page_vegetation_indices_will_appear_when_a_': 'Vegetation indices will appear when a usable satellite observation becomes available.',
       'land_land_dashboard_page_water': 'Water',
-      'land_land_selection_page_count_pts': '$count pts',
+      'land_land_selection_page_count_pts': '\$count pts',
       'land_land_selection_page_mark_land_boundary': 'MARK LAND BOUNDARY',
       'land_land_selection_page_mark_your_land': 'Mark Your Land',
       'land_land_selection_page_open_device_settings': 'Open device settings',
@@ -299,14 +299,14 @@ class AppLocalizations {
       'weeds_weed_history_detection': 'Detection',
       'weeds_weed_history_diagnostic_archive': 'DIAGNOSTIC ARCHIVE',
       'weeds_weed_history_history': 'History',
-      'weeds_weed_history_location_date': '$location • $date',
+      'weeds_weed_history_location_date': '\$location • \$date',
       'weeds_weed_history_pending_action': 'PENDING ACTION',
       'weeds_weed_history_pending_analysis': 'PENDING ANALYSIS',
       'weeds_weed_history_recent_activity_log': 'RECENT ACTIVITY LOG',
       'weeds_weed_history_threats_neutralized': 'THREATS NEUTRALIZED',
       'weeds_weed_history_weed_detection': 'Weed Detection',
       'weeds_weed_map_attention_required': 'ATTENTION REQUIRED',
-      'weeds_weed_map_count_detection_points': '$count Detection Points',
+      'weeds_weed_map_count_detection_points': '\$count Detection Points',
       'weeds_weed_map_density_index': 'DENSITY INDEX',
       'weeds_weed_map_initialize_protocol': 'Initialize Protocol',
       'weeds_weed_map_intelligence': 'Intelligence',
@@ -374,7 +374,7 @@ class AppLocalizations {
       'land_messages_no_usable_satellite_data_available': 'No usable satellite data available',
       'land_messages_satellite_service_temporarily_unavailable': 'Satellite service temporarily unavailable',
       'land_messages_waiting_for_first_satellite_observation': 'Waiting for first satellite observation',
-      'land_messages_hour_period': '$hour $period',
+      'land_messages_hour_period': '\$hour \$period',
       'auth_messages_google_did_not_return_an_id_token': 'Google did not return an ID token',
     },
     'hi': {
@@ -520,7 +520,7 @@ class AppLocalizations {
       'land_land_dashboard_page_vegetation_indices': 'VEGETATION INDICES',
       'land_land_dashboard_page_vegetation_indices_will_appear_when_a_': 'Vegetation indices will appear when a usable satellite अवलोकन becomes उपलब्ध.',
       'land_land_dashboard_page_water': 'Water',
-      'land_land_selection_page_count_pts': '$count pts',
+      'land_land_selection_page_count_pts': '\$count अंक',
       'land_land_selection_page_mark_land_boundary': 'MARK भूमि सीमा',
       'land_land_selection_page_mark_your_land': 'अपनी भूमि चिह्नित करें',
       'land_land_selection_page_open_device_settings': 'डिवाइस सेटिंग्स खोलें',
@@ -668,14 +668,14 @@ class AppLocalizations {
       'weeds_weed_history_detection': 'पहचान',
       'weeds_weed_history_diagnostic_archive': 'निदान संग्रह',
       'weeds_weed_history_history': 'इतिहास',
-      'weeds_weed_history_location_date': '$स्थान • $date',
+      'weeds_weed_history_location_date': '\$location • \$date',
       'weeds_weed_history_pending_action': 'PENDING कार्य',
       'weeds_weed_history_pending_analysis': 'PENDING विश्लेषण',
       'weeds_weed_history_recent_activity_log': 'हाल के ACTIVITY LOG',
       'weeds_weed_history_threats_neutralized': 'THREATS NEUTRALIZED',
       'weeds_weed_history_weed_detection': 'Weed पहचान',
       'weeds_weed_map_attention_required': 'ATTENTION REQUIRED',
-      'weeds_weed_map_count_detection_points': '$count पहचान Points',
+      'weeds_weed_map_count_detection_points': '\$count पहचान बिंदु',
       'weeds_weed_map_density_index': 'DENSITY INDEX',
       'weeds_weed_map_initialize_protocol': 'प्रक्रिया शुरू करें',
       'weeds_weed_map_intelligence': 'जानकारी',
@@ -743,7 +743,7 @@ class AppLocalizations {
       'land_messages_no_usable_satellite_data_available': 'No usable satellite डेटा उपलब्ध',
       'land_messages_satellite_service_temporarily_unavailable': 'Satellite service temporarily unavailable',
       'land_messages_waiting_for_first_satellite_observation': 'Waiting for first satellite अवलोकन',
-      'land_messages_hour_period': '$hour $period',
+      'land_messages_hour_period': '\$hour \$period',
       'auth_messages_google_did_not_return_an_id_token': 'Google did not return an ID token',
     },
     'ta': {
@@ -889,7 +889,7 @@ class AppLocalizations {
       'land_land_dashboard_page_vegetation_indices': 'VEGETATION INDICES',
       'land_land_dashboard_page_vegetation_indices_will_appear_when_a_': 'Vegetation indices will appear when a usable satellite கண்காணிப்பு becomes கிடைக்கும்.',
       'land_land_dashboard_page_water': 'Water',
-      'land_land_selection_page_count_pts': '$count pts',
+      'land_land_selection_page_count_pts': '\$count புள்ளிகள்',
       'land_land_selection_page_mark_land_boundary': 'MARK நிலம் எல்லை',
       'land_land_selection_page_mark_your_land': 'உங்கள் நிலத்தைக் குறிக்கவும்',
       'land_land_selection_page_open_device_settings': 'சாதன அமைப்புகளைத் திறக்கவும்',
@@ -1037,14 +1037,14 @@ class AppLocalizations {
       'weeds_weed_history_detection': 'கண்டறிதல்',
       'weeds_weed_history_diagnostic_archive': 'நோயறிதல் காப்பகம்',
       'weeds_weed_history_history': 'வரலாறு',
-      'weeds_weed_history_location_date': '$இடம் • $date',
+      'weeds_weed_history_location_date': '\$location • \$date',
       'weeds_weed_history_pending_action': 'PENDING செயல்',
       'weeds_weed_history_pending_analysis': 'PENDING ஆய்வு',
       'weeds_weed_history_recent_activity_log': 'சமீபத்திய ACTIVITY LOG',
       'weeds_weed_history_threats_neutralized': 'THREATS NEUTRALIZED',
       'weeds_weed_history_weed_detection': 'Weed கண்டறிதல்',
       'weeds_weed_map_attention_required': 'ATTENTION REQUIRED',
-      'weeds_weed_map_count_detection_points': '$count கண்டறிதல் Points',
+      'weeds_weed_map_count_detection_points': '\$count கண்டறிதல் புள்ளிகள்',
       'weeds_weed_map_density_index': 'DENSITY INDEX',
       'weeds_weed_map_initialize_protocol': 'Initialize Protocol',
       'weeds_weed_map_intelligence': 'Intelligence',
@@ -1112,7 +1112,7 @@ class AppLocalizations {
       'land_messages_no_usable_satellite_data_available': 'No usable satellite தரவு கிடைக்கும்',
       'land_messages_satellite_service_temporarily_unavailable': 'Satellite service temporarily unavailable',
       'land_messages_waiting_for_first_satellite_observation': 'Waiting for first satellite கண்காணிப்பு',
-      'land_messages_hour_period': '$hour $period',
+      'land_messages_hour_period': '\$hour \$period',
       'auth_messages_google_did_not_return_an_id_token': 'Google did not return an ID token',
     },
     'te': {
@@ -1258,7 +1258,7 @@ class AppLocalizations {
       'land_land_dashboard_page_vegetation_indices': 'VEGETATION INDICES',
       'land_land_dashboard_page_vegetation_indices_will_appear_when_a_': 'Vegetation indices will appear when a usable satellite పరిశీలన becomes అందుబాటులో.',
       'land_land_dashboard_page_water': 'Water',
-      'land_land_selection_page_count_pts': '$count pts',
+      'land_land_selection_page_count_pts': '\$count పాయింట్లు',
       'land_land_selection_page_mark_land_boundary': 'MARK భూమి సరిహద్దు',
       'land_land_selection_page_mark_your_land': 'మీ భూమిని గుర్తించండి',
       'land_land_selection_page_open_device_settings': 'పరికర సెట్టింగ్‌లను తెరవండి',
@@ -1406,14 +1406,14 @@ class AppLocalizations {
       'weeds_weed_history_detection': 'గుర్తింపు',
       'weeds_weed_history_diagnostic_archive': 'నిర్ధారణ ఆర్కైవ్',
       'weeds_weed_history_history': 'చరిత్ర',
-      'weeds_weed_history_location_date': '$స్థానం • $date',
+      'weeds_weed_history_location_date': '\$location • \$date',
       'weeds_weed_history_pending_action': 'PENDING చర్య',
       'weeds_weed_history_pending_analysis': 'PENDING విశ్లేషణ',
       'weeds_weed_history_recent_activity_log': 'ఇటీవలి ACTIVITY LOG',
       'weeds_weed_history_threats_neutralized': 'THREATS NEUTRALIZED',
       'weeds_weed_history_weed_detection': 'Weed గుర్తింపు',
       'weeds_weed_map_attention_required': 'ATTENTION REQUIRED',
-      'weeds_weed_map_count_detection_points': '$count గుర్తింపు Points',
+      'weeds_weed_map_count_detection_points': '\$count గుర్తింపు పాయింట్లు',
       'weeds_weed_map_density_index': 'DENSITY INDEX',
       'weeds_weed_map_initialize_protocol': 'Initialize Protocol',
       'weeds_weed_map_intelligence': 'Intelligence',
@@ -1481,7 +1481,7 @@ class AppLocalizations {
       'land_messages_no_usable_satellite_data_available': 'No usable satellite డేటా అందుబాటులో',
       'land_messages_satellite_service_temporarily_unavailable': 'Satellite service temporarily unavailable',
       'land_messages_waiting_for_first_satellite_observation': 'Waiting for first satellite పరిశీలన',
-      'land_messages_hour_period': '$hour $period',
+      'land_messages_hour_period': '\$hour \$period',
       'auth_messages_google_did_not_return_an_id_token': 'Google did not return an ID token',
     },
     'kn': {
@@ -1627,7 +1627,7 @@ class AppLocalizations {
       'land_land_dashboard_page_vegetation_indices': 'VEGETATION INDICES',
       'land_land_dashboard_page_vegetation_indices_will_appear_when_a_': 'Vegetation indices will appear when a usable satellite ವೀಕ್ಷಣೆ becomes ಲಭ್ಯ.',
       'land_land_dashboard_page_water': 'Water',
-      'land_land_selection_page_count_pts': '$count pts',
+      'land_land_selection_page_count_pts': '\$count ಅಂಕಗಳು',
       'land_land_selection_page_mark_land_boundary': 'MARK ಭೂಮಿ ಗಡಿ',
       'land_land_selection_page_mark_your_land': 'ನಿಮ್ಮ ಭೂಮಿಯನ್ನು ಗುರುತಿಸಿ',
       'land_land_selection_page_open_device_settings': 'ಸಾಧನದ ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ತೆರೆಯಿರಿ',
@@ -1775,14 +1775,14 @@ class AppLocalizations {
       'weeds_weed_history_detection': 'ಪತ್ತೆ',
       'weeds_weed_history_diagnostic_archive': 'ರೋಗನಿರ್ಣಯ ದಾಖಲೆ',
       'weeds_weed_history_history': 'ಇತಿಹಾಸ',
-      'weeds_weed_history_location_date': '$ಸ್ಥಳ • $date',
+      'weeds_weed_history_location_date': '\$location • \$date',
       'weeds_weed_history_pending_action': 'PENDING ಕ್ರಮ',
       'weeds_weed_history_pending_analysis': 'PENDING ವಿಶ್ಲೇಷಣೆ',
       'weeds_weed_history_recent_activity_log': 'ಇತ್ತೀಚಿನ ACTIVITY LOG',
       'weeds_weed_history_threats_neutralized': 'THREATS NEUTRALIZED',
       'weeds_weed_history_weed_detection': 'Weed ಪತ್ತೆ',
       'weeds_weed_map_attention_required': 'ATTENTION REQUIRED',
-      'weeds_weed_map_count_detection_points': '$count ಪತ್ತೆ Points',
+      'weeds_weed_map_count_detection_points': '\$count ಪತ್ತೆ ಬಿಂದುಗಳು',
       'weeds_weed_map_density_index': 'DENSITY INDEX',
       'weeds_weed_map_initialize_protocol': 'Initialize Protocol',
       'weeds_weed_map_intelligence': 'Intelligence',
@@ -1850,7 +1850,7 @@ class AppLocalizations {
       'land_messages_no_usable_satellite_data_available': 'No usable satellite ಡೇಟಾ ಲಭ್ಯ',
       'land_messages_satellite_service_temporarily_unavailable': 'Satellite service temporarily unavailable',
       'land_messages_waiting_for_first_satellite_observation': 'Waiting for first satellite ವೀಕ್ಷಣೆ',
-      'land_messages_hour_period': '$hour $period',
+      'land_messages_hour_period': '\$hour \$period',
       'auth_messages_google_did_not_return_an_id_token': 'Google did not return an ID token',
     },
     'mr': {
@@ -1996,7 +1996,7 @@ class AppLocalizations {
       'land_land_dashboard_page_vegetation_indices': 'VEGETATION INDICES',
       'land_land_dashboard_page_vegetation_indices_will_appear_when_a_': 'Vegetation indices will appear when a usable satellite निरीक्षण becomes उपलब्ध.',
       'land_land_dashboard_page_water': 'Water',
-      'land_land_selection_page_count_pts': '$count pts',
+      'land_land_selection_page_count_pts': '\$count बिंदू',
       'land_land_selection_page_mark_land_boundary': 'MARK जमीन सीमा',
       'land_land_selection_page_mark_your_land': 'तुमची जमीन चिन्हांकित करा',
       'land_land_selection_page_open_device_settings': 'डिव्हाइस सेटिंग्ज उघडा',
@@ -2144,14 +2144,14 @@ class AppLocalizations {
       'weeds_weed_history_detection': 'शोध',
       'weeds_weed_history_diagnostic_archive': 'निदान संग्रह',
       'weeds_weed_history_history': 'इतिहास',
-      'weeds_weed_history_location_date': '$स्थान • $date',
+      'weeds_weed_history_location_date': '\$location • \$date',
       'weeds_weed_history_pending_action': 'PENDING कृती',
       'weeds_weed_history_pending_analysis': 'PENDING विश्लेषण',
       'weeds_weed_history_recent_activity_log': 'अलीकडील ACTIVITY LOG',
       'weeds_weed_history_threats_neutralized': 'THREATS NEUTRALIZED',
       'weeds_weed_history_weed_detection': 'Weed शोध',
       'weeds_weed_map_attention_required': 'ATTENTION REQUIRED',
-      'weeds_weed_map_count_detection_points': '$count शोध Points',
+      'weeds_weed_map_count_detection_points': '\$count शोध बिंदू',
       'weeds_weed_map_density_index': 'DENSITY INDEX',
       'weeds_weed_map_initialize_protocol': 'Initialize Protocol',
       'weeds_weed_map_intelligence': 'Intelligence',
@@ -2219,7 +2219,7 @@ class AppLocalizations {
       'land_messages_no_usable_satellite_data_available': 'No usable satellite डेटा उपलब्ध',
       'land_messages_satellite_service_temporarily_unavailable': 'Satellite service temporarily unavailable',
       'land_messages_waiting_for_first_satellite_observation': 'Waiting for first satellite निरीक्षण',
-      'land_messages_hour_period': '$hour $period',
+      'land_messages_hour_period': '\$hour \$period',
       'auth_messages_google_did_not_return_an_id_token': 'Google did not return an ID token',
     },
   };
@@ -2374,7 +2374,7 @@ class AppLocalizations {
   String get land_land_dashboard_page_vegetation_indices => _get('land_land_dashboard_page_vegetation_indices');
   String get land_land_dashboard_page_vegetation_indices_will_appear_when_a_ => _get('land_land_dashboard_page_vegetation_indices_will_appear_when_a_');
   String get land_land_dashboard_page_water => _get('land_land_dashboard_page_water');
-  String get land_land_selection_page_count_pts => _get('land_land_selection_page_count_pts');
+  String land_land_selection_page_count_pts(int count) => _get('land_land_selection_page_count_pts').replaceAll(r'$count', count.toString());
   String get land_land_selection_page_mark_land_boundary => _get('land_land_selection_page_mark_land_boundary');
   String get land_land_selection_page_mark_your_land => _get('land_land_selection_page_mark_your_land');
   String get land_land_selection_page_open_device_settings => _get('land_land_selection_page_open_device_settings');
@@ -2522,14 +2522,14 @@ class AppLocalizations {
   String get weeds_weed_history_detection => _get('weeds_weed_history_detection');
   String get weeds_weed_history_diagnostic_archive => _get('weeds_weed_history_diagnostic_archive');
   String get weeds_weed_history_history => _get('weeds_weed_history_history');
-  String get weeds_weed_history_location_date => _get('weeds_weed_history_location_date');
+  String weeds_weed_history_location_date(String location, String date) => _get('weeds_weed_history_location_date').replaceAll(r'$location', location).replaceAll(r'$date', date);
   String get weeds_weed_history_pending_action => _get('weeds_weed_history_pending_action');
   String get weeds_weed_history_pending_analysis => _get('weeds_weed_history_pending_analysis');
   String get weeds_weed_history_recent_activity_log => _get('weeds_weed_history_recent_activity_log');
   String get weeds_weed_history_threats_neutralized => _get('weeds_weed_history_threats_neutralized');
   String get weeds_weed_history_weed_detection => _get('weeds_weed_history_weed_detection');
   String get weeds_weed_map_attention_required => _get('weeds_weed_map_attention_required');
-  String get weeds_weed_map_count_detection_points => _get('weeds_weed_map_count_detection_points');
+  String weeds_weed_map_count_detection_points(int count) => _get('weeds_weed_map_count_detection_points').replaceAll(r'$count', count.toString());
   String get weeds_weed_map_density_index => _get('weeds_weed_map_density_index');
   String get weeds_weed_map_initialize_protocol => _get('weeds_weed_map_initialize_protocol');
   String get weeds_weed_map_intelligence => _get('weeds_weed_map_intelligence');
@@ -2597,7 +2597,7 @@ class AppLocalizations {
   String get land_messages_no_usable_satellite_data_available => _get('land_messages_no_usable_satellite_data_available');
   String get land_messages_satellite_service_temporarily_unavailable => _get('land_messages_satellite_service_temporarily_unavailable');
   String get land_messages_waiting_for_first_satellite_observation => _get('land_messages_waiting_for_first_satellite_observation');
-  String get land_messages_hour_period => _get('land_messages_hour_period');
+  String land_messages_hour_period(String hour, String period) => _get('land_messages_hour_period').replaceAll(r'$hour', hour).replaceAll(r'$period', period);
   String get auth_messages_google_did_not_return_an_id_token => _get('auth_messages_google_did_not_return_an_id_token');
 }
 

@@ -921,7 +921,7 @@ class _GridPainter extends CustomPainter {
       ..color = Colors.white.withValues(alpha: .03)
       ..strokeWidth = .8;
 
-    gap = 28.0;
+    double gap = 28.0;
 
     for (double x = gap; x < size.width; x += gap) {
       canvas.drawLine(
