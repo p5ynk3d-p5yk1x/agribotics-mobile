@@ -1,8 +1,10 @@
+import 'package:agribotics/core/localization/localized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import '../../core/theme/app_theme.dart';
+import 'package:agribotics/l10n/app_localizations.dart';
 
 class MainScaffold extends StatelessWidget {
   final Widget child;
@@ -28,18 +30,18 @@ class MainScaffold extends StatelessWidget {
         leading: GestureDetector(
           onTap: () => context.go('/dashboard'),
           child: Padding(
-            padding: const EdgeInsets.only(left: 20),
+            padding: EdgeInsets.only(left: 20),
             child: Row(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   radius: 18,
                   backgroundImage: NetworkImage(
                     'https://lh3.googleusercontent.com/a/default-user=s120-c',
                   ),
                 ),
-                const SizedBox(width: 12),
+                SizedBox(width: 12),
                 Text(
-                  'Agribotics',
+                  trText('Agribotics'),
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(
                     fontWeight: FontWeight.w800,
                     color: AppTheme.primary,
@@ -51,10 +53,10 @@ class MainScaffold extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: const Icon(LucideIcons.settings, color: AppTheme.primary),
+            icon: Icon(LucideIcons.settings, color: AppTheme.primary),
             onPressed: () => context.go('/settings'),
           ),
-          const SizedBox(width: 12),
+          SizedBox(width: 12),
         ],
       ),
       body: child,
@@ -71,7 +73,7 @@ class _FloatingBottomNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(20, 0, 20, 30),
+      margin: EdgeInsets.fromLTRB(20, 0, 20, 30),
       child: GlassContainer(
         height: 70,
         blur: 20,
@@ -85,25 +87,25 @@ class _FloatingBottomNav extends StatelessWidget {
           children: [
             _NavItem(
               icon: LucideIcons.home,
-              label: 'ESTATE',
+              label: AppLocalizations.of(context).sharedEstate,
               isActive: currentPath == '/dashboard',
               onTap: () => context.go('/dashboard'),
             ),
             _NavItem(
               icon: LucideIcons.layers,
-              label: 'SOIL',
+              label: AppLocalizations.of(context).sharedSoil,
               isActive: currentPath == '/soil/nutrient-map',
               onTap: () => context.go('/soil/nutrient-map'),
             ),
             _NavItem(
               icon: LucideIcons.search,
-              label: 'IDENTIFY',
+              label: AppLocalizations.of(context).sharedIdentify,
               isActive: currentPath == '/identify',
               onTap: () => context.go('/identify'),
             ),
             _NavItem(
               icon: LucideIcons.shoppingBag,
-              label: 'MARKET',
+              label: AppLocalizations.of(context).sharedMarket,
               isActive: currentPath == '/market',
               onTap: () => context.go('/market'),
             ),
@@ -135,7 +137,7 @@ class _NavItem extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Container(
-            padding: const EdgeInsets.all(8),
+            padding: EdgeInsets.all(8),
             decoration: BoxDecoration(
               color: isActive ? AppTheme.primary : Colors.transparent,
               shape: BoxShape.circle,
@@ -146,9 +148,9 @@ class _NavItem extends StatelessWidget {
               color: isActive ? Colors.white : AppTheme.primary.withOpacity(0.4),
             ),
           ),
-          const SizedBox(height: 2),
+          SizedBox(height: 2),
           Text(
-            label,
+            trText(label),
             style: TextStyle(
               fontSize: 8,
               fontWeight: FontWeight.bold,

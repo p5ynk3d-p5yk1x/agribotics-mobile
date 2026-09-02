@@ -1,3 +1,4 @@
+import 'package:agribotics/core/localization/localized_text.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_theme.dart';
 
@@ -16,13 +17,13 @@ class StatusBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
         color: color ?? AppTheme.tertiaryFixed,
         borderRadius: BorderRadius.circular(100),
       ),
       child: Text(
-        label,
+        trText(label),
         style: TextStyle(
           fontSize: 10,
           fontWeight: FontWeight.w900,

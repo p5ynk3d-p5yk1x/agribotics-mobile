@@ -1,3 +1,4 @@
+import 'package:agribotics/core/localization/localized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import '../../core/theme/app_theme.dart';
@@ -65,12 +66,12 @@ class SharedTimelineItem extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(width: 24),
+            SizedBox(width: 24),
             // Content Area
             Expanded(
               child: Container(
-                margin: const EdgeInsets.symmetric(vertical: 20),
-                padding: useCard ? const EdgeInsets.all(24) : EdgeInsets.zero,
+                margin: EdgeInsets.symmetric(vertical: 20),
+                padding: useCard ? EdgeInsets.all(24) : EdgeInsets.zero,
                 decoration: useCard
                     ? BoxDecoration(
                   color: AppTheme.onSurfaceVariant.withOpacity(0.05),
@@ -89,10 +90,10 @@ class SharedTimelineItem extends StatelessWidget {
                             color: isProcessing ? AppTheme.primary.withOpacity(0.1) : null,
                             textColor: isProcessing ? AppTheme.primary : null,
                           ),
-                          const SizedBox(height: 8),
-                          Text(title, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                          const SizedBox(height: 4),
-                          Text(subtitle, style: const TextStyle(fontSize: 12, color: AppTheme.onSurfaceVariant)),
+                          SizedBox(height: 8),
+                          Text(trText(title), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                          SizedBox(height: 4),
+                          Text(trText(subtitle), style: TextStyle(fontSize: 12, color: AppTheme.onSurfaceVariant)),
                         ],
                       ),
                     ),
@@ -102,11 +103,11 @@ class SharedTimelineItem extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            metricLabel,
-                            style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1.0),
+                            trText(metricLabel),
+                            style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1.0),
                           ),
                           Text(
-                            metricValue,
+                            trText(metricValue),
                             style: TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
@@ -115,8 +116,8 @@ class SharedTimelineItem extends StatelessWidget {
                           ),
                         ],
                       ),
-                    const SizedBox(width: 8),
-                    const Icon(LucideIcons.chevronRight, size: 20, color: AppTheme.onSurfaceVariant),
+                    SizedBox(width: 8),
+                    Icon(LucideIcons.chevronRight, size: 20, color: AppTheme.onSurfaceVariant),
                   ],
                 ),
               ),

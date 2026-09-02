@@ -1,3 +1,4 @@
+import 'package:agribotics/core/localization/localized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
@@ -11,39 +12,39 @@ class WeedMap extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppTheme.background,
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
+        padding: EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
         child: Column(
           children: [
-            const SizedBox(height: 40),
+            SizedBox(height: 40),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'SOIL & FLORA',
+                    Text(
+                      trText('SOIL & FLORA'),
                       style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 3.0, color: AppTheme.secondary),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8),
                     Text(
-                      'Intelligence',
+                      trText('Intelligence'),
                       style: Theme.of(context).textTheme.displayLarge,
                     ),
                   ],
                 ),
-                const Icon(LucideIcons.maximize, color: AppTheme.primary),
+                Icon(LucideIcons.maximize, color: AppTheme.primary),
               ],
             ),
-            const SizedBox(height: 48),
-            const _FloraHeatmap(),
-            const SizedBox(height: 32),
-            const _YieldRiskSection(),
-            const SizedBox(height: 48),
-            const _PrecisionInterventionCard(),
-            const SizedBox(height: 48),
-            const _SpeciesIdentificationSection(),
-            const SizedBox(height: 120),
+            SizedBox(height: 48),
+            _FloraHeatmap(),
+            SizedBox(height: 32),
+            _YieldRiskSection(),
+            SizedBox(height: 48),
+            _PrecisionInterventionCard(),
+            SizedBox(height: 48),
+            _SpeciesIdentificationSection(),
+            SizedBox(height: 120),
           ],
         ),
       ),
@@ -58,14 +59,14 @@ class _FloraHeatmap extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('DENSITY INDEX', style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1.5)),
-            Text('SECTION 7B ACTIVE', style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: AppTheme.primary, letterSpacing: 1.0)),
+            Text(trText('DENSITY INDEX'), style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1.5)),
+            Text(trText('SECTION 7B ACTIVE'), style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: AppTheme.primary, letterSpacing: 1.0)),
           ],
         ),
-        const SizedBox(height: 24),
+        SizedBox(height: 24),
         GestureDetector(
           onTap: () => context.go('/sector-detail'),
           child: ClipRRect(
@@ -73,14 +74,14 @@ class _FloraHeatmap extends StatelessWidget {
             child: AspectRatio(
               aspectRatio: 1,
               child: GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 15),
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 15),
                 itemCount: 225,
                 itemBuilder: (context, index) {
                   final opacity = (index % 11) / 12 + 0.1;
                   return Container(
                     color: AppTheme.primary.withOpacity(opacity),
-                    margin: const EdgeInsets.all(0.2),
+                    margin: EdgeInsets.all(0.2),
                   );
                 },
               ),
@@ -103,21 +104,21 @@ class _YieldRiskSection extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('YIELD RISK', style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: AppTheme.secondary, letterSpacing: 1.5)),
-            const SizedBox(height: 4),
+            Text(trText('YIELD RISK'), style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, color: AppTheme.secondary, letterSpacing: 1.5)),
+            SizedBox(height: 4),
             Row(
               children: [
-                const Text('-14.2%', style: TextStyle(fontSize: 40, fontWeight: FontWeight.w900, color: AppTheme.onSurface)),
-                const SizedBox(width: 12),
-                const Icon(LucideIcons.trendingDown, color: Colors.orange, size: 24),
+                Text(trText('-14.2%'), style: TextStyle(fontSize: 40, fontWeight: FontWeight.w900, color: AppTheme.onSurface)),
+                SizedBox(width: 12),
+                Icon(LucideIcons.trendingDown, color: Colors.orange, size: 24),
               ],
             ),
           ],
         ),
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           decoration: BoxDecoration(color: Colors.orange.withOpacity(0.1), borderRadius: BorderRadius.circular(100)),
-          child: const Text('ATTENTION REQUIRED', style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: Colors.orange, letterSpacing: 1.0)),
+          child: Text(trText('ATTENTION REQUIRED'), style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: Colors.orange, letterSpacing: 1.0)),
         ),
       ],
     );
@@ -130,7 +131,7 @@ class _PrecisionInterventionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(32),
+      padding: EdgeInsets.all(32),
       decoration: BoxDecoration(
         color: AppTheme.primary,
         borderRadius: BorderRadius.circular(32),
@@ -141,30 +142,30 @@ class _PrecisionInterventionCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('PRECISION INTERVENTION', style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.white54, letterSpacing: 2.0)),
-              const Icon(LucideIcons.zap, color: Colors.white, size: 20),
+              Text(trText('PRECISION INTERVENTION'), style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, color: Colors.white54, letterSpacing: 2.0)),
+              Icon(LucideIcons.zap, color: Colors.white, size: 20),
             ],
           ),
-          const SizedBox(height: 48),
-          const Text(
-            'Invasive Species\nNeutralization.',
+          SizedBox(height: 48),
+          Text(
+            trText('Invasive Species\nNeutralization.'),
             style: TextStyle(fontSize: 32, fontWeight: FontWeight.w900, color: Colors.white, height: 1.1),
           ),
-          const SizedBox(height: 24),
-          const Text(
-            'Targeted application of organic herbicide required in high-density pockets.',
+          SizedBox(height: 24),
+          Text(
+            trText('Targeted application of organic herbicide required in high-density pockets.'),
             style: TextStyle(color: Colors.white70, fontSize: 16, height: 1.5),
           ),
-          const SizedBox(height: 48),
+          SizedBox(height: 48),
           ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.white,
               foregroundColor: AppTheme.primary,
-              minimumSize: const Size(double.infinity, 60),
+              minimumSize: Size(double.infinity, 60),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
             ),
-            child: const Text('Initialize Protocol', style: TextStyle(fontWeight: FontWeight.bold)),
+            child: Text(trText('Initialize Protocol'), style: TextStyle(fontWeight: FontWeight.bold)),
           ),
         ],
       ),
@@ -180,11 +181,11 @@ class _SpeciesIdentificationSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'SPECIES IDENTIFICATION',
+        Text(
+          trText('SPECIES IDENTIFICATION'),
           style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 3.0, color: AppTheme.secondary),
         ),
-        const SizedBox(height: 32),
+        SizedBox(height: 32),
         _SpeciesItem(
           name: 'Palmer Amaranth',
           count: 124,
@@ -192,9 +193,9 @@ class _SpeciesIdentificationSection extends StatelessWidget {
           riskColor: Colors.red,
           onTap: () => context.go('/weed/detail'),
         ),
-        const SizedBox(height: 24),
+        SizedBox(height: 24),
         _SpeciesItem(name: 'Waterhemp', count: 82, risk: 'MEDIUM', riskColor: Colors.orange),
-        const SizedBox(height: 24),
+        SizedBox(height: 24),
         _SpeciesItem(name: 'Foxtail', count: 215, risk: 'LOW', riskColor: Colors.grey),
       ],
     );
@@ -215,7 +216,7 @@ class _SpeciesItem extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.all(24),
+        padding: EdgeInsets.all(24),
         decoration: BoxDecoration(color: AppTheme.surface, borderRadius: BorderRadius.circular(24)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -226,14 +227,14 @@ class _SpeciesItem extends StatelessWidget {
                   width: 48,
                   height: 48,
                   decoration: BoxDecoration(color: AppTheme.background, borderRadius: BorderRadius.circular(12)),
-                  child: const Icon(LucideIcons.leaf, color: AppTheme.primary, size: 20),
+                  child: Icon(LucideIcons.leaf, color: AppTheme.primary, size: 20),
                 ),
-                const SizedBox(width: 20),
+                SizedBox(width: 20),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(name, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-                    Text('$count Detection Points', style: const TextStyle(fontSize: 12, color: AppTheme.onSurfaceVariant)),
+                    Text(trText(name), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                    Text(trText('$count Detection Points'), style: TextStyle(fontSize: 12, color: AppTheme.onSurfaceVariant)),
                   ],
                 ),
               ],
@@ -241,8 +242,8 @@ class _SpeciesItem extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                const Text('DRIVE RISK', style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, letterSpacing: 1.0)),
-                Text(risk, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: riskColor)),
+                Text(trText('DRIVE RISK'), style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, letterSpacing: 1.0)),
+                Text(trText(risk), style: TextStyle(fontSize: 14, fontWeight: FontWeight.w900, color: riskColor)),
               ],
             ),
           ],

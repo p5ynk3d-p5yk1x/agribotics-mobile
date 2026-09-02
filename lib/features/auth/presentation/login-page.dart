@@ -1,3 +1,4 @@
+import 'package:agribotics/core/localization/localized_text.dart';
 import 'dart:ui';
 
 import 'package:agribotics/core/theme/app_theme.dart';
@@ -7,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:agribotics/l10n/app_localizations.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({super.key});
@@ -29,7 +31,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       debugPrint(e.toString());
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text(e.toString()),
+          content: Text(trText(e.toString())),
         ),
       );
     } finally {
@@ -41,7 +43,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
   Widget _pill(IconData icon, String label) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+      padding: EdgeInsets.symmetric(horizontal: 14, vertical: 10),
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: .08),
         borderRadius: BorderRadius.circular(100),
@@ -51,10 +53,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, size: 16, color: Colors.white),
-          const SizedBox(width: 8),
+          SizedBox(width: 8),
           Text(
-            label,
-            style: const TextStyle(
+            trText(label),
+            style: TextStyle(
               color: Colors.white,
               fontFamily: 'Inter',
               fontWeight: FontWeight.w500,
@@ -68,6 +70,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final l10n = AppLocalizations.of(context);
 
     return Scaffold(
       body: Stack(
@@ -102,15 +105,15 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
           BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 120, sigmaY: 120),
-            child: const SizedBox.expand(),
+            child: SizedBox.expand(),
           ),
 
           SafeArea(
             child: Center(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+                padding: EdgeInsets.symmetric(horizontal: 24, vertical: 32),
                 child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 560),
+                  constraints: BoxConstraints(maxWidth: 560),
                   child: Column(
                     children: [
                       Container(
@@ -123,17 +126,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             color: Colors.white.withValues(alpha: .12),
                           ),
                         ),
-                        child: const Icon(
+                        child: Icon(
                           LucideIcons.sprout,
                           size: 44,
                           color: Colors.white,
                         ),
                       ).animate().fadeIn().scale(),
 
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20),
 
                       Text(
-                        'AGRIBOTICS',
+                        trText('AGRIBOTICS'),
                         textAlign: TextAlign.center,
                         style: textTheme.displayMedium?.copyWith(
                           color: Colors.white,
@@ -141,17 +144,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         ),
                       ).animate().fadeIn(delay: 100.ms).slideY(begin: .15),
 
-                      const SizedBox(height: 8),
+                      SizedBox(height: 8),
 
                       Text(
-                        'AI-powered crop intelligence for the next generation of farming.',
+                        trText('AI-powered crop intelligence for the next generation of farming.'),
                         textAlign: TextAlign.center,
                         style: textTheme.bodyLarge?.copyWith(
                           color: Colors.white.withValues(alpha: .75),
                         ),
                       ).animate().fadeIn(delay: 200.ms),
 
-                      const SizedBox(height: 24),
+                      SizedBox(height: 24),
 
                       Wrap(
                         alignment: WrapAlignment.center,
@@ -164,7 +167,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         ],
                       ).animate().fadeIn(delay: 300.ms),
 
-                      const SizedBox(height: 32),
+                      SizedBox(height: 32),
 
                       Stack(
                         alignment: Alignment.center,
@@ -186,28 +189,28 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               color: Colors.white.withValues(alpha: .12),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.all(32),
+                              padding: EdgeInsets.all(32),
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   Text(
-                                    'Welcome Back',
+                                    trText(l10n.loginWelcome),
                                     style: textTheme.headlineMedium?.copyWith(
                                       color: Colors.white,
                                     ),
                                   ),
 
-                                  const SizedBox(height: 10),
+                                  SizedBox(height: 10),
 
                                   Text(
-                                    'Sign in to access AI crop analytics, weed detection and agricultural insights.',
+                                    trText(l10n.loginSubtitle),
                                     textAlign: TextAlign.center,
                                     style: textTheme.bodyMedium?.copyWith(
                                       color: Colors.white.withValues(alpha: .72),
                                     ),
                                   ),
 
-                                  const SizedBox(height: 28),
+                                  SizedBox(height: 28),
 
                                   SizedBox(
                                     width: double.infinity,
@@ -222,7 +225,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                         ),
                                       ),
                                       child: loading
-                                          ? const SizedBox(
+                                          ? SizedBox(
                                         width: 22,
                                         height: 22,
                                         child: CircularProgressIndicator(strokeWidth: 2),
@@ -233,13 +236,13 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                           Container(
                                             width: 22,
                                             height: 22,
-                                            decoration: const BoxDecoration(
+                                            decoration: BoxDecoration(
                                               shape: BoxShape.circle,
                                               color: Color(0xFFF1F1F1),
                                             ),
-                                            child: const Center(
+                                            child: Center(
                                               child: Text(
-                                                'G',
+                                                trText('G'),
                                                 style: TextStyle(
                                                   fontWeight: FontWeight.bold,
                                                   fontSize: 13,
@@ -247,9 +250,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                               ),
                                             ),
                                           ),
-                                          const SizedBox(width: 12),
-                                          const Text(
-                                            'Continue with Google',
+                                          SizedBox(width: 12),
+                                          Text(
+                                            trText(l10n.loginContinueGoogle),
                                             style: TextStyle(
                                               fontFamily: 'Inter',
                                               fontWeight: FontWeight.w600,
@@ -261,10 +264,10 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                     ),
                                   ),
 
-                                  const SizedBox(height: 18),
+                                  SizedBox(height: 18),
 
                                   Text(
-                                    'Secure authentication powered by Google OAuth',
+                                    trText('Secure authentication powered by Google OAuth'),
                                     textAlign: TextAlign.center,
                                     style: textTheme.bodyMedium?.copyWith(
                                       fontSize: 12,

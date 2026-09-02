@@ -1,3 +1,4 @@
+import 'package:agribotics/core/localization/localized_text.dart';
 import 'package:agribotics/shared/widgets/shared_timeline_item.dart';
 import 'package:agribotics/core/providers/app_providers.dart';
 import 'package:agribotics/core/theme/app_theme.dart';
@@ -28,53 +29,53 @@ class _WeedDetectionHistoryState extends ConsumerState<WeedDetectionHistory> {
     return Scaffold(
       backgroundColor: AppTheme.background,
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
+        padding: EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
         child: Column(
           children: [
-            const SizedBox(height: 40),
+            SizedBox(height: 40),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'DIAGNOSTIC ARCHIVE',
+                    Text(
+                      trText('DIAGNOSTIC ARCHIVE'),
                       style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 3.0, color: AppTheme.secondary),
                     ),
-                    const SizedBox(height: 8),
+                    SizedBox(height: 8),
                     Text(
-                      'Detection',
+                      trText('Detection'),
                       style: Theme.of(context).textTheme.displayLarge,
                     ),
                     Text(
-                      'History',
+                      trText('History'),
                       style: Theme.of(context).textTheme.displayLarge,
                     ),
                   ],
                 ),
                 Container(
-                  padding: const EdgeInsets.all(12),
+                  padding: EdgeInsets.all(12),
                   decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(16)),
-                  child: const Icon(LucideIcons.search, color: AppTheme.primary),
+                  child: Icon(LucideIcons.search, color: AppTheme.primary),
                 ),
               ],
             ),
-            const SizedBox(height: 48),
-            const _TotalScansCard(),
-            const SizedBox(height: 48),
-            const _StatusOverview(),
-            const SizedBox(height: 48),
-            const _HistoryTimeline(),
-            const SizedBox(height: 15),
-            const Text(
-              'RECENT ACTIVITY LOG',
+            SizedBox(height: 48),
+            _TotalScansCard(),
+            SizedBox(height: 48),
+            _StatusOverview(),
+            SizedBox(height: 48),
+            _HistoryTimeline(),
+            SizedBox(height: 15),
+            Text(
+              trText('RECENT ACTIVITY LOG'),
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, letterSpacing: 3.0, color: AppTheme.secondary),
             ),
-            const SizedBox(height: 15),
-            const _ScansTimeline(),
+            SizedBox(height: 15),
+            _ScansTimeline(),
 
-            const SizedBox(height: 120),
+            SizedBox(height: 120),
           ],
         ),
       ),
@@ -89,13 +90,13 @@ class _TotalScansCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final jobsAsync = ref.watch(weedJobsProvider);
     return jobsAsync.when(
-              loading: () => const Center(
+              loading: () => Center(
                 child: CircularProgressIndicator(),
               ),
-              error: (error, stack) => Text(error.toString()),
+              error: (error, stack) => Text(trText(error.toString())),
               data: (jobs) =>
                   Container(
-                    padding: const EdgeInsets.all(32),
+                    padding: EdgeInsets.all(32),
                     decoration: BoxDecoration(
                       color: AppTheme.primary,
                       borderRadius: BorderRadius.circular(32),
@@ -106,14 +107,14 @@ class _TotalScansCard extends ConsumerWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const Text('TOTAL SCANS', style: TextStyle(color: Colors.white54, fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 2.0)),
-                            const SizedBox(height: 24),
-                            Text(jobs.length.toString(), style: TextStyle(fontSize: 64, fontWeight: FontWeight.w900, color: Colors.white)),
-                            const SizedBox(height: 8),
-                            const Text('Across all active sectors.', style: TextStyle(color: Colors.white70, fontSize: 12)),
+                            Text(trText('TOTAL SCANS'), style: TextStyle(color: Colors.white54, fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 2.0)),
+                            SizedBox(height: 24),
+                            Text(trText(jobs.length.toString()), style: TextStyle(fontSize: 64, fontWeight: FontWeight.w900, color: Colors.white)),
+                            SizedBox(height: 8),
+                            Text(trText('Across all active sectors.'), style: TextStyle(color: Colors.white70, fontSize: 12)),
                           ],
                         ),
-                        const Icon(LucideIcons.camera, color: Colors.white24, size: 80),
+                        Icon(LucideIcons.camera, color: Colors.white24, size: 80),
                       ],
                     ),
                   ));
@@ -128,10 +129,10 @@ class _StatusOverview extends ConsumerWidget {
     final jobsAsync = ref.watch(weedJobsProvider);
 
     return jobsAsync.when(
-        loading: () => const Center(
+        loading: () => Center(
           child: CircularProgressIndicator(),
         ),
-        error: (error, stack) => Text(error.toString()),
+        error: (error, stack) => Text(trText(error.toString())),
         data: (jobs) {
           final completed = jobs
               .where((j) => j['status'] == 'COMPLETED')
@@ -144,7 +145,7 @@ class _StatusOverview extends ConsumerWidget {
               .length;
           return
             Container(
-                padding: const EdgeInsets.symmetric(vertical: 8),
+                padding: EdgeInsets.symmetric(vertical: 8),
                 child: IntrinsicHeight( // Ensures the divider matches the height of the content
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -153,19 +154,19 @@ class _StatusOverview extends ConsumerWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center, // Changed to center
                           children: [
-                            const Text(
-                                'THREATS NEUTRALIZED',
+                            Text(
+                                trText('THREATS NEUTRALIZED'),
                                 style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, letterSpacing: 1.0)
                             ),
-                            const SizedBox(height: 8),
+                            SizedBox(height: 8),
                             Row(
                               mainAxisSize: MainAxisSize.min, // Keep content tight
                               children: [
                                 Text(
-                                    completed.toString(),
+                                    trText(completed.toString()),
                                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.w900, color: AppTheme.primary)
                                 ),
-                                const SizedBox(width: 8),
+                                SizedBox(width: 8),
                                 Icon(LucideIcons.checkCircle, color: Colors.green.shade400, size: 20),
                               ],
                             ),
@@ -182,19 +183,19 @@ class _StatusOverview extends ConsumerWidget {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center, // Changed to center
                           children: [
-                            const Text(
-                                'PENDING ANALYSIS',
+                            Text(
+                                trText('PENDING ANALYSIS'),
                                 style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, letterSpacing: 1.0)
                             ),
-                            const SizedBox(height: 8),
+                            SizedBox(height: 8),
                             Row(
                               mainAxisSize: MainAxisSize.min, // Keep content tight
                               children: [
                                 Text(
-                                    pending.toString(),
+                                    trText(pending.toString()),
                                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.w900, color: AppTheme.onSurface)
                                 ),
-                                const SizedBox(width: 8),
+                                SizedBox(width: 8),
                                 Icon(LucideIcons.clock, color: Colors.orange.shade400, size: 20),
                               ],
                             ),
@@ -266,8 +267,8 @@ class _TimelineItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 24),
-      padding: const EdgeInsets.all(24),
+      margin: EdgeInsets.only(bottom: 24),
+      padding: EdgeInsets.all(24),
       decoration: BoxDecoration(color: AppTheme.surface, borderRadius: BorderRadius.circular(24)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -276,17 +277,17 @@ class _TimelineItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(species, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                const SizedBox(height: 4),
-                Text('$location • $date', style: const TextStyle(fontSize: 12, color: AppTheme.onSurfaceVariant)),
+                Text(trText(species), style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                SizedBox(height: 4),
+                Text(trText('$location • $date'), style: TextStyle(fontSize: 12, color: AppTheme.onSurfaceVariant)),
               ],
             ),
           ),
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
             decoration: BoxDecoration(color: statusColor.withOpacity(0.1), borderRadius: BorderRadius.circular(100)),
             child: Text(
-              status,
+              trText(status),
               style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: statusColor, letterSpacing: 1.0),
             ),
           ),
@@ -303,10 +304,10 @@ class _ScansTimeline extends ConsumerWidget  {
   Widget build(BuildContext context, WidgetRef ref) {
     final jobsAsync = ref.watch(weedJobsProvider);
     return jobsAsync.when(
-      loading: () => const Center(
+      loading: () => Center(
         child: CircularProgressIndicator(),
       ),
-      error: (error, stack) => Text(error.toString()),
+      error: (error, stack) => Text(trText(error.toString())),
       data: (jobs) => Column(
         children: jobs.asMap().entries.map((entry) {
           final index = entry.key;

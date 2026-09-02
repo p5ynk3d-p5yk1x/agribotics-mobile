@@ -1,3 +1,4 @@
+import 'package:agribotics/core/localization/localized_text.dart';
 import 'dart:io';
 
 import 'package:agribotics/core/providers/app_providers.dart';
@@ -49,7 +50,7 @@ class _DiseaseDetectionPageState extends ConsumerState<DiseaseDetectionPage> {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
-                next.error!,
+                trText(next.error!),
               ),
             ),
           );
@@ -59,21 +60,21 @@ class _DiseaseDetectionPageState extends ConsumerState<DiseaseDetectionPage> {
     return Scaffold(
       backgroundColor: AppTheme.background,
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
+        padding: EdgeInsets.symmetric(
           horizontal: AppTheme.horizontalSpacing,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
 
-            const SizedBox(height: 40),
+            SizedBox(height: 40),
 
             /// Hero
             _HeroSection(
               textTheme: textTheme,
             ),
 
-            const SizedBox(height: 40),
+            SizedBox(height: 40),
 
             /// Scanner
             _ScannerCard(
@@ -81,7 +82,7 @@ class _DiseaseDetectionPageState extends ConsumerState<DiseaseDetectionPage> {
               onUpload: pickImage,
             ),
 
-            const SizedBox(height: 36),
+            SizedBox(height: 36),
 
             /// CTA
             SizedBox(
@@ -98,15 +99,15 @@ class _DiseaseDetectionPageState extends ConsumerState<DiseaseDetectionPage> {
                   ),
                 ),
                 child: diseaseState.loading ?
-                const SizedBox(
+                SizedBox(
                   width: 22,
                   height: 22,
                   child: CircularProgressIndicator(
                     strokeWidth: 2,
                     color: Colors.white,
                   ),
-                ) : const Text(
-                  'Run Diagnosis',
+                ) : Text(
+                  trText('Run Diagnosis'),
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.w700,
@@ -116,25 +117,25 @@ class _DiseaseDetectionPageState extends ConsumerState<DiseaseDetectionPage> {
               ),
             ),
 
-            const SizedBox(height: 36),
+            SizedBox(height: 36),
 
             /// Indicators
-            const _HealthIndicators()
+            _HealthIndicators()
                 .animate()
                 .fadeIn(delay: 450.ms)
                 .moveY(begin: 20, end: 0),
 
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
 
             Text(
-              'DIAGNOSTIC DATABASE',
+              trText('DIAGNOSTIC DATABASE'),
               style: textTheme.labelLarge?.copyWith(
                 color: AppTheme.secondary,
                 letterSpacing: 2,
               ),
             ),
 
-            const SizedBox(height: 20),
+            SizedBox(height: 20),
 
             _RegistryCard(
               onTap: () => context.go('/disease/history'),
@@ -143,7 +144,7 @@ class _DiseaseDetectionPageState extends ConsumerState<DiseaseDetectionPage> {
                 .fadeIn(delay: 650.ms)
                 .moveY(begin: 20, end: 0),
 
-            const SizedBox(height: 40),
+            SizedBox(height: 40),
           ],
         ),
       ),
@@ -163,17 +164,17 @@ class _HealthIndicators extends StatelessWidget {
       children: [
 
         Text(
-          'PLANT HEALTH INDICATORS',
+          trText('PLANT HEALTH INDICATORS'),
           style: textTheme.labelLarge?.copyWith(
             letterSpacing: 2,
             color: AppTheme.secondary,
           ),
         ),
 
-        const SizedBox(height: 22),
+        SizedBox(height: 22),
 
         Row(
-          children: const [
+          children: [
 
             Expanded(
               child: _IndicatorCard(
@@ -218,7 +219,7 @@ class _IndicatorCard extends StatelessWidget {
     final textTheme = Theme.of(context).textTheme;
 
     return Container(
-      padding: const EdgeInsets.all(24),
+      padding: EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(28),
@@ -229,7 +230,7 @@ class _IndicatorCard extends StatelessWidget {
           BoxShadow(
             color: Colors.black.withValues(alpha: .03),
             blurRadius: 18,
-            offset: const Offset(0, 10),
+            offset: Offset(0, 10),
           ),
         ],
       ),
@@ -251,24 +252,24 @@ class _IndicatorCard extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 24),
+          SizedBox(height: 24),
 
           Text(
-            title,
+            trText(title),
             style: textTheme.titleLarge?.copyWith(
               height: 1.15,
               fontWeight: FontWeight.w800,
             ),
           ),
 
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
 
           Text(
-            description,
+            trText(description),
             style: textTheme.bodyMedium,
           ),
 
-          const SizedBox(height: 22),
+          SizedBox(height: 22),
 
           Container(
             width: 42,
@@ -299,7 +300,7 @@ class _HeroSection extends StatelessWidget {
       children: [
 
         Text(
-          'AUTONOMOUS PLANT PATHOLOGY',
+          trText('AUTONOMOUS PLANT PATHOLOGY'),
           style: textTheme.labelLarge?.copyWith(
             color: Colors.redAccent.shade200,
             letterSpacing: 2.8,
@@ -307,10 +308,10 @@ class _HeroSection extends StatelessWidget {
           ),
         ),
 
-        const SizedBox(height: 14),
+        SizedBox(height: 14),
 
         Text(
-          'Disease',
+          trText('Disease'),
           style: textTheme.displayLarge,
         )
             .animate()
@@ -318,7 +319,7 @@ class _HeroSection extends StatelessWidget {
             .moveY(begin: 18, end: 0),
 
         Text(
-          'Detection',
+          trText('Detection'),
           style: textTheme.displayLarge,
         )
             .animate()
@@ -328,7 +329,7 @@ class _HeroSection extends StatelessWidget {
         )
             .moveY(begin: 18, end: 0),
 
-        const SizedBox(height: 26),
+        SizedBox(height: 26),
 
         Container(
           width: 70,
@@ -341,10 +342,10 @@ class _HeroSection extends StatelessWidget {
             .animate()
             .fadeIn(delay: 250.ms),
 
-        const SizedBox(height: 24),
+        SizedBox(height: 24),
 
         Text(
-          'Scan infected foliage to identify plant diseases, estimate severity, and receive AI-powered diagnostic insights before outbreaks spread.',
+          trText('Scan infected foliage to identify plant diseases, estimate severity, and receive AI-powered diagnostic insights before outbreaks spread.'),
           style: textTheme.bodyLarge?.copyWith(
             color: AppTheme.onSurfaceVariant,
           ),
@@ -352,10 +353,10 @@ class _HeroSection extends StatelessWidget {
             .animate()
             .fadeIn(delay: 350.ms),
 
-        const SizedBox(height: 32),
+        SizedBox(height: 32),
 
         Container(
-          padding: const EdgeInsets.symmetric(
+          padding: EdgeInsets.symmetric(
             horizontal: 18,
             vertical: 14,
           ),
@@ -373,14 +374,14 @@ class _HeroSection extends StatelessWidget {
                   color: AppTheme.primary.withValues(alpha: .08),
                   borderRadius: BorderRadius.circular(14),
                 ),
-                child: const Icon(
+                child: Icon(
                   LucideIcons.microscope,
                   color: AppTheme.primary,
                   size: 22,
                 ),
               ),
 
-              const SizedBox(width: 16),
+              SizedBox(width: 16),
 
               Expanded(
                 child: Column(
@@ -389,17 +390,17 @@ class _HeroSection extends StatelessWidget {
                   children: [
 
                     Text(
-                      'AI PATHOLOGY ENGINE',
+                      trText('AI PATHOLOGY ENGINE'),
                       style: textTheme.labelLarge?.copyWith(
                         color: AppTheme.secondary,
                         letterSpacing: 1.5,
                       ),
                     ),
 
-                    const SizedBox(height: 6),
+                    SizedBox(height: 6),
 
                     Text(
-                      'Ready for diagnostic scan',
+                      trText('Ready for diagnostic scan'),
                       style: textTheme.bodyMedium,
                     ),
                   ],
@@ -409,7 +410,7 @@ class _HeroSection extends StatelessWidget {
               Container(
                 width: 10,
                 height: 10,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   color: AppTheme.emerald,
                   shape: BoxShape.circle,
                 ),
@@ -444,7 +445,7 @@ class _ScannerCard extends StatelessWidget {
         height: 430,
         width: double.infinity,
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
+          gradient: LinearGradient(
             colors: [
               AppTheme.primary,
               AppTheme.primaryContainer,
@@ -473,7 +474,7 @@ class _ScannerCard extends StatelessWidget {
               /// Dark Overlay
               ///
               AnimatedContainer(
-                duration: const Duration(milliseconds: 300),
+                duration: Duration(milliseconds: 300),
                 color: image == null
                     ? Colors.transparent
                     : Colors.black.withValues(alpha: .35),
@@ -494,12 +495,12 @@ class _ScannerCard extends StatelessWidget {
                 )
                     .animate(onPlay: (c) => c.repeat(reverse: true))
                     .scale(
-                  begin: const Offset(.96, .96),
-                  end: const Offset(1.04, 1.04),
+                  begin: Offset(.96, .96),
+                  end: Offset(1.04, 1.04),
                   duration: 2200.ms,
                 ),
               ),
-              const _ScannerOverlay(),
+              _ScannerOverlay(),
 
               ///
               /// Empty State
@@ -540,7 +541,7 @@ class _ImageLoadedState extends StatelessWidget {
           top: 22,
           left: 22,
           child: Container(
-            padding: const EdgeInsets.symmetric(
+            padding: EdgeInsets.symmetric(
               horizontal: 14,
               vertical: 8,
             ),
@@ -548,7 +549,7 @@ class _ImageLoadedState extends StatelessWidget {
               color: AppTheme.emerald,
               borderRadius: BorderRadius.circular(100),
             ),
-            child: const Row(
+            child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
 
@@ -561,7 +562,7 @@ class _ImageLoadedState extends StatelessWidget {
                 SizedBox(width: 6),
 
                 Text(
-                  "SCAN READY",
+                  trText("SCAN READY"),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 10,
@@ -587,7 +588,7 @@ class _ImageLoadedState extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(18),
               ),
-              child: const Icon(
+              child: Icon(
                 LucideIcons.refreshCcw,
                 color: AppTheme.primary,
               ),
@@ -600,12 +601,12 @@ class _ImageLoadedState extends StatelessWidget {
           left: 26,
           right: 26,
           child: Container(
-            padding: const EdgeInsets.all(20),
+            padding: EdgeInsets.all(20),
             decoration: BoxDecoration(
               color: Colors.black.withValues(alpha: .35),
               borderRadius: BorderRadius.circular(20),
             ),
-            child: const Row(
+            child: Row(
               children: [
 
                 Icon(
@@ -617,7 +618,7 @@ class _ImageLoadedState extends StatelessWidget {
 
                 Expanded(
                   child: Text(
-                    'Image loaded. Ready to begin disease diagnosis.',
+                    trText('Image loaded. Ready to begin disease diagnosis.'),
                     style: TextStyle(
                       color: Colors.white,
                       height: 1.4,
@@ -647,7 +648,7 @@ class _EmptyScannerState extends StatelessWidget {
 
     return Center(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40),
+        padding: EdgeInsets.symmetric(horizontal: 40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -666,33 +667,33 @@ class _EmptyScannerState extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 32),
+            SizedBox(height: 32),
 
             Text(
-              'Plant Scan',
+              trText('Plant Scan'),
               style: textTheme.headlineMedium?.copyWith(
                 color: Colors.white,
               ),
             ),
 
-            const SizedBox(height: 14),
+            SizedBox(height: 14),
 
             Text(
-              'Upload a close photograph of infected foliage for AI pathology analysis.',
+              trText('Upload a close photograph of infected foliage for AI pathology analysis.'),
               textAlign: TextAlign.center,
               style: textTheme.bodyLarge?.copyWith(
                 color: Colors.white70,
               ),
             ),
 
-            const SizedBox(height: 36),
+            SizedBox(height: 36),
 
             FilledButton.icon(
               onPressed: onUpload,
               style: FilledButton.styleFrom(
                 backgroundColor: Colors.white,
                 foregroundColor: AppTheme.primary,
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                   horizontal: 24,
                   vertical: 18,
                 ),
@@ -700,8 +701,8 @@ class _EmptyScannerState extends StatelessWidget {
                   borderRadius: BorderRadius.circular(18),
                 ),
               ),
-              icon: const Icon(LucideIcons.imagePlus),
-              label: const Text("Choose Image"),
+              icon: Icon(LucideIcons.imagePlus),
+              label: Text(trText("Choose Image")),
             ),
           ],
         ),
@@ -720,7 +721,7 @@ class _ScannerOverlay extends StatelessWidget {
         children: [
 
           /// Corner brackets
-          const Positioned(
+          Positioned(
             top: 26,
             left: 26,
             child: _CornerBracket(
@@ -729,7 +730,7 @@ class _ScannerOverlay extends StatelessWidget {
             ),
           ),
 
-          const Positioned(
+          Positioned(
             top: 26,
             right: 26,
             child: _CornerBracket(
@@ -738,7 +739,7 @@ class _ScannerOverlay extends StatelessWidget {
             ),
           ),
 
-          const Positioned(
+          Positioned(
             bottom: 26,
             left: 26,
             child: _CornerBracket(
@@ -747,7 +748,7 @@ class _ScannerOverlay extends StatelessWidget {
             ),
           ),
 
-          const Positioned(
+          Positioned(
             bottom: 26,
             right: 26,
             child: _CornerBracket(
@@ -772,10 +773,10 @@ class _ScannerOverlay extends StatelessWidget {
           ),
 
           /// Animated Scan Line
-          const _ScanningLine(),
+          _ScanningLine(),
 
           /// Subtle Grid
-          const _ScannerGrid(),
+          _ScannerGrid(),
         ],
       ),
     );
@@ -810,7 +811,7 @@ class _CornerPainter extends CustomPainter {
   final bool top;
   final bool left;
 
-  _CornerPainter({
+  const _CornerPainter({
     required this.top,
     required this.left,
   });
@@ -866,7 +867,7 @@ class _ScanningLine extends StatelessWidget {
         begin: .15,
         end: .85,
       ),
-      duration: const Duration(seconds: 3),
+      duration: Duration(seconds: 3),
       curve: Curves.easeInOut,
       onEnd: () {},
       builder: (context, value, child) {
@@ -876,7 +877,7 @@ class _ScanningLine extends StatelessWidget {
         );
       },
       child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 48),
+        margin: EdgeInsets.symmetric(horizontal: 48),
         height: 2,
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -908,7 +909,7 @@ class _ScannerGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomPaint(
       painter: _GridPainter(),
-      child: const SizedBox.expand(),
+      child: SizedBox.expand(),
     );
   }
 }
@@ -920,7 +921,7 @@ class _GridPainter extends CustomPainter {
       ..color = Colors.white.withValues(alpha: .03)
       ..strokeWidth = .8;
 
-    const gap = 28.0;
+    double gap = 28.0;
 
     for (double x = gap; x < size.width; x += gap) {
       canvas.drawLine(
@@ -961,7 +962,7 @@ class _RegistryCard extends StatelessWidget {
         onTap: onTap,
         child: Ink(
           decoration: BoxDecoration(
-            gradient: const LinearGradient(
+            gradient: LinearGradient(
               colors: [
                 AppTheme.primary,
                 AppTheme.primaryContainer,
@@ -1004,24 +1005,24 @@ class _RegistryCard extends StatelessWidget {
               ),
 
               Padding(
-                padding: const EdgeInsets.all(30),
+                padding: EdgeInsets.all(30),
                 child: Column(
                   crossAxisAlignment:
                   CrossAxisAlignment.start,
                   children: [
 
                     Text(
-                      'DISEASE REGISTRY',
+                      trText('DISEASE REGISTRY'),
                       style: textTheme.labelLarge?.copyWith(
                         color: Colors.white70,
                         letterSpacing: 2,
                       ),
                     ),
 
-                    const SizedBox(height: 22),
+                    SizedBox(height: 22),
 
                     Text(
-                      'Diagnostic',
+                      trText('Diagnostic'),
                       style: textTheme.displaySmall?.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.w800,
@@ -1029,19 +1030,19 @@ class _RegistryCard extends StatelessWidget {
                     ),
 
                     Text(
-                      'History',
+                      trText('History'),
                       style: textTheme.displaySmall?.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.w800,
                       ),
                     ),
 
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20),
 
                     SizedBox(
                       width: 250,
                       child: Text(
-                        'Browse previous AI diagnoses, confidence scores, disease progression and treatment recommendations.',
+                        trText('Browse previous AI diagnoses, confidence scores, disease progression and treatment recommendations.'),
                         style: textTheme.bodyMedium?.copyWith(
                           color: Colors.white70,
                           height: 1.6,
@@ -1049,7 +1050,7 @@ class _RegistryCard extends StatelessWidget {
                       ),
                     ),
 
-                    const SizedBox(height: 34),
+                    SizedBox(height: 34),
 
                     Row(
                       mainAxisAlignment:
@@ -1067,16 +1068,16 @@ class _RegistryCard extends StatelessWidget {
                                 borderRadius:
                                 BorderRadius.circular(14),
                               ),
-                              child: const Icon(
+                              child: Icon(
                                 LucideIcons.archive,
                                 color: Colors.white,
                               ),
                             ),
 
-                            const SizedBox(width: 16),
+                            SizedBox(width: 16),
 
-                            const Text(
-                              'View Registry',
+                            Text(
+                              trText('View Registry'),
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -1095,7 +1096,7 @@ class _RegistryCard extends StatelessWidget {
                             borderRadius:
                             BorderRadius.circular(18),
                           ),
-                          child: const Icon(
+                          child: Icon(
                             LucideIcons.arrowRight,
                             color: AppTheme.primary,
                           ),

@@ -1,3 +1,4 @@
+import 'package:agribotics/core/localization/localized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
@@ -74,7 +75,7 @@ class _LandSelectionPageState extends ConsumerState<LandSelectionPage> {
     }
 
     try {
-      final position = await Geolocator.getCurrentPosition(locationSettings: const LocationSettings(accuracy: LocationAccuracy.high, timeLimit: Duration(seconds: 12)));
+      final position = await Geolocator.getCurrentPosition(locationSettings: LocationSettings(accuracy: LocationAccuracy.high, timeLimit: Duration(seconds: 12)));
       final current = LatLng(position.latitude, position.longitude);
 
       if (!mounted) return;
@@ -153,49 +154,49 @@ class _LandSelectionPageState extends ConsumerState<LandSelectionPage> {
         backgroundColor: AppTheme.background,
         elevation: 0,
         centerTitle: false,
-        title: Text('Mark Your Land', style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w700)),
+        title: Text(trText('Mark Your Land'), style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w700)),
       ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+          padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
           child: Column(
             children: [
               _InstructionCard(message: displayMessage, count: _vertices.length, validation: validation),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               Expanded(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(24),
                   child: _buildMap(),
                 ),
               ),
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
               Row(
                 children: [
                   _ActionButton(label: 'UNDO', icon: LucideIcons.undo2, onTap: _vertices.isEmpty ? null : _undoVertex),
-                  const SizedBox(width: 10),
+                  SizedBox(width: 10),
                   _ActionButton(label: 'CLEAR', icon: LucideIcons.trash2, onTap: _vertices.isEmpty ? null : _clearVertices),
-                  const SizedBox(width: 10),
+                  SizedBox(width: 10),
                   _ActionButton(label: 'GPS', icon: LucideIcons.locateFixed, onTap: _isLocating ? null : _locateUser),
                 ],
               ),
-              const SizedBox(height: 12),
+              SizedBox(height: 12),
               ElevatedButton.icon(
                 onPressed: isSaving || !validation.isValid ? null : _saveLand,
-                icon: isSaving ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2)) : const Icon(LucideIcons.check, size: 20),
-                label: Text(isSaving ? 'SAVING LAND...' : 'SAVE LAND'),
+                icon: isSaving ? SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2)) : Icon(LucideIcons.check, size: 20),
+                label: Text(trText(isSaving ? 'SAVING LAND...' : 'SAVE LAND')),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppTheme.primary,
                   foregroundColor: Colors.white,
                   disabledBackgroundColor: AppTheme.primary.withOpacity(0.55),
                   disabledForegroundColor: Colors.white,
-                  minimumSize: const Size(double.infinity, 58),
+                  minimumSize: Size(double.infinity, 58),
                   elevation: 0,
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
                 ),
               ),
               if (_locationMessage?.contains('permanently') == true) Padding(
-                padding: const EdgeInsets.only(top: 4),
-                child: TextButton(onPressed: permissions.openAppSettings, child: const Text('Open device settings')),
+                padding: EdgeInsets.only(top: 4),
+                child: TextButton(onPressed: permissions.openAppSettings, child: Text(trText('Open device settings'))),
               ),
             ],
           ),
@@ -212,11 +213,11 @@ class _LandSelectionPageState extends ConsumerState<LandSelectionPage> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              if (_isLocating) const CircularProgressIndicator(),
-              if (_isLocating) const SizedBox(height: 16),
-              Text(_isLocating ? 'Locating your land…' : 'Location unavailable', style: Theme.of(context).textTheme.bodyMedium),
-              if (!_isLocating) const SizedBox(height: 12),
-              if (!_isLocating) TextButton.icon(onPressed: _locateUser, icon: const Icon(LucideIcons.locateFixed), label: const Text('TRY AGAIN')),
+              if (_isLocating) CircularProgressIndicator(),
+              if (_isLocating) SizedBox(height: 16),
+              Text(trText(_isLocating ? 'Locating your land…' : 'Location unavailable'), style: Theme.of(context).textTheme.bodyMedium),
+              if (!_isLocating) SizedBox(height: 12),
+              if (!_isLocating) TextButton.icon(onPressed: _locateUser, icon: Icon(LucideIcons.locateFixed), label: Text(trText('TRY AGAIN'))),
             ],
           ),
         ),
@@ -236,7 +237,7 @@ class _LandSelectionPageState extends ConsumerState<LandSelectionPage> {
             onTap: _addVertex,
           ),
         ),
-        const Positioned(top: 14, right: 14, child: _MapHint()),
+        Positioned(top: 14, right: 14, child: _MapHint()),
       ],
     );
   }
@@ -255,12 +256,12 @@ class _InstructionCard extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: AppTheme.surface,
         borderRadius: BorderRadius.circular(24),
         border: Border.all(color: AppTheme.outline.withOpacity(0.10)),
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 24, offset: const Offset(0, 8))],
+        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 24, offset: Offset(0, 8))],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -271,22 +272,22 @@ class _InstructionCard extends StatelessWidget {
                 width: 42,
                 height: 42,
                 decoration: BoxDecoration(color: AppTheme.primary.withOpacity(0.10), borderRadius: BorderRadius.circular(14)),
-                child: const Icon(LucideIcons.map, size: 20, color: AppTheme.primary),
+                child: Icon(LucideIcons.map, size: 20, color: AppTheme.primary),
               ),
-              const SizedBox(width: 12),
-              Expanded(child: Text('MARK LAND BOUNDARY', style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700, letterSpacing: 0.5))),
-              Text('$count pts', style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppTheme.primary, fontWeight: FontWeight.w700)),
+              SizedBox(width: 12),
+              Expanded(child: Text(trText('MARK LAND BOUNDARY'), style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700, letterSpacing: 0.5))),
+              Text(trText('$count pts'), style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppTheme.primary, fontWeight: FontWeight.w700)),
             ],
           ),
-          const SizedBox(height: 12),
-          Text('Tap the map to place vertices around your land. The polygon will close automatically.', style: Theme.of(context).textTheme.bodyMedium?.copyWith(height: 1.4)),
+          SizedBox(height: 12),
+          Text(trText('Tap the map to place vertices around your land. The polygon will close automatically.'), style: Theme.of(context).textTheme.bodyMedium?.copyWith(height: 1.4)),
           if (hasError) Padding(
-            padding: const EdgeInsets.only(top: 10),
+            padding: EdgeInsets.only(top: 10),
             child: Container(
               width: double.infinity,
-              padding: const EdgeInsets.all(10),
+              padding: EdgeInsets.all(10),
               decoration: BoxDecoration(color: AppTheme.error.withOpacity(0.07), borderRadius: BorderRadius.circular(12)),
-              child: Text(message ?? validation.message!, style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.error, height: 1.35)),
+              child: Text(trText(message ?? validation.message!), style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.error, height: 1.35)),
             ),
           ),
         ],
@@ -301,7 +302,7 @@ class _MapHint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
         color: AppTheme.surface.withOpacity(0.92),
         borderRadius: BorderRadius.circular(12),
@@ -310,9 +311,9 @@ class _MapHint extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(LucideIcons.mousePointer2, size: 15, color: AppTheme.primary),
-          const SizedBox(width: 6),
-          Text('Tap to mark', style: Theme.of(context).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w600)),
+          Icon(LucideIcons.mousePointer2, size: 15, color: AppTheme.primary),
+          SizedBox(width: 6),
+          Text(trText('Tap to mark'), style: Theme.of(context).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w600)),
         ],
       ),
     );
@@ -332,13 +333,13 @@ class _ActionButton extends StatelessWidget {
       child: OutlinedButton.icon(
         onPressed: onTap,
         icon: Icon(icon, size: 16),
-        label: Text(label),
+        label: Text(trText(label)),
         style: OutlinedButton.styleFrom(
           backgroundColor: AppTheme.surface,
           foregroundColor: AppTheme.primary,
           disabledForegroundColor: AppTheme.outline.withOpacity(0.4),
           side: BorderSide(color: AppTheme.outline.withOpacity(0.15)),
-          padding: const EdgeInsets.symmetric(vertical: 14),
+          padding: EdgeInsets.symmetric(vertical: 14),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
         ),
       ),

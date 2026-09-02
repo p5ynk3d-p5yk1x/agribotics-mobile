@@ -1,3 +1,4 @@
+import 'package:agribotics/core/localization/localized_text.dart';
 import 'package:agribotics/shared/widgets/shared_timeline_item.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
@@ -12,38 +13,38 @@ class DiseaseDetectionHistory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
+      padding: EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 40),
+          SizedBox(height: 40),
           Text(
-            'PATHOGEN SURVEILLANCE',
+            trText('PATHOGEN SURVEILLANCE'),
             style: Theme.of(context).textTheme.labelLarge?.copyWith(color: Colors.redAccent),
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           Text(
-            'Diagnostic',
+            trText('Diagnostic'),
             style: Theme.of(context).textTheme.displayLarge,
           ),
           Text(
-            'Registry',
+            trText('Registry'),
             style: Theme.of(context).textTheme.displayLarge,
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: 24),
           Text(
-            "An archival record of identified plant pathologies, fungal outbreaks, and bio-security interventions across your zones.",
+            trText("An archival record of identified plant pathologies, fungal outbreaks, and bio-security interventions across your zones."),
             style: Theme.of(context).textTheme.bodyLarge,
           ),
-          const SizedBox(height: 48),
+          SizedBox(height: 48),
           // Highlight a critical detection
-          const _CriticalAlertCard().animate().fadeIn(delay: 200.ms).moveY(begin: 10, end: 0),
-          const SizedBox(height: 24),
-          const _PathogenStatsGrid().animate().fadeIn(delay: 400.ms),
-          const SizedBox(height: 30),
+          _CriticalAlertCard().animate().fadeIn(delay: 200.ms).moveY(begin: 10, end: 0),
+          SizedBox(height: 24),
+          _PathogenStatsGrid().animate().fadeIn(delay: 400.ms),
+          SizedBox(height: 30),
           Center(
-            child: const Text(
-              'DETECTION LOG & TIMELINE',
+            child: Text(
+              trText('DETECTION LOG & TIMELINE'),
               style: TextStyle(
                 fontSize: 15,
                 fontWeight: FontWeight.bold,
@@ -52,9 +53,9 @@ class DiseaseDetectionHistory extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(height: 10),
-          const _DetectionTimeline(),
-          const SizedBox(height: 120),
+          SizedBox(height: 10),
+          _DetectionTimeline(),
+          SizedBox(height: 120),
         ],
       ),
     );
@@ -81,18 +82,18 @@ class _CriticalAlertCard extends StatelessWidget {
             child: Icon(LucideIcons.alertTriangle, size: 140, color: Colors.redAccent.withOpacity(0.05)),
           ),
           Padding(
-            padding: const EdgeInsets.all(32),
+            padding: EdgeInsets.all(32),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
                     color: Colors.redAccent,
                     borderRadius: BorderRadius.circular(100),
                   ),
-                  child: const Text(
-                    'HIGH RISK DETECTED',
+                  child: Text(
+                    trText('HIGH RISK DETECTED'),
                     style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
@@ -101,22 +102,22 @@ class _CriticalAlertCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(height: 24),
-                const Text(
-                  'Late Blight Outbreak',
+                SizedBox(height: 24),
+                Text(
+                  trText('Late Blight Outbreak'),
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
-                const SizedBox(height: 12),
-                const Text('Detected in Sector 4-B. Spore density is rising. Containment protocols recommended.'),
-                const SizedBox(height: 48),
+                SizedBox(height: 12),
+                Text(trText('Detected in Sector 4-B. Spore density is rising. Containment protocols recommended.')),
+                SizedBox(height: 48),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Column(
+                    Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          '72%',
+                          trText('72%'),
                           style: TextStyle(
                               fontSize: 48,
                               fontWeight: FontWeight.w900,
@@ -124,7 +125,7 @@ class _CriticalAlertCard extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          'SPREAD PROBABILITY',
+                          trText('SPREAD PROBABILITY'),
                           style: TextStyle(
                               fontSize: 10,
                               fontWeight: FontWeight.bold,
@@ -138,10 +139,10 @@ class _CriticalAlertCard extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.redAccent,
                         foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                       ),
-                      child: const Text('View Action Plan'),
+                      child: Text(trText('View Action Plan')),
                     ),
                   ],
                 ),
@@ -170,7 +171,7 @@ class _PathogenStatsGrid extends StatelessWidget {
             color: AppTheme.primary,
           ),
         ),
-        const SizedBox(width: 16),
+        SizedBox(width: 16),
         Expanded(
           child: _SmallStatCard(
             icon: LucideIcons.shieldAlert,
@@ -203,7 +204,7 @@ class _SmallStatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20),
       decoration: BoxDecoration(
         color: AppTheme.onSurfaceVariant.withOpacity(0.05),
         borderRadius: BorderRadius.circular(24),
@@ -212,11 +213,11 @@ class _SmallStatCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Icon(icon, color: color, size: 24),
-          const SizedBox(height: 16),
-          Text(label, style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1.2)),
-          const SizedBox(height: 4),
-          Text(value, style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w900)),
-          Text(subText, style: const TextStyle(fontSize: 10, color: AppTheme.secondary)),
+          SizedBox(height: 16),
+          Text(trText(label), style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1.2)),
+          SizedBox(height: 4),
+          Text(trText(value), style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900)),
+          Text(trText(subText), style: TextStyle(fontSize: 10, color: AppTheme.secondary)),
         ],
       ),
     );

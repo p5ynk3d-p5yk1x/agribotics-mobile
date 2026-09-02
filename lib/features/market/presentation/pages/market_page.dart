@@ -1,3 +1,4 @@
+import 'package:agribotics/core/localization/localized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -19,7 +20,7 @@ class _MarketPageState extends ConsumerState<MarketPage> {
   MarketplaceCategory? _selectedCategory;
   String _problem = '';
   int _page = 1;
-  static const int _limit = 20;
+  static int _limit = 20;
 
   MarketplaceQuery get _query => (
   category: _selectedCategory,
@@ -68,34 +69,34 @@ class _MarketPageState extends ConsumerState<MarketPage> {
       body: RefreshIndicator(
         onRefresh: () => ref.refresh(marketplaceProductsProvider(_query).future),
         child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          padding: const EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
+          physics: AlwaysScrollableScrollPhysics(),
+          padding: EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 80),
-              Text('CURATED INPUTS', style: Theme.of(context).textTheme.labelLarge).animate().fadeIn().moveX(begin: -20, end: 0),
-              const SizedBox(height: 8),
-              Text('Marketplace', style: Theme.of(context).textTheme.displayLarge).animate().fadeIn(delay: 200.ms),
-              const SizedBox(height: 24),
-              const Text(
-                'Agricultural inputs, machinery and crop protection products selected for modern estate management.',
+              SizedBox(height: 80),
+              Text(trText('CURATED INPUTS'), style: Theme.of(context).textTheme.labelLarge).animate().fadeIn().moveX(begin: -20, end: 0),
+              SizedBox(height: 8),
+              Text(trText('Marketplace'), style: Theme.of(context).textTheme.displayLarge).animate().fadeIn(delay: 200.ms),
+              SizedBox(height: 24),
+              Text(
+                trText('Agricultural inputs, machinery and crop protection products selected for modern estate management.'),
                 style: TextStyle(fontSize: 16, color: AppTheme.onSurfaceVariant, height: 1.5),
               ).animate().fadeIn(delay: 400.ms),
-              const SizedBox(height: 36),
+              SizedBox(height: 36),
               _SearchField(
                 controller: _searchController,
                 onSubmitted: _search,
                 onClear: _clearSearch,
               ),
-              const SizedBox(height: 32),
+              SizedBox(height: 32),
               _CategoryFilter(
                 selectedCategory: _selectedCategory,
                 onSelected: _selectCategory,
               ),
-              const SizedBox(height: 32),
+              SizedBox(height: 32),
               products.when(
-                loading: () => const _LoadingGrid(),
+                loading: () => _LoadingGrid(),
                 error: (error, _) => _ErrorState(
                   onRetry: () => ref.invalidate(marketplaceProductsProvider(_query)),
                 ),
@@ -103,7 +104,7 @@ class _MarketPageState extends ConsumerState<MarketPage> {
                   children: [
                     _ProductGrid(products: data.items),
                     if (data.items.isNotEmpty) ...[
-                      const SizedBox(height: 36),
+                      SizedBox(height: 36),
                       _PaginationControls(
                         currentPage: data.pagination.page,
                         totalPages: data.pagination.totalPages,
@@ -114,7 +115,7 @@ class _MarketPageState extends ConsumerState<MarketPage> {
                   ],
                 ),
               ),
-              const SizedBox(height: 120),
+              SizedBox(height: 120),
             ],
           ),
         ),
@@ -141,10 +142,10 @@ class _SearchField extends StatelessWidget {
       onSubmitted: onSubmitted,
       decoration: InputDecoration(
         hintText: 'Search by crop problem...',
-        prefixIcon: const Icon(LucideIcons.search),
+        prefixIcon: Icon(LucideIcons.search),
         suffixIcon: IconButton(
           onPressed: onClear,
-          icon: const Icon(LucideIcons.x),
+          icon: Icon(LucideIcons.x),
         ),
         filled: true,
         fillColor: AppTheme.surface,
@@ -158,9 +159,9 @@ class _SearchField extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: AppTheme.primary, width: 1.5),
+          borderSide: BorderSide(color: AppTheme.primary, width: 1.5),
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
+        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 18),
       ),
     );
   }
@@ -213,15 +214,15 @@ class _CatChip extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        margin: const EdgeInsets.only(right: 12),
-        padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 12),
+        duration: Duration(milliseconds: 200),
+        margin: EdgeInsets.only(right: 12),
+        padding: EdgeInsets.symmetric(horizontal: 22, vertical: 12),
         decoration: BoxDecoration(
           color: isActive ? AppTheme.primary : AppTheme.surface,
           borderRadius: BorderRadius.circular(100),
         ),
         child: Text(
-          label,
+          trText(label),
           style: TextStyle(
             color: isActive ? Colors.white : AppTheme.onSurfaceVariant,
             fontWeight: FontWeight.bold,
@@ -240,7 +241,7 @@ class _ProductGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (products.isEmpty) {
-      return const Padding(
+      return Padding(
         padding: EdgeInsets.symmetric(vertical: 80),
         child: Center(
           child: Column(
@@ -248,7 +249,7 @@ class _ProductGrid extends StatelessWidget {
               Icon(LucideIcons.packageSearch, size: 44, color: AppTheme.onSurfaceVariant),
               SizedBox(height: 16),
               Text(
-                'No products found.',
+                trText('No products found.'),
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
               ),
             ],
@@ -258,8 +259,8 @@ class _ProductGrid extends StatelessWidget {
     }
     return GridView.builder(
       shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      physics: NeverScrollableScrollPhysics(),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: 18,
         crossAxisSpacing: 18,
@@ -299,38 +300,38 @@ class _ProductCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (product.category != null) ...[
                     Text(
-                      product.category!.label.toUpperCase(),
+                      trText(product.category!.label.toUpperCase()),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
+                      style: TextStyle(
                         color: AppTheme.onSurfaceVariant,
                         fontWeight: FontWeight.bold,
                         fontSize: 10,
                         letterSpacing: 1,
                       ),
                     ),
-                    const SizedBox(height: 6),
+                    SizedBox(height: 6),
                   ],
                   Text(
-                    product.name,
+                    trText(product.name),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15,
                       height: 1.25,
                     ),
                   ),
-                  const SizedBox(height: 8),
+                  SizedBox(height: 8),
                   Text(
-                    product.formattedPrice,
-                    style: const TextStyle(
+                    trText(product.formattedPrice),
+                    style: TextStyle(
                       color: AppTheme.secondary,
                       fontWeight: FontWeight.w900,
                       fontSize: 16,
@@ -364,7 +365,7 @@ class _ProductImage extends StatelessWidget {
     final formattedUrl = _formatImageUrl(imageUrl);
 
     if (formattedUrl == null) {
-      return const ColoredBox(
+      return ColoredBox(
         color: AppTheme.background,
         child: Center(
           child: Icon(
@@ -380,7 +381,7 @@ class _ProductImage extends StatelessWidget {
       formattedUrl,
       fit: BoxFit.cover,
       errorBuilder: (_, __, ___) {
-        return const ColoredBox(
+        return ColoredBox(
           color: AppTheme.background,
           child: Center(
             child: Icon(
@@ -414,18 +415,18 @@ class _PaginationControls extends StatelessWidget {
       children: [
         IconButton(
           onPressed: onPrevious,
-          icon: const Icon(LucideIcons.chevronLeft),
+          icon: Icon(LucideIcons.chevronLeft),
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: EdgeInsets.symmetric(horizontal: 16),
           child: Text(
-            '$currentPage / ${totalPages == 0 ? 1 : totalPages}',
-            style: const TextStyle(fontWeight: FontWeight.bold),
+            trText('$currentPage / ${totalPages == 0 ? 1 : totalPages}'),
+            style: TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
         IconButton(
           onPressed: onNext,
-          icon: const Icon(LucideIcons.chevronRight),
+          icon: Icon(LucideIcons.chevronRight),
         ),
       ],
     );
@@ -437,7 +438,7 @@ class _LoadingGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
+    return Padding(
       padding: EdgeInsets.symmetric(vertical: 80),
       child: Center(
         child: CircularProgressIndicator(),
@@ -453,20 +454,20 @@ class _ErrorState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 64),
+      padding: EdgeInsets.symmetric(vertical: 64),
       child: Center(
         child: Column(
           children: [
-            const Icon(LucideIcons.wifiOff, size: 42, color: AppTheme.onSurfaceVariant),
-            const SizedBox(height: 16),
-            const Text(
-              'Unable to load marketplace.',
+            Icon(LucideIcons.wifiOff, size: 42, color: AppTheme.onSurfaceVariant),
+            SizedBox(height: 16),
+            Text(
+              trText('Unable to load marketplace.'),
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: 16),
             OutlinedButton(
               onPressed: onRetry,
-              child: const Text('Try Again'),
+              child: Text(trText('Try Again')),
             ),
           ],
         ),

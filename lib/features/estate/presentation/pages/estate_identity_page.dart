@@ -1,3 +1,4 @@
+import 'package:agribotics/core/localization/localized_text.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -11,42 +12,42 @@ class EstateIdentityPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
+      padding: EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 40),
+          SizedBox(height: 40),
           Text(
-            'NEW ANALYSIS PHASE',
+            trText('NEW ANALYSIS PHASE'),
             style: Theme.of(context).textTheme.labelLarge,
           ).animate().fadeIn().moveX(begin: -20, end: 0),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           Text(
-            'Location &',
+            trText('Location &'),
             style: Theme.of(context).textTheme.displayLarge?.copyWith(
                   color: AppTheme.onSurface,
                 ),
           ).animate().fadeIn(delay: 100.ms),
           Text(
-            'Estate Identity',
+            trText('Estate Identity'),
             style: Theme.of(context).textTheme.displayLarge?.copyWith(
                   color: AppTheme.primaryContainer,
                 ),
           ).animate().fadeIn(delay: 200.ms),
-          const SizedBox(height: 24),
+          SizedBox(height: 24),
           Text(
-            "Begin your soil's digital transformation. Define the boundaries of your heritage and select the precise coordinate for extraction.",
+            trText("Begin your soil's digital transformation. Define the boundaries of your heritage and select the precise coordinate for extraction."),
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                   color: AppTheme.onSurfaceVariant,
                 ),
           ).animate().fadeIn(delay: 300.ms),
-          const SizedBox(height: 48),
-          const _DefineParcelCard(),
-          const SizedBox(height: 32),
-          const _EstateImageSection(),
-          const SizedBox(height: 40),
-          const _InfoTipsSection(),
-          const SizedBox(height: 120),
+          SizedBox(height: 48),
+          _DefineParcelCard(),
+          SizedBox(height: 32),
+          _EstateImageSection(),
+          SizedBox(height: 40),
+          _InfoTipsSection(),
+          SizedBox(height: 120),
         ],
       ),
     );
@@ -59,7 +60,7 @@ class _DefineParcelCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(32),
+      padding: EdgeInsets.all(32),
       decoration: BoxDecoration(
         color: AppTheme.surface,
         borderRadius: BorderRadius.circular(24),
@@ -67,7 +68,7 @@ class _DefineParcelCard extends StatelessWidget {
           BoxShadow(
             color: Colors.black.withOpacity(0.03),
             blurRadius: 40,
-            offset: const Offset(0, 20),
+            offset: Offset(0, 20),
           ),
         ],
       ),
@@ -77,18 +78,18 @@ class _DefineParcelCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const StatusBadge(label: 'STEP 01'),
+              StatusBadge(label: 'STEP 01'),
               Icon(LucideIcons.home, color: AppTheme.primary.withOpacity(0.2), size: 32),
             ],
           ),
-          const SizedBox(height: 24),
+          SizedBox(height: 24),
           Text(
-            'Define the Parcel',
+            trText('Define the Parcel'),
             style: Theme.of(context).textTheme.headlineMedium,
           ),
-          const SizedBox(height: 32),
+          SizedBox(height: 32),
           _FieldLabel(label: 'ESTATE NAME'),
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
           TextField(
             decoration: InputDecoration(
               hintText: 'e.g. Blackwood Highlands',
@@ -99,12 +100,12 @@ class _DefineParcelCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
                 borderSide: BorderSide.none,
               ),
-              contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+              contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             ),
           ),
-          const SizedBox(height: 32),
+          SizedBox(height: 32),
           _FieldLabel(label: 'PRIMARY CULTIVAR'),
-          const SizedBox(height: 12),
+          SizedBox(height: 12),
           Wrap(
             spacing: 12,
             runSpacing: 12,
@@ -115,22 +116,22 @@ class _DefineParcelCard extends StatelessWidget {
               _CultivarChip(label: 'Pasture'),
             ],
           ),
-          const SizedBox(height: 48),
+          SizedBox(height: 48),
           ElevatedButton(
             onPressed: () {},
             style: ElevatedButton.styleFrom(
               backgroundColor: AppTheme.primary,
               foregroundColor: Colors.white,
-              minimumSize: const Size(double.infinity, 64),
+              minimumSize: Size(double.infinity, 64),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
               elevation: 0,
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('Confirm Location', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
-                const SizedBox(width: 8),
-                const Icon(LucideIcons.arrowRight, size: 20),
+                Text(trText('Confirm Location'), style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
+                SizedBox(width: 8),
+                Icon(LucideIcons.arrowRight, size: 20),
               ],
             ),
           ),
@@ -147,8 +148,8 @@ class _FieldLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      label,
-      style: const TextStyle(
+      trText(label),
+      style: TextStyle(
         fontSize: 10,
         fontWeight: FontWeight.w900,
         letterSpacing: 2.0,
@@ -166,13 +167,13 @@ class _CultivarChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
       decoration: BoxDecoration(
         color: isActive ? AppTheme.primary : AppTheme.background,
         borderRadius: BorderRadius.circular(100),
       ),
       child: Text(
-        label,
+        trText(label),
         style: TextStyle(
           color: isActive ? Colors.white : AppTheme.onSurfaceVariant,
           fontWeight: FontWeight.bold,
@@ -205,7 +206,7 @@ class _EstateImageSection extends StatelessWidget {
           left: 24,
           right: 24,
           child: Padding(
-            padding: const EdgeInsets.all(24),
+            padding: EdgeInsets.all(24),
             child: GlassContainer(
               blur: 15,
               opacity: 0.2,
@@ -216,28 +217,28 @@ class _EstateImageSection extends StatelessWidget {
               child: Row(
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(12),
+                    padding: EdgeInsets.all(12),
                     decoration: BoxDecoration(
                       color: AppTheme.primary,
                       borderRadius: BorderRadius.circular(12),
                     ),
-                    child: const Icon(LucideIcons.mapPin, color: Colors.white),
+                    child: Icon(LucideIcons.mapPin, color: Colors.white),
                   ),
-                  const SizedBox(width: 16),
+                  SizedBox(width: 16),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Auto-detecting GPS',
+                        Text(
+                          trText('Auto-detecting GPS'),
                           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                         ),
-                        const SizedBox(height: 4),
+                        SizedBox(height: 4),
                         Text(
-                          '45.5231° N, 122.6765° W',
+                          trText('45.5231° N, 122.6765° W'),
                           style: TextStyle(color: AppTheme.onSurfaceVariant, fontSize: 14),
                         ),
-                        const SizedBox(height: 12),
+                        SizedBox(height: 12),
                         Row(
                           children: [
                             Container(
@@ -248,9 +249,9 @@ class _EstateImageSection extends StatelessWidget {
                                 shape: BoxShape.circle,
                               ),
                             ),
-                            const SizedBox(width: 8),
-                            const Text(
-                              'PRECISION LOCK ACTIVE',
+                            SizedBox(width: 8),
+                            Text(
+                              trText('PRECISION LOCK ACTIVE'),
                               style: TextStyle(
                                 fontSize: 10,
                                 fontWeight: FontWeight.w900,
@@ -279,18 +280,18 @@ class _InfoTipsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(24),
+      padding: EdgeInsets.all(24),
       decoration: BoxDecoration(
         color: AppTheme.onSurfaceVariant.withOpacity(0.05),
         borderRadius: BorderRadius.circular(20),
       ),
-      child: const Row(
+      child: Row(
         children: [
           Icon(LucideIcons.info, color: AppTheme.secondary),
           SizedBox(width: 16),
           Expanded(
             child: Text(
-              'Data accuracy is optimized through high-resolution satellite layering and multi-spectral analysis of your specific topography.',
+              trText('Data accuracy is optimized through high-resolution satellite layering and multi-spectral analysis of your specific topography.'),
               style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
             ),
           ),

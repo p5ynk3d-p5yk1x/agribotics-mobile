@@ -1,3 +1,4 @@
+import 'package:agribotics/core/localization/localized_text.dart';
 import 'package:agribotics/core/providers/app_providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,6 +16,7 @@ import '../../satellite/data/satellite_tile_provider.dart';
 import '../../satellite/data/satellite_provider.dart';
 import '../../weather/presentation/widgets/land_weather_card.dart';
 import '../../weather/data/weather_provider.dart';
+import 'package:agribotics/l10n/app_localizations.dart';
 
 class LandDashboardPage extends ConsumerStatefulWidget {
   const LandDashboardPage({super.key});
@@ -68,46 +70,47 @@ class _LandDashboardPageState extends ConsumerState<LandDashboardPage> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
     ref.listen(landProvider, (previous, next) {
       if (next.status == LandStatus.noLand) context.go('/land/select');
     });
     final landState = ref.watch(landProvider);
     final satelliteState = ref.watch(satelliteProvider);
     final weatherState = ref.watch(weatherProvider);
-    if (landState.status == LandStatus.initial || landState.status == LandStatus.loading) return const Center(child: CircularProgressIndicator());
-    if (landState.status == LandStatus.error && landState.land == null) return _LandLoadError(message: landState.message ?? 'Unable to load your land.', onRetry: _retry);
+    if (landState.status == LandStatus.initial || landState.status == LandStatus.loading) return Center(child: CircularProgressIndicator());
+    if (landState.status == LandStatus.error && landState.land == null) return _LandLoadError(message: landState.message ?? l10n.landUnableToLoad, onRetry: _retry);
     final land = landState.land;
-    if (land == null) return const Center(child: CircularProgressIndicator());
+    if (land == null) return Center(child: CircularProgressIndicator());
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
+      padding: EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const SizedBox(height: 40),
-          Text('SATELLITE MONITORING', style: Theme.of(context).textTheme.labelLarge),
-          const SizedBox(height: 8),
-          Text('Your Land', style: Theme.of(context).textTheme.displayMedium?.copyWith(color: AppTheme.primary)),
-          const SizedBox(height: 16),
+          SizedBox(height: 40),
+          Text(trText(l10n.landSatelliteMonitoring), style: Theme.of(context).textTheme.labelLarge),
+          SizedBox(height: 8),
+          Text(trText(l10n.landYourLand), style: Theme.of(context).textTheme.displayMedium?.copyWith(color: AppTheme.primary)),
+          SizedBox(height: 16),
           LandWeatherCard(state: weatherState, onRefresh: () => _refreshWeather(land)),
-          const SizedBox(height: 24),
+          SizedBox(height: 24),
           _SatelliteLayerSelector(state: satelliteState),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           _LandBoundaryMap(land: land, satelliteState: satelliteState),
-          const SizedBox(height: 24),
+          SizedBox(height: 24),
           _SatelliteHeader(state: satelliteState, onRefresh: _refreshSatellite),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           _SatelliteIndicesSection(state: satelliteState),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           _SatelliteHistorySection(state: satelliteState),
           if (landState.message != null) Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: Text(landState.message!, style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppTheme.secondary)),
+            padding: EdgeInsets.only(top: 16),
+            child: Text(trText(landState.message!), style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppTheme.secondary)),
           ),
           if (satelliteState.message != null) Padding(
-            padding: const EdgeInsets.only(top: 16),
-            child: Text(satelliteState.message!, style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppTheme.secondary)),
+            padding: EdgeInsets.only(top: 16),
+            child: Text(trText(satelliteState.message!), style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppTheme.secondary)),
           ),
-          const SizedBox(height: 120),
+          SizedBox(height: 120),
         ],
       ),
     );
@@ -134,7 +137,7 @@ class _LandBoundaryMapState extends ConsumerState<_LandBoundaryMap> {
     final selectedLayer = widget.satelliteState.selectedMapLayer;
     final observation = widget.satelliteState.observation;
     final dio = ref.watch(dioProvider);
-    if (polygon.length < 3) return const _LandMapUnavailable();
+    if (polygon.length < 3) return _LandMapUnavailable();
     final tileOverlays = <TileOverlay>{};
     if (selectedLayer != null && observation != null) {
       final version = observation.retrievedAt.millisecondsSinceEpoch;
@@ -154,7 +157,7 @@ class _LandBoundaryMapState extends ConsumerState<_LandBoundaryMap> {
         color: AppTheme.surface,
         borderRadius: BorderRadius.circular(24),
         border: Border.all(color: AppTheme.outline.withOpacity(0.10)),
-        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 24, offset: const Offset(0, 8))],
+        boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.04), blurRadius: 24, offset: Offset(0, 8))],
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(24),
@@ -172,7 +175,7 @@ class _LandBoundaryMapState extends ConsumerState<_LandBoundaryMap> {
                 tileOverlays: tileOverlays,
                 polygons: {
                   Polygon(
-                    polygonId: const PolygonId('registered-land'),
+                    polygonId: PolygonId('registered-land'),
                     points: polygon,
                     strokeWidth: 3,
                     strokeColor: AppTheme.primary,
@@ -182,9 +185,9 @@ class _LandBoundaryMapState extends ConsumerState<_LandBoundaryMap> {
                 },
                 markers: {
                   Marker(
-                    markerId: const MarkerId('land-centroid'),
+                    markerId: MarkerId('land-centroid'),
                     position: center,
-                    infoWindow: const InfoWindow(title: 'Land Center'),
+                    infoWindow: InfoWindow(title: trText('Land Center')),
                   ),
                 },
                 onMapCreated: (controller) {
@@ -194,7 +197,7 @@ class _LandBoundaryMapState extends ConsumerState<_LandBoundaryMap> {
               ),
             ),
             Positioned(top: 14, left: 14, child: _MapLabel(selectedLayer: selectedLayer)),
-            if (widget.satelliteState.isLoadingMaps) const Positioned(top: 14, right: 14, child: _MapLoadingIndicator()),
+            if (widget.satelliteState.isLoadingMaps) Positioned(top: 14, right: 14, child: _MapLoadingIndicator()),
           ],
         ),
       ),
@@ -203,7 +206,7 @@ class _LandBoundaryMapState extends ConsumerState<_LandBoundaryMap> {
 
   Future<void> _fitPolygon(List<LatLng> points) async {
     if (_controller == null || points.isEmpty) return;
-    await Future.delayed(const Duration(milliseconds: 300));
+    await Future.delayed(Duration(milliseconds: 300));
     if (!mounted) return;
     await _controller!.animateCamera(CameraUpdate.newLatLngBounds(_calculateBounds(points), 55));
   }
@@ -217,7 +220,7 @@ class _MapLabel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
         color: AppTheme.surface.withOpacity(0.92),
         borderRadius: BorderRadius.circular(12),
@@ -227,8 +230,8 @@ class _MapLabel extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(selectedLayer == null ? LucideIcons.mapPin : LucideIcons.layers, size: 15, color: AppTheme.primary),
-          const SizedBox(width: 6),
-          Text(selectedLayer?.name.toUpperCase() ?? 'REGISTERED LAND', style: Theme.of(context).textTheme.labelMedium?.copyWith(color: AppTheme.primary, fontWeight: FontWeight.w700)),
+          SizedBox(width: 6),
+          Text(trText(selectedLayer?.name.toUpperCase() ?? 'REGISTERED LAND'), style: Theme.of(context).textTheme.labelMedium?.copyWith(color: AppTheme.primary, fontWeight: FontWeight.w700)),
         ],
       ),
     );
@@ -243,9 +246,9 @@ class _MapLoadingIndicator extends StatelessWidget {
     return Container(
       width: 36,
       height: 36,
-      padding: const EdgeInsets.all(9),
+      padding: EdgeInsets.all(9),
       decoration: BoxDecoration(color: AppTheme.surface.withOpacity(0.92), borderRadius: BorderRadius.circular(12)),
-      child: const CircularProgressIndicator(strokeWidth: 2),
+      child: CircularProgressIndicator(strokeWidth: 2),
     );
   }
 }
@@ -264,7 +267,7 @@ class _SatelliteHeader extends StatelessWidget {
     final canRefresh = policy?.refreshAllowed == true && !isRefreshing;
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20),
       decoration: _cardDecoration(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -275,55 +278,55 @@ class _SatelliteHeader extends StatelessWidget {
                 width: 42,
                 height: 42,
                 decoration: BoxDecoration(color: AppTheme.primary.withOpacity(0.10), borderRadius: BorderRadius.circular(14)),
-                child: const Icon(LucideIcons.satellite, size: 20, color: AppTheme.primary),
+                child: Icon(LucideIcons.satellite, size: 20, color: AppTheme.primary),
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('SATELLITE STATUS', style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700)),
-                    const SizedBox(height: 3),
-                    Text(_statusLabel(state), style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.secondary)),
+                    Text(trText('SATELLITE STATUS'), style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700)),
+                    SizedBox(height: 3),
+                    Text(trText(_statusLabel(state)), style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.secondary)),
                   ],
                 ),
               ),
               _StatusDot(active: observation != null),
             ],
           ),
-          const SizedBox(height: 18),
-          if (state.status == SatelliteStatus.loading) const Center(child: CircularProgressIndicator()),
+          SizedBox(height: 18),
+          if (state.status == SatelliteStatus.loading) Center(child: CircularProgressIndicator()),
           if (state.status != SatelliteStatus.loading) Row(
             children: [
               Expanded(child: _InfoItem(label: 'DATASET', value: observation?.dataset ?? 'Waiting for data')),
-              const SizedBox(width: 12),
+              SizedBox(width: 12),
               Expanded(child: _InfoItem(label: 'CLOUD COVER', value: observation?.cloudPercentage == null ? '—' : '${observation!.cloudPercentage!.toStringAsFixed(1)}%')),
             ],
           ),
-          if (observation != null) const SizedBox(height: 14),
+          if (observation != null) SizedBox(height: 14),
           if (observation != null) Row(
             children: [
               Expanded(child: _InfoItem(label: 'OBSERVED', value: _formatDateTime(observation.observationTime))),
-              const SizedBox(width: 12),
+              SizedBox(width: 12),
               Expanded(child: _InfoItem(label: 'RETRIEVED', value: _formatDateTime(observation.retrievedAt))),
             ],
           ),
-          if (policy != null) const SizedBox(height: 18),
+          if (policy != null) SizedBox(height: 18),
           if (policy != null) _RefreshInfo(policy: policy),
-          const SizedBox(height: 18),
+          SizedBox(height: 18),
           SizedBox(
             width: double.infinity,
             child: ElevatedButton.icon(
               onPressed: canRefresh ? onRefresh : null,
-              icon: isRefreshing ? const SizedBox(width: 17, height: 17, child: CircularProgressIndicator(strokeWidth: 2)) : const Icon(LucideIcons.refreshCw, size: 18),
-              label: Text(isRefreshing ? 'REFRESHING...' : policy?.refreshAllowed == true ? 'REFRESH SATELLITE' : 'REFRESH NOT AVAILABLE'),
+              icon: isRefreshing ? SizedBox(width: 17, height: 17, child: CircularProgressIndicator(strokeWidth: 2)) : Icon(LucideIcons.refreshCw, size: 18),
+              label: Text(trText(isRefreshing ? 'REFRESHING...' : policy?.refreshAllowed == true ? 'REFRESH SATELLITE' : 'REFRESH NOT AVAILABLE')),
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppTheme.primary,
                 foregroundColor: Colors.white,
                 disabledBackgroundColor: AppTheme.primary.withOpacity(0.40),
                 disabledForegroundColor: Colors.white,
                 elevation: 0,
-                minimumSize: const Size(double.infinity, 52),
+                minimumSize: Size(double.infinity, 52),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
               ),
             ),
@@ -342,17 +345,17 @@ class _SatelliteIndicesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final observation = state.observation;
-    if (state.status == SatelliteStatus.loading) return const SizedBox.shrink();
+    if (state.status == SatelliteStatus.loading) return SizedBox.shrink();
     if (observation == null) {
       return Container(
         width: double.infinity,
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
         decoration: _cardDecoration(),
         child: Row(
           children: [
             Icon(LucideIcons.activity, color: AppTheme.outline),
-            const SizedBox(width: 12),
-            Expanded(child: Text('Vegetation indices will appear when a usable satellite observation becomes available.', style: Theme.of(context).textTheme.bodyMedium)),
+            SizedBox(width: 12),
+            Expanded(child: Text(trText('Vegetation indices will appear when a usable satellite observation becomes available.'), style: Theme.of(context).textTheme.bodyMedium)),
           ],
         ),
       );
@@ -361,24 +364,24 @@ class _SatelliteIndicesSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('VEGETATION INDICES', style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700)),
-        const SizedBox(height: 12),
+        Text(trText('VEGETATION INDICES'), style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700)),
+        SizedBox(height: 12),
         Row(
           children: [
             Expanded(child: _IndexCard(label: 'NDVI', value: indices.ndvi, description: 'Vegetation')),
-            const SizedBox(width: 10),
+            SizedBox(width: 10),
             Expanded(child: _IndexCard(label: 'NDMI', value: indices.ndmi, description: 'Moisture')),
           ],
         ),
-        const SizedBox(height: 10),
+        SizedBox(height: 10),
         Row(
           children: [
             Expanded(child: _IndexCard(label: 'NDWI', value: indices.ndwi, description: 'Water')),
-            const SizedBox(width: 10),
+            SizedBox(width: 10),
             Expanded(child: _IndexCard(label: 'EVI', value: indices.evi, description: 'Enhanced vegetation')),
           ],
         ),
-        const SizedBox(height: 10),
+        SizedBox(height: 10),
         _IndexCard(label: 'SAVI', value: indices.savi, description: 'Soil adjusted'),
       ],
     );
@@ -395,29 +398,29 @@ class _SatelliteLayerSelector extends ConsumerWidget {
     if (state.isLoadingMaps && state.mapLayers.isEmpty) {
       return Container(
         width: double.infinity,
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
         decoration: _cardDecoration(),
-        child: const Center(child: CircularProgressIndicator()),
+        child: Center(child: CircularProgressIndicator()),
       );
     }
-    if (state.mapLayers.isEmpty) return const SizedBox.shrink();
+    if (state.mapLayers.isEmpty) return SizedBox.shrink();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('SATELLITE MAP', style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700)),
-        const SizedBox(height: 6),
-        Text('Choose how Earth Engine visualizes your registered land.', style: Theme.of(context).textTheme.bodyMedium),
-        const SizedBox(height: 12),
+        Text(trText('SATELLITE MAP'), style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700)),
+        SizedBox(height: 6),
+        Text(trText('Choose how Earth Engine visualizes your registered land.'), style: Theme.of(context).textTheme.bodyMedium),
+        SizedBox(height: 12),
         Row(
           children: [
             for (var i = 0; i < state.mapLayers.length; i++) ...[
-              if (i > 0) const SizedBox(width: 10),
+              if (i > 0) SizedBox(width: 10),
               Expanded(child: _LayerButton(layer: state.mapLayers[i], selected: state.selectedMapLayer?.id == state.mapLayers[i].id, onTap: () => ref.read(satelliteProvider.notifier).selectMapLayer(state.mapLayers[i].id))),
             ],
           ],
         ),
-        if (state.selectedMapLayer != null) const SizedBox(height: 10),
-        if (state.selectedMapLayer != null) Text(state.selectedMapLayer!.description, style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.secondary)),
+        if (state.selectedMapLayer != null) SizedBox(height: 10),
+        if (state.selectedMapLayer != null) Text(trText(state.selectedMapLayer!.description), style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.secondary)),
       ],
     );
   }
@@ -433,28 +436,28 @@ class _SatelliteHistorySection extends StatelessWidget {
     if (state.isLoadingHistory && state.history.isEmpty) {
       return Container(
         width: double.infinity,
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.all(20),
         decoration: _cardDecoration(),
-        child: const Center(child: CircularProgressIndicator()),
+        child: Center(child: CircularProgressIndicator()),
       );
     }
-    if (state.history.isEmpty) return const SizedBox.shrink();
+    if (state.history.isEmpty) return SizedBox.shrink();
     final observations = state.history.take(3).toList();
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(20),
       decoration: _cardDecoration(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
-              const Icon(LucideIcons.history, size: 19, color: AppTheme.primary),
-              const SizedBox(width: 9),
-              Text('RECENT OBSERVATIONS', style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700)),
+              Icon(LucideIcons.history, size: 19, color: AppTheme.primary),
+              SizedBox(width: 9),
+              Text(trText('RECENT OBSERVATIONS'), style: Theme.of(context).textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w700)),
             ],
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16),
           for (var i = 0; i < observations.length; i++) ...[
             _HistoryRow(observation: observations[i]),
             if (i < observations.length - 1) Divider(height: 22, color: AppTheme.outline.withOpacity(0.10)),
@@ -478,14 +481,14 @@ class _HistoryRow extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(_formatDateTime(observation.observationTime), style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600)),
-              const SizedBox(height: 3),
-              Text(observation.dataset, style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.secondary)),
+              Text(trText(_formatDateTime(observation.observationTime)), style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600)),
+              SizedBox(height: 3),
+              Text(trText(observation.dataset), style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.secondary)),
             ],
           ),
         ),
         _HistoryValue(label: 'NDVI', value: observation.indices.ndvi),
-        const SizedBox(width: 18),
+        SizedBox(width: 18),
         _HistoryValue(label: 'NDMI', value: observation.indices.ndmi),
       ],
     );
@@ -503,9 +506,9 @@ class _HistoryValue extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        Text(label, style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppTheme.secondary)),
-        const SizedBox(height: 2),
-        Text(value?.toStringAsFixed(2) ?? '—', style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppTheme.primary, fontWeight: FontWeight.w700)),
+        Text(trText(label), style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppTheme.secondary)),
+        SizedBox(height: 2),
+        Text(trText(value?.toStringAsFixed(2) ?? '—'), style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: AppTheme.primary, fontWeight: FontWeight.w700)),
       ],
     );
   }
@@ -521,17 +524,17 @@ class _IndexCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: const BoxConstraints(minHeight: 96),
-      padding: const EdgeInsets.all(16),
+      constraints: BoxConstraints(minHeight: 96),
+      padding: EdgeInsets.all(16),
       decoration: _cardDecoration(),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(label, style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppTheme.primary, fontWeight: FontWeight.w700)),
-          const SizedBox(height: 6),
-          Text(value?.toStringAsFixed(3) ?? '—', style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w700)),
-          const SizedBox(height: 3),
-          Text(description, style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.secondary)),
+          Text(trText(label), style: Theme.of(context).textTheme.labelLarge?.copyWith(color: AppTheme.primary, fontWeight: FontWeight.w700)),
+          SizedBox(height: 6),
+          Text(trText(value?.toStringAsFixed(3) ?? '—'), style: Theme.of(context).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.w700)),
+          SizedBox(height: 3),
+          Text(trText(description), style: Theme.of(context).textTheme.bodySmall?.copyWith(color: AppTheme.secondary)),
         ],
       ),
     );
@@ -552,11 +555,11 @@ class _LayerButton extends StatelessWidget {
       style: OutlinedButton.styleFrom(
         backgroundColor: selected ? AppTheme.primary.withOpacity(0.10) : AppTheme.surface,
         foregroundColor: AppTheme.primary,
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 14),
         side: BorderSide(color: selected ? AppTheme.primary : AppTheme.outline.withOpacity(0.15)),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       ),
-      child: Text(layer.name.toUpperCase(), textAlign: TextAlign.center, style: Theme.of(context).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w700)),
+      child: Text(trText(layer.name.toUpperCase()), textAlign: TextAlign.center, style: Theme.of(context).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w700)),
     );
   }
 }
@@ -570,14 +573,14 @@ class _RefreshInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(14),
+      padding: EdgeInsets.all(14),
       decoration: BoxDecoration(color: AppTheme.background, borderRadius: BorderRadius.circular(14)),
       child: Column(
         children: [
           _RefreshRow(label: 'Last successful', value: policy.lastQueriedAt == null ? 'No successful query yet' : _formatDateTime(policy.lastQueriedAt!)),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           _RefreshRow(label: 'Last attempted', value: policy.lastAttemptedAt == null ? 'No attempt yet' : _formatDateTime(policy.lastAttemptedAt!)),
-          const SizedBox(height: 8),
+          SizedBox(height: 8),
           _RefreshRow(label: 'Next refresh', value: _formatDateTime(policy.nextRefreshAt)),
         ],
       ),
@@ -600,15 +603,15 @@ class _RefreshRow extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          label,
+          trText(label),
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
             color: AppTheme.secondary,
           ),
         ),
-        const SizedBox(width: 12),
+        SizedBox(width: 12),
         Expanded(
           child: Text(
-            value,
+            trText(value),
             textAlign: TextAlign.right,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
@@ -633,9 +636,9 @@ class _InfoItem extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppTheme.secondary)),
-        const SizedBox(height: 4),
-        Text(value, style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600)),
+        Text(trText(label), style: Theme.of(context).textTheme.labelSmall?.copyWith(color: AppTheme.secondary)),
+        SizedBox(height: 4),
+        Text(trText(value), style: Theme.of(context).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600)),
       ],
     );
   }
@@ -670,8 +673,8 @@ class _LandMapUnavailable extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(LucideIcons.map, size: 28, color: AppTheme.outline),
-            const SizedBox(height: 10),
-            Text('Land boundary unavailable', style: Theme.of(context).textTheme.bodyMedium),
+            SizedBox(height: 10),
+            Text(trText('Land boundary unavailable'), style: Theme.of(context).textTheme.bodyMedium),
           ],
         ),
       ),
@@ -689,15 +692,15 @@ class _LandLoadError extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
+        padding: EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Unable to load land', style: Theme.of(context).textTheme.headlineSmall),
-            const SizedBox(height: 8),
-            Text(message, textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyMedium),
-            const SizedBox(height: 20),
-            ElevatedButton(onPressed: onRetry, child: const Text('RETRY')),
+            Text(trText('Unable to load land'), style: Theme.of(context).textTheme.headlineSmall),
+            SizedBox(height: 8),
+            Text(trText(message), textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyMedium),
+            SizedBox(height: 20),
+            ElevatedButton(onPressed: onRetry, child: Text(trText('RETRY'))),
           ],
         ),
       ),
@@ -710,7 +713,7 @@ BoxDecoration _cardDecoration() {
     color: AppTheme.surface,
     borderRadius: BorderRadius.circular(20),
     border: Border.all(color: AppTheme.outline.withOpacity(0.10)),
-    boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.035), blurRadius: 20, offset: const Offset(0, 7))],
+    boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.035), blurRadius: 20, offset: Offset(0, 7))],
   );
 }
 
