@@ -37,7 +37,7 @@ class AuthRepository {
 
   Future<void> sendTokenToBackend(String idToken) async {
     final response = await dio.post(
-      '/auth/google/mobile',
+      '/api/auth/google/mobile',
       data: {
         'idToken': idToken,
       },

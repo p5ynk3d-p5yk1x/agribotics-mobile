@@ -24,6 +24,7 @@ import '../../features/weeds/presentation/pages/weed_detail.dart';
 import '../../features/market/presentation/pages/market_page.dart';
 import '../../features/settings/presentation/pages/settings_page.dart';
 import '../../shared/widgets/main_scaffold.dart';
+import '../../features/market/presentation/pages/product_detail_page.dart';
 
 const publicRoutes = {
   '/login'
@@ -143,8 +144,13 @@ final routerProvider = Provider<GoRouter>((ref) {
               ),
               GoRoute(
                 path: '/market',
-                builder: (context, state) =>
-                const MarketPage(),
+                builder: (context, state) => const MarketPage(),
+              ),
+              GoRoute(
+                path: '/market/product/:id',
+                builder: (context, state) => ProductDetailPage(
+                  productId: state.pathParameters['id']!,
+                ),
               ),
               GoRoute(
                 path: '/settings',

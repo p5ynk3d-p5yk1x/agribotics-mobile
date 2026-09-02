@@ -13,7 +13,7 @@ import 'package:flutter_riverpod/legacy.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 final dioProvider = Provider<Dio>((ref) {
-  final dio = Dio(BaseOptions(baseUrl: 'http://192.168.29.140:3000', connectTimeout: const Duration(seconds: 30), receiveTimeout: const Duration(seconds: 30)));
+  final dio = Dio(BaseOptions(baseUrl: 'http://192.168.1.177:3000', connectTimeout: const Duration(seconds: 30), receiveTimeout: const Duration(seconds: 30)));
   const storage = FlutterSecureStorage();
 
   dio.interceptors.add(
