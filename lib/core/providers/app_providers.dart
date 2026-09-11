@@ -30,7 +30,6 @@ final dioProvider = Provider<Dio>((ref) {
         print('URL: ${options.uri}');
         print('TOKEN EXISTS: ${token != null && token.isNotEmpty}');
         print('TOKEN LENGTH: ${token?.length ?? 0}');
-        print('TOKEN: ${token ?? " no token"}');
         if (options.data != null) print('BODY: ${options.data}');
         if (options.queryParameters.isNotEmpty) print('QUERY: ${options.queryParameters}');
         print('=================================');
