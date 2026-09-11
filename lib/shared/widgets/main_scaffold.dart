@@ -117,7 +117,7 @@ class _FloatingBottomNav extends StatelessWidget {
             _NavItem(
               icon: LucideIcons.layers,
               label: 'SOIL',
-              isActive: currentPath == '/soil/nutrient-map',
+              isActive: currentPath == '/soil/history',
               onTap: () => context.go('/soil/history'),
             ),
             _NavItem(

@@ -2,46 +2,45 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme {
-  // Brand Colors
-  static const Color primary = Color(0xFF012D1D);
-  static const Color emerald = Color(0xFF10B981);
-  static const Color primaryContainer = Color(0xFF1B4332);
-  static const Color secondary = Color(0xFF77574D);
-  static const Color background = Color(0xFFF9F9F7);
-  static const Color onBackground = Color(0xFF1A1C1B);
-  static const Color surface = Color(0xFFFFFFFF);
-  static const Color surfaceLow = Color(0xFFEEEEEC);
-  static const Color surfaceContainerLow = Color(0xFFF4F4F2);
-  static const Color surfaceContainerLowest = Color(0xFFFFFFFF);
-  static const Color onSurface = Color(0xFF1A1C1B);
-  static const Color onSurfaceVariant = Color(0xFF414844);
-  static const Color outline = Color(0xFF717973);
-  static const Color tertiaryFixed = Color(0xFFDAE8BE);
-  static const Color error = Color(0xFFBA1A1A);
-
-  // static const Color primary = Color(0xFF5BA83A);
-  // static const Color emerald = Color(0xFF5BA83A);
-  // static const Color primaryContainer = Color(0xFFE5F2DE);
-  //
-  // static const Color secondary = Color(0xFFF5C518);
-  // static const Color secondaryContainer = Color(0xFFFFF3B8);
-  //
-  // static const Color background = Color(0xFFFAFCF7);
+  // static const Color primary = Color(0xFF012D1D);
+  // static const Color emerald = Color(0xFF10B981);
+  // static const Color primaryContainer = Color(0xFF1B4332);
+  // static const Color secondary = Color(0xFF77574D);
+  // static const Color background = Color(0xFFF9F9F7);
   // static const Color onBackground = Color(0xFF1A1C1B);
-  //
   // static const Color surface = Color(0xFFFFFFFF);
-  // static const Color surfaceLow = Color(0xFFF5F8F2);
-  // static const Color surfaceContainerLow = Color(0xFFEEF5E9);
+  // static const Color surfaceLow = Color(0xFFEEEEEC);
+  // static const Color surfaceContainerLow = Color(0xFFF4F4F2);
   // static const Color surfaceContainerLowest = Color(0xFFFFFFFF);
-  //
   // static const Color onSurface = Color(0xFF1A1C1B);
-  // static const Color onSurfaceVariant = Color(0xFF4B5548);
-  //
-  // static const Color outline = Color(0xFF899486);
-  //
-  // static const Color tertiaryFixed = Color(0xFFE5F2DE);
-  //
+  // static const Color onSurfaceVariant = Color(0xFF414844);
+  // static const Color outline = Color(0xFF717973);
+  // static const Color tertiaryFixed = Color(0xFFDAE8BE);
   // static const Color error = Color(0xFFBA1A1A);
+
+  static const Color primary = Color(0xFF5BA83A);
+  static const Color emerald = Color(0xFF5BA83A);
+  static const Color primaryContainer = Color(0xFFE5F2DE);
+
+  static const Color secondary = Color(0xFFF5C518);
+  static const Color secondaryContainer = Color(0xFFFFF3B8);
+
+  static const Color background = Color(0xFFFAFCF7);
+  static const Color onBackground = Color(0xFF1A1C1B);
+
+  static const Color surface = Color(0xFFFFFFFF);
+  static const Color surfaceLow = Color(0xFFF5F8F2);
+  static const Color surfaceContainerLow = Color(0xFFEEF5E9);
+  static const Color surfaceContainerLowest = Color(0xFFFFFFFF);
+
+  static const Color onSurface = Color(0xFF1A1C1B);
+  static const Color onSurfaceVariant = Color(0xFF4B5548);
+
+  static const Color outline = Color(0xFF899486);
+
+  static const Color tertiaryFixed = Color(0xFFE5F2DE);
+
+  static const Color error = Color(0xFFBA1A1A);
 
   static BoxDecoration get heroGradient => const BoxDecoration(
     gradient: LinearGradient(

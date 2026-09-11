@@ -17,7 +17,7 @@ import 'package:agribotics/features/soil/data/soil_repository.dart';
 import 'package:agribotics/features/soil/data/soil_state.dart';
 
 final dioProvider = Provider<Dio>((ref) {
-  final dio = Dio(BaseOptions(baseUrl: 'http://192.168.1.34:3000', connectTimeout: const Duration(seconds: 30), receiveTimeout: const Duration(seconds: 30)));
+  final dio = Dio(BaseOptions(baseUrl: 'https://api.agribotics.tech', connectTimeout: const Duration(seconds: 30), receiveTimeout: const Duration(seconds: 30)));
   const storage = FlutterSecureStorage();
 
   dio.interceptors.add(
