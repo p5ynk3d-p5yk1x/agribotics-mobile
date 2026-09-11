@@ -2,6 +2,7 @@ import 'package:agribotics/core/auth/auth_state.dart';
 import 'package:agribotics/core/providers/app_providers.dart';
 import 'package:agribotics/core/router/router_notifier.dart';
 import 'package:agribotics/features/auth/presentation/login-page.dart';
+import 'package:agribotics/features/auth/presentation/splash_screen.dart';
 import 'package:agribotics/features/disease/presentation/pages/disease_detection_page.dart';
 import 'package:agribotics/features/disease/presentation/pages/disease_history.dart';
 import 'package:agribotics/features/disease/presentation/pages/disease_map.dart';
@@ -9,8 +10,8 @@ import 'package:agribotics/features/land/presentation/pages/land_dashboard_page.
 import 'package:agribotics/features/land/presentation/pages/land_selection_page.dart';
 import 'package:agribotics/features/soil/presentation/pages/nutrient_detection_page.dart';
 import 'package:agribotics/features/weeds/presentation/pages/weed_detection.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../features/estate/presentation/pages/sector_detail_page.dart';
 import '../../features/soil/presentation/pages/soil_history.dart';
@@ -26,23 +27,22 @@ import '../../features/settings/presentation/pages/settings_page.dart';
 import '../../shared/widgets/main_scaffold.dart';
 import '../../features/market/presentation/pages/product_detail_page.dart';
 
-const publicRoutes = {
-  '/login'
-};
+const publicRoutes = {'/', '/login'};
 
 final routerProvider = Provider<GoRouter>((ref) {
   final routerNotifier = ref.watch(routerNotifierProvider);
 
   return GoRouter(
-    initialLocation: '/dashboard',
+    initialLocation: '/',
     refreshListenable: routerNotifier,
     redirect: (context, state) {
       final authState = ref.read(authProvider);
       final isLoading = authState is AuthLoading;
       final isAuthenticated = authState is AuthAuthenticated;
       final isPublic = publicRoutes.contains(state.matchedLocation);
+      final isSplash = state.matchedLocation == '/';
 
-      if (isLoading) return null;
+      if (isLoading || isSplash) return null;
 
       if (!isAuthenticated && !isPublic) {
         return '/login';
@@ -55,18 +55,20 @@ final routerProvider = Provider<GoRouter>((ref) {
     },
     routes: [
       GoRoute(
+        path: '/',
+        builder: (context, state) => const SplashScreen(),
+      ),
+      GoRoute(
         path: '/login',
         builder: (context, state) => const LoginScreen(),
       ),
       ShellRoute(
-        builder: (context, state, child) =>
-            MainScaffold(child: child),
-            routes: [
-              GoRoute(
-                path: '/dashboard',
-                builder: (context, state) =>
-                const LandDashboardPage(),
-              ),
+        builder: (context, state, child) => MainScaffold(child: child),
+        routes: [
+          GoRoute(
+            path: '/dashboard',
+            builder: (context, state) => const LandDashboardPage(),
+          ),
               GoRoute(
                 path: '/land/select',
                 builder: (context, state) =>
