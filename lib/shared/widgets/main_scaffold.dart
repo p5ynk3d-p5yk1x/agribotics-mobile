@@ -3,15 +3,37 @@ import 'package:go_router/go_router.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:glassmorphism_ui/glassmorphism_ui.dart';
 import '../../core/theme/app_theme.dart';
+import '../../features/navigator_assistant/domain/navigator_assistant_controller.dart';
+import '../../features/navigator_assistant/presentation/navigator_assistant.dart';
 
-class MainScaffold extends StatelessWidget {
+class MainScaffold extends StatefulWidget {
   final Widget child;
 
   const MainScaffold({super.key, required this.child});
 
   @override
+  State<MainScaffold> createState() => _MainScaffoldState();
+}
+
+class _MainScaffoldState extends State<MainScaffold> {
+  late final NavigatorAssistantController _assistantController;
+
+  @override
+  void initState() {
+    super.initState();
+    _assistantController = NavigatorAssistantController();
+  }
+
+  @override
+  void dispose() {
+    _assistantController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final location = GoRouterState.of(context).matchedLocation;
+    _assistantController.updateRoute(location);
 
     return Scaffold(
       extendBody: true,
@@ -55,7 +77,12 @@ class MainScaffold extends StatelessWidget {
           const SizedBox(width: 12),
         ],
       ),
-      body: child,
+      body: Stack(
+        children: [
+          Positioned.fill(child: widget.child),
+          Positioned.fill(child: NavigatorAssistant(controller: _assistantController)),
+        ],
+      ),
       bottomNavigationBar: _FloatingBottomNav(currentPath: location),
     );
   }
@@ -90,7 +117,7 @@ class _FloatingBottomNav extends StatelessWidget {
             _NavItem(
               icon: LucideIcons.layers,
               label: 'SOIL',
-              isActive: currentPath == '/soil/nutrient-map',
+              isActive: currentPath == '/soil/history',
               onTap: () => context.go('/soil/history'),
             ),
             _NavItem(

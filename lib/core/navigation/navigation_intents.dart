@@ -1,0 +1,108 @@
+import 'navigation_intent.dart';
+
+/// Inventory of safe, parameter-free destinations exposed by the assistant.
+///
+/// Job maps, weed details, and product details are deliberately excluded: their
+/// routes require a real identifier that a free-form request cannot supply.
+const navigationIntents = <NavigationIntent>[
+  NavigationIntent(
+    id: 'dashboard', label: 'Your Land', route: '/dashboard',
+    purpose: 'View the estate dashboard, weather, satellite imagery, and land.',
+    keywords: ['dashboard', 'estate', 'satellite'],
+    phrases: ['my land', 'land dashboard', 'estate dashboard', 'satellite monitoring'],
+    sentences: ['show my land', 'open my dashboard', 'take me home'],
+  ),
+  NavigationIntent(
+    id: 'land_selection', label: 'Mark Your Land', route: '/land/select',
+    purpose: 'Select, mark, or change the farm boundary.',
+    keywords: ['boundary', 'polygon'],
+    phrases: ['mark land', 'select land', 'farm boundary', 'change my land'],
+    sentences: ['help me mark my land', 'select my farm location'],
+  ),
+  NavigationIntent(
+    id: 'identify', label: 'Identify', route: '/identify',
+    purpose: 'Choose between soil, weed, and disease diagnostic tools.',
+    keywords: ['identify', 'diagnostics'],
+    phrases: ['diagnostic tools', 'analysis options', 'identify something'],
+    sentences: ['what can i identify', 'show diagnostic tools'],
+  ),
+  NavigationIntent(
+    id: 'soil_detection', label: 'Soil Detection', route: '/soil/detection',
+    purpose: 'Enter readings and analyze soil nutrients.',
+    keywords: ['soil', 'nutrient', 'nutrients', 'nitrogen', 'phosphorus', 'potassium', 'npk'],
+    phrases: ['soil test', 'test soil', 'soil analysis', 'soil nutrients', 'nutrient analysis'],
+    sentences: ['check my soil', 'test my soil', 'analyze my soil', 'analyze the nutrients in my soil'],
+    negativeKeywords: ['history', 'previous', 'past', 'reports'],
+    contextPaths: ['/soil'],
+  ),
+  NavigationIntent(
+    id: 'soil_history', label: 'Soil History', route: '/soil/history',
+    purpose: 'View previous soil nutrient jobs and reports.',
+    keywords: ['soil', 'history', 'previous', 'reports'],
+    phrases: ['soil history', 'previous soil', 'past soil', 'soil reports', 'previous soil tests'],
+    sentences: ['show my soil history', 'show previous soil reports', 'show my previous soil tests'],
+    negativeKeywords: ['start', 'new', 'detect', 'analyze'],
+    contextPaths: ['/soil'],
+  ),
+  NavigationIntent(
+    id: 'weed_detection', label: 'Weed Detection', route: '/weed/detection',
+    purpose: 'Start a field weed scan.',
+    keywords: ['weed', 'weeds', 'invasive'],
+    phrases: ['detect weeds', 'weed detection', 'scan for weeds', 'field weeds'],
+    sentences: ['i want to detect weeds', 'scan my field for weeds', 'check my field for weeds'],
+    negativeKeywords: ['history', 'previous', 'past'],
+    contextPaths: ['/weed'],
+  ),
+  NavigationIntent(
+    id: 'weed_diagnosis', label: 'Weed Diagnosis', route: '/weed/diagnosis',
+    purpose: 'View the weed diagnosis workspace.',
+    keywords: ['weed', 'diagnosis'],
+    phrases: ['weed diagnosis', 'diagnose weeds', 'weed results'],
+    sentences: ['show weed diagnosis', 'open weed results'],
+    negativeKeywords: ['history', 'previous'],
+    contextPaths: ['/weed'],
+  ),
+  NavigationIntent(
+    id: 'weed_history', label: 'Weed History', route: '/weed/history',
+    purpose: 'View previous weed detection jobs.',
+    keywords: ['weed', 'weeds', 'history', 'previous', 'scans'],
+    phrases: ['weed history', 'previous weed', 'past weed', 'weed scans'],
+    sentences: ['show my weed history', 'show previous weed scans'],
+    negativeKeywords: ['start', 'new', 'detect'],
+    contextPaths: ['/weed'],
+  ),
+  NavigationIntent(
+    id: 'disease_detection', label: 'Disease Detection', route: '/disease/detection',
+    purpose: 'Start a plant disease image diagnosis.',
+    keywords: ['disease', 'diseased', 'pathogen', 'sick'],
+    phrases: ['detect disease', 'disease detection', 'plant disease', 'crop disease'],
+    sentences: ['check my plant for disease', 'check if my plants have a disease', 'diagnose my plant'],
+    negativeKeywords: ['history', 'previous', 'past'],
+    contextPaths: ['/disease'],
+  ),
+  NavigationIntent(
+    id: 'disease_history', label: 'Disease History', route: '/disease/history',
+    purpose: 'View the registry of previous disease diagnoses.',
+    keywords: ['disease', 'history', 'previous', 'registry'],
+    phrases: ['disease history', 'previous disease', 'diagnostic registry', 'past diagnoses'],
+    sentences: ['show disease history', 'show previous disease diagnoses'],
+    negativeKeywords: ['start', 'new', 'detect'],
+    contextPaths: ['/disease'],
+  ),
+  NavigationIntent(
+    id: 'market', label: 'Marketplace', route: '/market',
+    purpose: 'Browse agricultural products and curated inputs.',
+    keywords: ['market', 'marketplace', 'products', 'shop'],
+    phrases: ['open market', 'show products', 'farm supplies', 'agricultural products'],
+    sentences: ['take me to the market', 'open the marketplace'],
+    contextPaths: ['/market'],
+  ),
+  NavigationIntent(
+    id: 'settings', label: 'Settings', route: '/settings',
+    purpose: 'Open account, preferences, security, export, and sign-out settings.',
+    keywords: ['settings', 'preferences', 'account'],
+    phrases: ['open settings', 'account settings', 'app settings'],
+    sentences: ['take me to settings', 'show settings'],
+    contextPaths: ['/settings'],
+  ),
+];
