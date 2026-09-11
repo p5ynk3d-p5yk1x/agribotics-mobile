@@ -72,11 +72,11 @@ final routerProvider = Provider<GoRouter>((ref) {
                 builder: (context, state) =>
                 const LandSelectionPage(),
               ),
-              GoRoute(
-                path: '/sector-detail',
-                builder: (context, state) =>
-                const SectorDetailPage(),
-              ),
+              // GoRoute(
+              //   path: '/sector-detail',
+              //   builder: (context, state) =>
+              //   const SectorDetailPage(),
+              // ),
               GoRoute(
                 path: '/soil/detection',
                 builder: (context, state) =>
@@ -88,15 +88,16 @@ final routerProvider = Provider<GoRouter>((ref) {
                 const SoilNutrientHistory(),
               ),
               GoRoute(
-                path: '/soil/nutrient-map',
-                builder: (context, state) =>
-                const SoilNutrientMap(),
+                path: '/soil/nutrient-map/:jobId',
+                builder: (context,state) => SoilNutrientMap(
+                  jobId: state.pathParameters['jobId']!,
+                ),
               ),
-              GoRoute(
-                path: '/soil/vitality-report',
-                builder: (context, state) =>
-                const SoilReport(),
-              ),
+              // GoRoute(
+              //   path: '/soil/vitality-report',
+              //   builder: (context, state) =>
+              //   const SoilReport(),
+              // ),
               GoRoute(
                 path: '/identify',
                 builder: (context, state) =>
@@ -113,9 +114,10 @@ final routerProvider = Provider<GoRouter>((ref) {
                 const WeedDetectionHistory(),
               ),
               GoRoute(
-                path: '/weed/map',
-                builder: (context, state) =>
-                const WeedMap(),
+                path: '/weed/map/:jobId',
+                builder: (context, state) => WeedMap(
+                  jobId: state.pathParameters['jobId']!,
+                ),
               ),
               GoRoute(
                 path: '/weed/detail',
@@ -128,9 +130,10 @@ final routerProvider = Provider<GoRouter>((ref) {
                 const WeedDetectionPage(),
               ),
               GoRoute(
-                path: '/disease/map',
-                builder: (context, state) =>
-                const DiseasePathogenMapScreen(),
+                path: '/disease/map/:jobId',
+                builder: (context, state) => DiseasePathogenMapScreen(
+                  jobId: state.pathParameters['jobId']!,
+                ),
               ),
               GoRoute(
                 path: '/disease/history',

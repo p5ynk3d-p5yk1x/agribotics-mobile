@@ -1,17 +1,31 @@
+import 'package:agribotics/core/providers/app_providers.dart';
 import 'package:agribotics/shared/widgets/shared_timeline_item.dart';
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:glassmorphism_ui/glassmorphism_ui.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:lucide_icons/lucide_icons.dart';
+
 import '../../../../core/theme/app_theme.dart';
 
-import 'package:go_router/go_router.dart';
-
-class SoilNutrientHistory extends StatelessWidget {
+class SoilNutrientHistory extends ConsumerStatefulWidget {
   const SoilNutrientHistory({super.key});
 
   @override
+  ConsumerState<SoilNutrientHistory> createState() => _SoilNutrientHistoryState();
+}
+
+class _SoilNutrientHistoryState extends ConsumerState<SoilNutrientHistory> {
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() => ref.invalidate(soilJobsProvider));
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final jobsAsync = ref.watch(soilJobsProvider);
+
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: AppTheme.horizontalSpacing),
       child: Column(
@@ -37,136 +51,86 @@ class SoilNutrientHistory extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyLarge,
           ),
           const SizedBox(height: 48),
-          const _ActiveInsightCard().animate().fadeIn(delay: 200.ms).moveY(begin: 10, end: 0),
-          const SizedBox(height: 24),
-          const _StatsGrid().animate().fadeIn(delay: 400.ms),
-          const SizedBox(height: 30),
-          Center(
-            child: const Text(
-              'RECENT ACTIVITY LOG',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, letterSpacing: 3.0, color: AppTheme.secondary,),
+          jobsAsync.when(
+            loading: () => const _LoadingState(),
+            error: (error,stackTrace) => _ErrorState(
+              message: _errorMessage(error),
+              onRetry: () => ref.invalidate(soilJobsProvider),
             ),
+            data: (jobs) => _HistoryContent(jobs: jobs),
           ),
-          const SizedBox(height: 10),
-          const _HistoryTimeline(),
           const SizedBox(height: 120),
         ],
       ),
     );
   }
+
+  String _errorMessage(Object error) {
+    final value = error.toString();
+    if (value.startsWith('Exception: ')) return value.substring(11);
+    return value;
+  }
 }
 
-class _ActiveInsightCard extends StatelessWidget {
-  const _ActiveInsightCard();
+class _HistoryContent extends StatelessWidget {
+  final List<Map<String,dynamic>> jobs;
+
+  const _HistoryContent({required this.jobs});
 
   @override
   Widget build(BuildContext context) {
-    return GlassContainer(
-      blur: 15,
-      opacity: 0.1,
-      borderRadius: BorderRadius.circular(24),
-      border: Border.fromBorderSide(
-        BorderSide(color: Colors.white.withOpacity(0.3)),
-      ),
-      child: Stack(
-        children: [
-          // Abstract Texture
-          Positioned(
-            right: -40,
-            top: -40,
-            child: Container(
-              width: 150,
-              height: 150,
-              decoration: BoxDecoration(
-                color: AppTheme.primary.withOpacity(0.05),
-                shape: BoxShape.circle,
-              ),
+    final completed = jobs.where((job) => job['status']?.toString().toUpperCase() == 'COMPLETED').length;
+    final active = jobs.where((job) {
+      final status = job['status']?.toString().toUpperCase();
+      return status == 'QUEUED' || status == 'PROCESSING';
+    }).length;
+
+    return Column(
+      children: [
+        _StatsGrid(
+          totalJobs: jobs.length,
+          completedJobs: completed,
+          activeJobs: active,
+        ).animate().fadeIn(delay: 200.ms).moveY(begin: 10,end: 0),
+        const SizedBox(height: 30),
+        const Center(
+          child: Text(
+            'RECENT ACTIVITY LOG',
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 3,
+              color: AppTheme.secondary,
             ),
           ),
-          // Added Padding here to wrap the Column content
-          Padding(
-            padding: const EdgeInsets.all(32),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                  decoration: BoxDecoration(
-                    color: AppTheme.primary,
-                    borderRadius: BorderRadius.circular(100),
-                  ),
-                  child: const Text(
-                    'ACTIVE INSIGHT',
-                    style: TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        letterSpacing: 1.5
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 24),
-                const Text(
-                  'Nitrogen Saturation Phase',
-                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 12),
-                const Text('Deep-core analysis for the North Orchard segment.'),
-                const SizedBox(height: 48),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          '88',
-                          style: TextStyle(
-                              fontSize: 48,
-                              fontWeight: FontWeight.w900,
-                              color: AppTheme.primary
-                          ),
-                        ),
-                        Text(
-                          'AGGREGATE HEALTH SCORE',
-                          style: TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                              color: AppTheme.secondary
-                          ),
-                        ),
-                      ],
-                    ),
-                    ElevatedButton(
-                      onPressed: () => context.go('/soil/vitality-report'),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppTheme.primary,
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                      ),
-                      child: const Text('View Full Report'),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+        ),
+        const SizedBox(height: 10),
+        if (jobs.isEmpty)
+          const _EmptyState()
+        else
+          _HistoryTimeline(jobs: jobs),
+      ],
     );
   }
 }
 
 class _StatsGrid extends StatelessWidget {
-  const _StatsGrid();
+  final int totalJobs;
+  final int completedJobs;
+  final int activeJobs;
+
+  const _StatsGrid({
+    required this.totalJobs,
+    required this.completedJobs,
+    required this.activeJobs,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
-        color: AppTheme.onSurfaceVariant.withOpacity(0.05),
+        color: AppTheme.onSurfaceVariant.withValues(alpha: .05),
         borderRadius: BorderRadius.circular(24),
       ),
       child: Row(
@@ -177,24 +141,38 @@ class _StatsGrid extends StatelessWidget {
               color: AppTheme.primary,
               borderRadius: BorderRadius.circular(16),
             ),
-            child: const Icon(LucideIcons.activity, color: Colors.white, size: 24),
+            child: const Icon(
+              LucideIcons.activity,
+              color: Colors.white,
+              size: 24,
+            ),
           ),
           const SizedBox(width: 20),
-          const Expanded(
+          Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  'TOTAL TASKS',
-                  style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 1.5),
+                const Text(
+                  'TOTAL ANALYSES',
+                  style: TextStyle(
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 1.5,
+                  ),
                 ),
                 Text(
-                  '142',
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.w900),
+                  '$totalJobs',
+                  style: const TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w900,
+                  ),
                 ),
                 Text(
-                  'Increased by 12% from previous fiscal quarter.',
-                  style: TextStyle(fontSize: 11, color: AppTheme.secondary),
+                  '$completedJobs completed • $activeJobs active',
+                  style: const TextStyle(
+                    fontSize: 11,
+                    color: AppTheme.secondary,
+                  ),
                 ),
               ],
             ),
@@ -206,50 +184,214 @@ class _StatsGrid extends StatelessWidget {
 }
 
 class _HistoryTimeline extends StatelessWidget {
-  const _HistoryTimeline();
+  final List<Map<String,dynamic>> jobs;
+
+  const _HistoryTimeline({required this.jobs});
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
-        SharedTimelineItem(
-          label: 'PROCESSING',
-          title: 'Organic Carbon Mapping',
-          subtitle: 'May 14, 2024 • Sector 7-G',
-          metricLabel: 'EST. HEALTH',
-          metricValue: '--',
-          dotColor: AppTheme.primary,
-          isFirst: true,
-          isProcessing: true,
-          useCard: true, // Highlights active/processing task
-          onTap: () => context.go('/soil/nutrient-map'),
+      children: List.generate(jobs.length,(index) {
+        final job = jobs[index];
+        final jobId = job['jobId']?.toString() ?? '';
+        final status = job['status']?.toString().toUpperCase() ?? 'UNKNOWN';
+        final createdAt = _formatDate(job['createdAt']);
+        final isProcessing = status == 'QUEUED' || status == 'PROCESSING';
+
+        return SharedTimelineItem(
+          label: status,
+          title: 'Soil Nutrient Analysis',
+          subtitle: '$createdAt • ${_shortJobId(jobId)}',
+          metricLabel: 'STATUS',
+          metricValue: _statusMetric(status),
+          dotColor: _statusColor(status),
+          isFirst: index == 0,
+          isProcessing: isProcessing,
+          useCard: isProcessing,
+          onTap: jobId.isEmpty ? null : () => context.go('/soil/nutrient-map/$jobId'),
+        ).animate().fadeIn(
+          delay: Duration(milliseconds: 100 + (index * 70)),
+          duration: 400.ms,
+        ).moveY(begin: 10,end: 0);
+      }),
+    );
+  }
+
+  static String _formatDate(dynamic value) {
+    if (value == null) return 'Unknown date';
+
+    final date = DateTime.tryParse(value.toString())?.toLocal();
+    if (date == null) return 'Unknown date';
+
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+
+    return '${months[date.month - 1]} ${date.day}, ${date.year}';
+  }
+
+  static String _shortJobId(String jobId) {
+    if (jobId.isEmpty) return 'Unknown job';
+    if (jobId.length <= 8) return jobId;
+    return 'Job ${jobId.substring(0,8)}';
+  }
+
+  static String _statusMetric(String status) {
+    switch (status) {
+      case 'COMPLETED':
+        return 'READY';
+      case 'PROCESSING':
+        return 'RUNNING';
+      case 'QUEUED':
+        return 'QUEUED';
+      case 'FAILED':
+        return 'FAILED';
+      default:
+        return '--';
+    }
+  }
+
+  static Color _statusColor(String status) {
+    switch (status) {
+      case 'QUEUED':
+      case 'PROCESSING':
+        return AppTheme.primary;
+      case 'FAILED':
+        return Colors.red;
+      default:
+        return Colors.grey;
+    }
+  }
+}
+
+class _EmptyState extends StatelessWidget {
+  const _EmptyState();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 42),
+      decoration: BoxDecoration(
+        color: AppTheme.surface,
+        borderRadius: BorderRadius.circular(24),
+      ),
+      child: Column(
+        children: [
+          Container(
+            width: 58,
+            height: 58,
+            decoration: BoxDecoration(
+              color: AppTheme.primary.withValues(alpha: .08),
+              borderRadius: BorderRadius.circular(18),
+            ),
+            child: const Icon(
+              LucideIcons.flaskConical,
+              color: AppTheme.primary,
+            ),
+          ),
+          const SizedBox(height: 18),
+          const Text(
+            'No soil analyses yet',
+            style: TextStyle(
+              fontSize: 17,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+          const SizedBox(height: 8),
+          const Text(
+            'Completed and active soil analysis jobs will appear here.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 13,
+              height: 1.5,
+              color: AppTheme.onSurfaceVariant,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _LoadingState extends StatelessWidget {
+  const _LoadingState();
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox(
+      height: 240,
+      child: Center(
+        child: CircularProgressIndicator(
+          color: AppTheme.primary,
         ),
-        const SharedTimelineItem(
-          label: 'COMPLETED',
-          title: 'Phosphorus Baseline Scan',
-          subtitle: 'April 28, 2024 • Valley Terrace',
-          metricLabel: 'HEALTH SCORE',
-          metricValue: '92',
-          dotColor: Colors.grey,
-        ),
-        const SharedTimelineItem(
-          label: 'COMPLETED',
-          title: 'Micronutrient Audit',
-          subtitle: 'March 12, 2024 • Vineyard East',
-          metricLabel: 'HEALTH SCORE',
-          metricValue: '76',
-          dotColor: Colors.grey,
-          useCard: false,
-        ),
-        const SharedTimelineItem(
-          label: 'COMPLETED',
-          title: 'Pre-Planting PH Check',
-          subtitle: 'February 19, 2024 • All Sectors',
-          metricLabel: 'HEALTH SCORE',
-          metricValue: '84',
-          dotColor: Colors.grey,
-        ),
-      ],
+      ),
+    );
+  }
+}
+
+class _ErrorState extends StatelessWidget {
+  final String message;
+  final VoidCallback onRetry;
+
+  const _ErrorState({
+    required this.message,
+    required this.onRetry,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(24),
+      decoration: BoxDecoration(
+        color: AppTheme.surface,
+        borderRadius: BorderRadius.circular(24),
+      ),
+      child: Column(
+        children: [
+          const Icon(
+            LucideIcons.alertCircle,
+            color: Colors.red,
+            size: 30,
+          ),
+          const SizedBox(height: 14),
+          const Text(
+            'Unable to load soil history',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w800,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            message,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 12,
+              height: 1.5,
+              color: AppTheme.onSurfaceVariant,
+            ),
+          ),
+          const SizedBox(height: 18),
+          TextButton.icon(
+            onPressed: onRetry,
+            icon: const Icon(LucideIcons.refreshCw),
+            label: const Text('Retry'),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -33,9 +33,7 @@ class MainScaffold extends StatelessWidget {
               children: [
                 const CircleAvatar(
                   radius: 18,
-                  backgroundImage: NetworkImage(
-                    'https://lh3.googleusercontent.com/a/default-user=s120-c',
-                  ),
+                    backgroundImage: AssetImage('assets/logo/logo.png'),
                 ),
                 const SizedBox(width: 12),
                 Text(
@@ -93,7 +91,7 @@ class _FloatingBottomNav extends StatelessWidget {
               icon: LucideIcons.layers,
               label: 'SOIL',
               isActive: currentPath == '/soil/nutrient-map',
-              onTap: () => context.go('/soil/nutrient-map'),
+              onTap: () => context.go('/soil/history'),
             ),
             _NavItem(
               icon: LucideIcons.search,

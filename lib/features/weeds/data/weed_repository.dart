@@ -35,21 +35,16 @@ class WeedRepository {
   }
 
   Future<Map<String,dynamic>> getJob(String jobId) async {
-    final response=await dio.get(
-      '/api/jobs/$jobId',
-    );
-    return Map<String,dynamic>.from(
-      response.data,
-    );
+    final response=await dio.get('/api/jobs/$jobId',);
+    return Map<String,dynamic>.from(response.data,);
   }
 
   Future<List<Map<String, dynamic>>> getAllWeedJobs() async {
-    final response = await dio.get(
-      '/api/jobs/type/WEED',
-    );
+    final response = await dio.get('/api/jobs/type/WEED',);
 
     return (response.data as List)
         .map((e) => Map<String, dynamic>.from(e))
         .toList();
   }
+
 }

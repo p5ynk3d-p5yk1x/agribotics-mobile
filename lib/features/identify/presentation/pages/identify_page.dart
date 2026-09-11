@@ -49,29 +49,28 @@ class IdentifyPage extends StatelessWidget {
           ),
           const SizedBox(height: 48),
           DetectionCard(
-            title: 'Weed Detection',
-            description:
-            'Automated spectral analysis across North Quadrant to identify invasive species and nitrogen competitors before they spread.',
-            icon: LucideIcons.target,
-            route: '/weed/detection',
-            imageUrl: 'https://picsum.photos/seed/weed/800/400',
-          ),
-          const SizedBox(height: 24),
-          DetectionCard(
             title: 'Soil Analysis',
             description: 'Automated soil analysis that turns soil auth into actionable insights for smarter farming and fertilizer usage.',
             icon: LucideIcons.flaskConical,
             route: '/soil/detection',
-            imageUrl: 'https://picsum.photos/seed/soil/800/400',
+            imageUrl: 'assets/images/soil-detection.png',
           ),
           const SizedBox(height: 24),
-
+          DetectionCard(
+              title: 'Weed Detection',
+              description:
+              'Automated spectral analysis across North Quadrant to identify invasive species and nitrogen competitors before they spread.',
+              icon: LucideIcons.target,
+              route: '/weed/detection',
+              imageUrl: 'assets/images/weed-detection.png'
+          ),
+          const SizedBox(height: 24),
           DetectionCard(
             title: 'Disease Detection',
             description: 'Advanced analytics that turn raw farm auth into actionable crop yield insights for smarter planning and higher output.',
             icon: LucideIcons.sun,
             route: '/disease/detection',
-            imageUrl: 'https://picsum.photos/seed/disease/800/400',
+            imageUrl: 'assets/images/disease-detection.png',
           ),
           const SizedBox(height: 120),
         ],
@@ -117,7 +116,7 @@ class DetectionCard extends StatelessWidget {
           ClipRRect(
             borderRadius:
             const BorderRadius.vertical(top: Radius.circular(24)),
-            child: Image.network(
+            child: Image.asset(
               imageUrl,
               height: 200,
               fit: BoxFit.cover,

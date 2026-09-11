@@ -14,15 +14,14 @@ class WeedDetectionHistory extends ConsumerStatefulWidget {
 }
 
 class _WeedDetectionHistoryState extends ConsumerState<WeedDetectionHistory> {
-
   @override
   void initState() {
     super.initState();
-
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.invalidate(weedJobsProvider);
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,14 +42,8 @@ class _WeedDetectionHistoryState extends ConsumerState<WeedDetectionHistory> {
                       style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold, letterSpacing: 3.0, color: AppTheme.secondary),
                     ),
                     const SizedBox(height: 8),
-                    Text(
-                      'Detection',
-                      style: Theme.of(context).textTheme.displayLarge,
-                    ),
-                    Text(
-                      'History',
-                      style: Theme.of(context).textTheme.displayLarge,
-                    ),
+                    Text('Detection', style: Theme.of(context).textTheme.displayLarge),
+                    Text('History', style: Theme.of(context).textTheme.displayLarge),
                   ],
                 ),
                 Container(
@@ -65,15 +58,15 @@ class _WeedDetectionHistoryState extends ConsumerState<WeedDetectionHistory> {
             const SizedBox(height: 48),
             const _StatusOverview(),
             const SizedBox(height: 48),
-            const _HistoryTimeline(),
-            const SizedBox(height: 15),
-            const Text(
-              'RECENT ACTIVITY LOG',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, letterSpacing: 3.0, color: AppTheme.secondary),
+            const Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'RECENT ACTIVITY LOG',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, letterSpacing: 3.0, color: AppTheme.secondary),
+              ),
             ),
-            const SizedBox(height: 15),
+            const SizedBox(height: 24),
             const _ScansTimeline(),
-
             const SizedBox(height: 120),
           ],
         ),
@@ -89,34 +82,38 @@ class _TotalScansCard extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final jobsAsync = ref.watch(weedJobsProvider);
     return jobsAsync.when(
-              loading: () => const Center(
-                child: CircularProgressIndicator(),
-              ),
-              error: (error, stack) => Text(error.toString()),
-              data: (jobs) =>
-                  Container(
-                    padding: const EdgeInsets.all(32),
-                    decoration: BoxDecoration(
-                      color: AppTheme.primary,
-                      borderRadius: BorderRadius.circular(32),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text('TOTAL SCANS', style: TextStyle(color: Colors.white54, fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 2.0)),
-                            const SizedBox(height: 24),
-                            Text(jobs.length.toString(), style: TextStyle(fontSize: 64, fontWeight: FontWeight.w900, color: Colors.white)),
-                            const SizedBox(height: 8),
-                            const Text('Across all active sectors.', style: TextStyle(color: Colors.white70, fontSize: 12)),
-                          ],
-                        ),
-                        const Icon(LucideIcons.camera, color: Colors.white24, size: 80),
-                      ],
-                    ),
-                  ));
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (error, stack) => Text(error.toString()),
+      data: (jobs) => Container(
+        padding: const EdgeInsets.all(32),
+        decoration: BoxDecoration(color: AppTheme.primary, borderRadius: BorderRadius.circular(32)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'TOTAL SCANS',
+                  style: TextStyle(color: Colors.white54, fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 2.0),
+                ),
+                const SizedBox(height: 24),
+                Text(
+                  jobs.length.toString(),
+                  style: const TextStyle(fontSize: 64, fontWeight: FontWeight.w900, color: Colors.white),
+                ),
+                const SizedBox(height: 8),
+                const Text(
+                  'Across all active sectors.',
+                  style: TextStyle(color: Colors.white70, fontSize: 12),
+                ),
+              ],
+            ),
+            const Icon(LucideIcons.camera, color: Colors.white24, size: 80),
+          ],
+        ),
+      ),
+    );
   }
 }
 
@@ -126,215 +123,139 @@ class _StatusOverview extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final jobsAsync = ref.watch(weedJobsProvider);
-
     return jobsAsync.when(
-        loading: () => const Center(
-          child: CircularProgressIndicator(),
-        ),
-        error: (error, stack) => Text(error.toString()),
-        data: (jobs) {
-          final completed = jobs
-              .where((j) => j['status'] == 'COMPLETED')
-              .length;
-
-          final pending = jobs
-              .where((j) =>
-          j['status'] == 'QUEUED' ||
-              j['status'] == 'PROCESSING')
-              .length;
-          return
-            Container(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                child: IntrinsicHeight( // Ensures the divider matches the height of the content
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (error, stack) => Text(error.toString()),
+      data: (jobs) {
+        final completed = jobs.where((j) => j['status'] == 'COMPLETED').length;
+        final pending = jobs.where((j) => j['status'] == 'QUEUED' || j['status'] == 'PROCESSING').length;
+        return Container(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: IntrinsicHeight(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center, // Changed to center
-                          children: [
-                            const Text(
-                                'THREATS NEUTRALIZED',
-                                style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, letterSpacing: 1.0)
-                            ),
-                            const SizedBox(height: 8),
-                            Row(
-                              mainAxisSize: MainAxisSize.min, // Keep content tight
-                              children: [
-                                Text(
-                                    completed.toString(),
-                                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.w900, color: AppTheme.primary)
-                                ),
-                                const SizedBox(width: 8),
-                                Icon(LucideIcons.checkCircle, color: Colors.green.shade400, size: 20),
-                              ],
-                            ),
-                          ],
-                        ),
+                      const Text(
+                        'COMPLETED',
+                        style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, letterSpacing: 1.0),
                       ),
-                      VerticalDivider(
-                        color: AppTheme.outline.withOpacity(0.2),
-                        thickness: 1,
-                        indent: 10,
-                        endIndent: 10,
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center, // Changed to center
-                          children: [
-                            const Text(
-                                'PENDING ANALYSIS',
-                                style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, letterSpacing: 1.0)
-                            ),
-                            const SizedBox(height: 8),
-                            Row(
-                              mainAxisSize: MainAxisSize.min, // Keep content tight
-                              children: [
-                                Text(
-                                    pending.toString(),
-                                    style: TextStyle(fontSize: 32, fontWeight: FontWeight.w900, color: AppTheme.onSurface)
-                                ),
-                                const SizedBox(width: 8),
-                                Icon(LucideIcons.clock, color: Colors.orange.shade400, size: 20),
-                              ],
-                            ),
-                          ],
-                        ),
+                      const SizedBox(height: 8),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            completed.toString(),
+                            style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w900, color: AppTheme.primary),
+                          ),
+                          const SizedBox(width: 8),
+                          Icon(LucideIcons.checkCircle, color: Colors.green.shade400, size: 20),
+                        ],
                       ),
                     ],
                   ),
                 ),
-    );});
-  }
-}
-
-class _HistoryTimeline extends StatelessWidget {
-  const _HistoryTimeline();
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        _TimelineItem(
-          species: 'Spotted Knapweed',
-          location: 'Sector 4B',
-          date: '14 May, 2024',
-          status: 'NEUTRALIZED',
-          statusColor: Colors.green,
-        ),
-        _TimelineItem(
-          species: 'Field Bindweed',
-          location: 'Sector 2C',
-          date: '12 May, 2024',
-          status: 'PENDING ACTION',
-          statusColor: Colors.orange,
-        ),
-        _TimelineItem(
-          species: 'Canada Thistle',
-          location: 'Sector 7A',
-          date: '08 May, 2024',
-          status: 'NEUTRALIZED',
-          statusColor: Colors.green,
-        ),
-        _TimelineItem(
-          species: 'Common Ragweed',
-          location: 'North Orchard',
-          date: '02 May, 2024',
-          status: 'NEUTRALIZED',
-          statusColor: Colors.green,
-        ),
-      ],
-    );
-  }
-}
-
-class _TimelineItem extends StatelessWidget {
-  final String species;
-  final String location;
-  final String date;
-  final String status;
-  final Color statusColor;
-
-  const _TimelineItem({
-    required this.species,
-    required this.location,
-    required this.date,
-    required this.status,
-    required this.statusColor,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 24),
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(color: AppTheme.surface, borderRadius: BorderRadius.circular(24)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(species, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                const SizedBox(height: 4),
-                Text('$location • $date', style: const TextStyle(fontSize: 12, color: AppTheme.onSurfaceVariant)),
+                VerticalDivider(
+                  color: AppTheme.outline.withOpacity(0.2),
+                  thickness: 1,
+                  indent: 10,
+                  endIndent: 10,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'PENDING ANALYSIS',
+                        style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, letterSpacing: 1.0),
+                      ),
+                      const SizedBox(height: 8),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            pending.toString(),
+                            style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w900, color: AppTheme.onSurface),
+                          ),
+                          const SizedBox(width: 8),
+                          Icon(LucideIcons.clock, color: Colors.orange.shade400, size: 20),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
           ),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            decoration: BoxDecoration(color: statusColor.withOpacity(0.1), borderRadius: BorderRadius.circular(100)),
-            child: Text(
-              status,
-              style: TextStyle(fontSize: 9, fontWeight: FontWeight.bold, color: statusColor, letterSpacing: 1.0),
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
 
-class _ScansTimeline extends ConsumerWidget  {
+class _ScansTimeline extends ConsumerWidget {
   const _ScansTimeline();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final jobsAsync = ref.watch(weedJobsProvider);
     return jobsAsync.when(
-      loading: () => const Center(
-        child: CircularProgressIndicator(),
-      ),
+      loading: () => const Center(child: CircularProgressIndicator()),
       error: (error, stack) => Text(error.toString()),
-      data: (jobs) => Column(
-        children: jobs.asMap().entries.map((entry) {
-          final index = entry.key;
-          final job = entry.value;
-
-          final status = job['status'] as String;
-
-          return SharedTimelineItem(
-            isFirst: index == 0,
-            label: status,
-            title: 'Weed Detection',
-            subtitle: job['createdAt'] ?? '',
-            metricLabel: 'JOB',
-            metricValue: job['jobId'].toString().substring(0, 6),
-            dotColor: status == 'COMPLETED'
-                ? Colors.green
-                : status == 'FAILED'
-                ? Colors.red
-                : AppTheme.primary,
-            isProcessing:
-            status == 'PROCESSING' ||
-                status == 'QUEUED',
-            useCard: true,
-            onTap: () => context.go('/weed/map'),
+      data: (jobs) {
+        if (jobs.isEmpty) {
+          return Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(32),
+            decoration: BoxDecoration(color: AppTheme.surface, borderRadius: BorderRadius.circular(24)),
+            child: const Column(
+              children: [
+                Icon(LucideIcons.camera, color: AppTheme.onSurfaceVariant, size: 36),
+                SizedBox(height: 16),
+                Text(
+                  'NO DETECTIONS YET',
+                  style: TextStyle(fontSize: 11, fontWeight: FontWeight.bold, letterSpacing: 1.5),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  'Completed weed scans will appear here.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 12, color: AppTheme.onSurfaceVariant),
+                ),
+              ],
+            ),
           );
-        }).toList(),
-      ),
+        }
+        return Column(
+          children: jobs.asMap().entries.map((entry) {
+            final index = entry.key;
+            final job = entry.value;
+            final status = job['status']?.toString() ?? 'UNKNOWN';
+            final jobId = job['jobId']?.toString() ?? '';
+            return SharedTimelineItem(
+              isFirst: index == 0,
+              label: status,
+              title: 'Weed Detection',
+              subtitle: job['createdAt']?.toString() ?? '',
+              metricLabel: 'JOB',
+              metricValue: jobId.length >= 6 ? jobId.substring(0, 6) : jobId,
+              dotColor: status == 'COMPLETED'
+                  ? Colors.green
+                  : status == 'FAILED'
+                  ? Colors.red
+                  : AppTheme.primary,
+              isProcessing: status == 'PROCESSING' || status == 'QUEUED',
+              useCard: true,
+              onTap: status == 'COMPLETED' && jobId.isNotEmpty
+                  ? () => context.go('/weed/map/$jobId')
+                  : null,
+            );
+          }).toList(),
+        );
+      },
     );
   }
 }
-

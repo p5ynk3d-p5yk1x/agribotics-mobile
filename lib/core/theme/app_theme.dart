@@ -19,6 +19,30 @@ class AppTheme {
   static const Color tertiaryFixed = Color(0xFFDAE8BE);
   static const Color error = Color(0xFFBA1A1A);
 
+  // static const Color primary = Color(0xFF5BA83A);
+  // static const Color emerald = Color(0xFF5BA83A);
+  // static const Color primaryContainer = Color(0xFFE5F2DE);
+  //
+  // static const Color secondary = Color(0xFFF5C518);
+  // static const Color secondaryContainer = Color(0xFFFFF3B8);
+  //
+  // static const Color background = Color(0xFFFAFCF7);
+  // static const Color onBackground = Color(0xFF1A1C1B);
+  //
+  // static const Color surface = Color(0xFFFFFFFF);
+  // static const Color surfaceLow = Color(0xFFF5F8F2);
+  // static const Color surfaceContainerLow = Color(0xFFEEF5E9);
+  // static const Color surfaceContainerLowest = Color(0xFFFFFFFF);
+  //
+  // static const Color onSurface = Color(0xFF1A1C1B);
+  // static const Color onSurfaceVariant = Color(0xFF4B5548);
+  //
+  // static const Color outline = Color(0xFF899486);
+  //
+  // static const Color tertiaryFixed = Color(0xFFE5F2DE);
+  //
+  // static const Color error = Color(0xFFBA1A1A);
+
   static BoxDecoration get heroGradient => const BoxDecoration(
     gradient: LinearGradient(
       colors: [primary, primaryContainer],

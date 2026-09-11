@@ -165,25 +165,15 @@ class _ProductHeroImage extends StatelessWidget {
   final String? imageUrl;
   const _ProductHeroImage({this.imageUrl});
 
-  String? _formatImageUrl(String? url) {
-    if (url == null || url.isEmpty) return null;
-
-    return url.replaceFirst(
-      'http://localhost:3000',
-      'http://192.168.1.177:3000',
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
-    final formattedUrl = _formatImageUrl(imageUrl);
 
     return AspectRatio(
       aspectRatio: 1,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(32),
-        child: formattedUrl == null
-            ? const ColoredBox(
+        child: imageUrl == null ? const ColoredBox(
           color: AppTheme.surface,
           child: Center(
             child: Icon(
@@ -194,7 +184,7 @@ class _ProductHeroImage extends StatelessWidget {
           ),
         )
             : Image.network(
-          formattedUrl,
+          imageUrl!,
           fit: BoxFit.cover,
           errorBuilder: (_, __, ___) {
             return const ColoredBox(

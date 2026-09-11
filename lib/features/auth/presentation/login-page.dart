@@ -169,15 +169,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                       Stack(
                         alignment: Alignment.center,
                         children: [
-                          Container(
-                            width: 280,
-                            height: 280,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: AppTheme.emerald.withValues(alpha: .12),
-                            ),
-                          ),
-
                           GlassContainer(
                             blur: 30,
                             borderRadius: BorderRadius.circular(32),

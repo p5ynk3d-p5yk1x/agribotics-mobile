@@ -143,7 +143,7 @@ class _DiseaseDetectionPageState extends ConsumerState<DiseaseDetectionPage> {
                 .fadeIn(delay: 650.ms)
                 .moveY(begin: 20, end: 0),
 
-            const SizedBox(height: 40),
+            const SizedBox(height: 120),
           ],
         ),
       ),

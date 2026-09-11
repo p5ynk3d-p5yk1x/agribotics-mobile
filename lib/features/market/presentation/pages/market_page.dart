@@ -350,20 +350,11 @@ class _ProductImage extends StatelessWidget {
   final String? imageUrl;
   const _ProductImage({this.imageUrl});
 
-  String? _formatImageUrl(String? url) {
-    if (url == null || url.isEmpty) return null;
-
-    return url.replaceFirst(
-      'http://localhost:3000',
-      'http://192.168.1.177:3000',
-    );
-  }
 
   @override
   Widget build(BuildContext context) {
-    final formattedUrl = _formatImageUrl(imageUrl);
 
-    if (formattedUrl == null) {
+    if (imageUrl == null) {
       return const ColoredBox(
         color: AppTheme.background,
         child: Center(
@@ -377,7 +368,7 @@ class _ProductImage extends StatelessWidget {
     }
 
     return Image.network(
-      formattedUrl,
+      imageUrl!,
       fit: BoxFit.cover,
       errorBuilder: (_, __, ___) {
         return const ColoredBox(
